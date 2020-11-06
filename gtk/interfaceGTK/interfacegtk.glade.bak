@@ -1,0 +1,273 @@
+<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+<!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
+
+<glade-interface>
+
+<widget class="GtkWindow" id="window_login">
+  <property name="border_width">2</property>
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">Authentification</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_CENTER</property>
+  <property name="modal">False</property>
+  <property name="default_width">1024</property>
+  <property name="default_height">745</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_DESKTOP</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
+
+  <child>
+    <widget class="GtkFixed" id="fixed1">
+      <property name="visible">True</property>
+
+      <child>
+	<widget class="GtkEntry" id="entry_login_password">
+	  <property name="width_request">272</property>
+	  <property name="height_request">40</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="editable">True</property>
+	  <property name="visibility">True</property>
+	  <property name="max_length">0</property>
+	  <property name="text" translatable="yes">Mot de passe</property>
+	  <property name="has_frame">True</property>
+	  <property name="invisible_char">•</property>
+	  <property name="activates_default">False</property>
+	</widget>
+	<packing>
+	  <property name="x">392</property>
+	  <property name="y">402</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkEntry" id="entry_login_user">
+	  <property name="width_request">272</property>
+	  <property name="height_request">40</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="editable">True</property>
+	  <property name="visibility">True</property>
+	  <property name="max_length">0</property>
+	  <property name="text" translatable="yes">Identifiant</property>
+	  <property name="has_frame">True</property>
+	  <property name="invisible_char">•</property>
+	  <property name="activates_default">False</property>
+	</widget>
+	<packing>
+	  <property name="x">392</property>
+	  <property name="y">328</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_login_login">
+	  <property name="width_request">240</property>
+	  <property name="height_request">56</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">button1</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">392</property>
+	  <property name="y">472</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_login_close">
+	  <property name="width_request">96</property>
+	  <property name="height_request">29</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Close</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <signal name="clicked" handler="on_button_login_close_clicked" last_modification_time="Fri, 06 Nov 2020 20:12:09 GMT"/>
+	</widget>
+	<packing>
+	  <property name="x">456</property>
+	  <property name="y">544</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkImage" id="image_login">
+	  <property name="width_request">1024</property>
+	  <property name="height_request">760</property>
+	  <property name="visible">True</property>
+	  <property name="pixbuf">mahiech finale_Plan de travail 1.png</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+	<packing>
+	  <property name="x">0</property>
+	  <property name="y">0</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkWindow" id="window_employee">
+  <property name="border_width">1</property>
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">Espace employés</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="modal">False</property>
+  <property name="default_width">1024</property>
+  <property name="default_height">745</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
+
+  <child>
+    <widget class="GtkFixed" id="fixed2">
+      <property name="visible">True</property>
+
+      <child>
+	<widget class="GtkButton" id="button_gestion_ouvriers">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Gestion des ouvriers</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">581</property>
+	  <property name="y">100</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_gestion_equipements">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Gestion des équipements</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">197</property>
+	  <property name="y">550</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_gestion_clients">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Gestion des clients</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">581</property>
+	  <property name="y">325</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_calendrier">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Calendrier </property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">581</property>
+	  <property name="y">550</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_gestion_capteurs">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Gestion des capteurs</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">194</property>
+	  <property name="y">100</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="button_gestion_troupeaux">
+	  <property name="width_request">250</property>
+	  <property name="height_request">100</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Gestion des troupeaux</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">194</property>
+	  <property name="y">325</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkWindow" id="window1">
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">window1</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="modal">False</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
+
+  <child>
+    <placeholder/>
+  </child>
+</widget>
+
+</glade-interface>
