@@ -4,3 +4,8 @@
 
 GtkWidget* create_window_login (void);
 GtkWidget* create_window_employee (void);
+GtkWidget* create_window_main_gestion_des_plantations (void);
+GtkWidget* create_window_commentaire (void);
+GtkWidget* create_window_add (void);
+GtkWidget* create_window_edit (void);
+GtkWidget* create_window_delete (void);
