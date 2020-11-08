@@ -1,0 +1,3 @@
+gestion_equip.o: gestion_equip.c /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:
