@@ -158,16 +158,606 @@ create_window_employee (void)
 }
 
 GtkWidget*
-create_window1 (void)
+create_window_equipements (void)
 {
-  GtkWidget *window1;
+  GtkWidget *window_equipements;
+  GtkWidget *notebook2;
+  GtkWidget *notebook3;
+  GtkWidget *notebook4;
+  GtkWidget *scrolledwindow8;
+  GtkWidget *treeview5;
+  GtkWidget *label_list;
+  GtkWidget *fixed19;
+  GtkWidget *entry_marque;
+  GtkWidget *entry_type;
+  GtkWidget *entry_id_aj_eq;
+  GtkWidget *entry_date_ajout;
+  GtkWidget *entry_prix_aj;
+  GtkWidget *label_date_ajout_eq;
+  GtkWidget *label_prix_eq;
+  GtkWidget *button_ajout_eq;
+  GtkWidget *alignment17;
+  GtkWidget *hbox17;
+  GtkWidget *image17;
+  GtkWidget *label60;
+  GtkWidget *label_ajout_id;
+  GtkWidget *label_type;
+  GtkWidget *label_marque;
+  GtkWidget *label_ajout;
+  GtkWidget *fixed21;
+  GtkWidget *entry_id_modif;
+  GtkWidget *entry_type_modif;
+  GtkWidget *entrymarque_modif;
+  GtkWidget *entry_date_modif;
+  GtkWidget *entry_prix_modif;
+  GtkWidget *label71;
+  GtkWidget *label72;
+  GtkWidget *label75;
+  GtkWidget *label76;
+  GtkWidget *label74;
+  GtkWidget *button26;
+  GtkWidget *alignment18;
+  GtkWidget *hbox18;
+  GtkWidget *image18;
+  GtkWidget *label73;
+  GtkWidget *label_modif;
+  GtkWidget *fixed22;
+  GtkWidget *entry25;
+  GtkWidget *label77;
+  GtkWidget *entry26;
+  GtkWidget *label78;
+  GtkWidget *button_supprimer;
+  GtkWidget *alignment19;
+  GtkWidget *hbox19;
+  GtkWidget *image19;
+  GtkWidget *label79;
+  GtkWidget *label_suppr;
+  GtkWidget *label_equip;
+  GtkWidget *notebook5;
+  GtkWidget *scrolledwindow9;
+  GtkWidget *treeview6;
+  GtkWidget *label_histo;
+  GtkWidget *fixed18;
+  GtkWidget *entry7;
+  GtkWidget *entry8;
+  GtkWidget *entry_entreteneur;
+  GtkWidget *entry10;
+  GtkWidget *button_confirm;
+  GtkWidget *alignment16;
+  GtkWidget *hbox16;
+  GtkWidget *image16;
+  GtkWidget *label59;
+  GtkWidget *label_id;
+  GtkWidget *label__date_entretien;
+  GtkWidget *label_entreteneur;
+  GtkWidget *label_montant;
+  GtkWidget *checkbutton_pay__;
+  GtkWidget *label_ajout_entretien;
+  GtkWidget *label_entretien;
+  GtkWidget *fixed17;
+  GtkWidget *entry5;
+  GtkWidget *entry6;
+  GtkWidget *label51;
+  GtkWidget *button23;
+  GtkWidget *alignment15;
+  GtkWidget *hbox15;
+  GtkWidget *image15;
+  GtkWidget *label52;
+  GtkWidget *radiobutton5;
+  GSList *radiobutton5_group = NULL;
+  GtkWidget *radiobutton6;
+  GSList *radiobutton6_group = NULL;
+  GtkWidget *label53;
+  GtkWidget *label_declarations;
+  GtkWidget *label_equip;
 
-  window1 = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window1), _("window1"));
+  window_equipements = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window_equipements), _("Gestion des \303\251quipements"));
+
+  notebook2 = gtk_notebook_new ();
+  gtk_widget_show (notebook2);
+  gtk_container_add (GTK_CONTAINER (window_equipements), notebook2);
+
+  notebook3 = gtk_notebook_new ();
+  gtk_widget_show (notebook3);
+  gtk_container_add (GTK_CONTAINER (notebook2), notebook3);
+
+  notebook4 = gtk_notebook_new ();
+  gtk_widget_show (notebook4);
+  gtk_container_add (GTK_CONTAINER (notebook3), notebook4);
+
+  scrolledwindow8 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow8);
+  gtk_container_add (GTK_CONTAINER (notebook4), scrolledwindow8);
+
+  treeview5 = gtk_tree_view_new ();
+  gtk_widget_show (treeview5);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow8), treeview5);
+
+  label_list = gtk_label_new (_("Liste"));
+  gtk_widget_show (label_list);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook4), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook4), 0), label_list);
+
+  fixed19 = gtk_fixed_new ();
+  gtk_widget_show (fixed19);
+  gtk_container_add (GTK_CONTAINER (notebook4), fixed19);
+
+  entry_marque = gtk_entry_new ();
+  gtk_widget_show (entry_marque);
+  gtk_fixed_put (GTK_FIXED (fixed19), entry_marque, 456, 40);
+  gtk_widget_set_size_request (entry_marque, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_marque), 8226);
+
+  entry_type = gtk_entry_new ();
+  gtk_widget_show (entry_type);
+  gtk_fixed_put (GTK_FIXED (fixed19), entry_type, 456, 136);
+  gtk_widget_set_size_request (entry_type, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_type), 8226);
+
+  entry_id_aj_eq = gtk_entry_new ();
+  gtk_widget_show (entry_id_aj_eq);
+  gtk_fixed_put (GTK_FIXED (fixed19), entry_id_aj_eq, 456, 232);
+  gtk_widget_set_size_request (entry_id_aj_eq, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_id_aj_eq), 8226);
+
+  entry_date_ajout = gtk_entry_new ();
+  gtk_widget_show (entry_date_ajout);
+  gtk_fixed_put (GTK_FIXED (fixed19), entry_date_ajout, 456, 328);
+  gtk_widget_set_size_request (entry_date_ajout, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_date_ajout), 8226);
+
+  entry_prix_aj = gtk_entry_new ();
+  gtk_widget_show (entry_prix_aj);
+  gtk_fixed_put (GTK_FIXED (fixed19), entry_prix_aj, 456, 424);
+  gtk_widget_set_size_request (entry_prix_aj, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_prix_aj), 8226);
+
+  label_date_ajout_eq = gtk_label_new (_("Date :"));
+  gtk_widget_show (label_date_ajout_eq);
+  gtk_fixed_put (GTK_FIXED (fixed19), label_date_ajout_eq, 136, 328);
+  gtk_widget_set_size_request (label_date_ajout_eq, 200, 56);
+
+  label_prix_eq = gtk_label_new (_("Prix :"));
+  gtk_widget_show (label_prix_eq);
+  gtk_fixed_put (GTK_FIXED (fixed19), label_prix_eq, 136, 424);
+  gtk_widget_set_size_request (label_prix_eq, 200, 48);
+
+  button_ajout_eq = gtk_button_new ();
+  gtk_widget_show (button_ajout_eq);
+  gtk_fixed_put (GTK_FIXED (fixed19), button_ajout_eq, 200, 520);
+  gtk_widget_set_size_request (button_ajout_eq, 496, 40);
+
+  alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment17);
+  gtk_container_add (GTK_CONTAINER (button_ajout_eq), alignment17);
+
+  hbox17 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox17);
+  gtk_container_add (GTK_CONTAINER (alignment17), hbox17);
+
+  image17 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image17);
+  gtk_box_pack_start (GTK_BOX (hbox17), image17, FALSE, FALSE, 0);
+
+  label60 = gtk_label_new_with_mnemonic (_("   Ajouter"));
+  gtk_widget_show (label60);
+  gtk_box_pack_start (GTK_BOX (hbox17), label60, FALSE, FALSE, 0);
+
+  label_ajout_id = gtk_label_new (_("Identifiant :"));
+  gtk_widget_show (label_ajout_id);
+  gtk_fixed_put (GTK_FIXED (fixed19), label_ajout_id, 88, 232);
+  gtk_widget_set_size_request (label_ajout_id, 304, 56);
+
+  label_type = gtk_label_new (_("Type :"));
+  gtk_widget_show (label_type);
+  gtk_fixed_put (GTK_FIXED (fixed19), label_type, 80, 136);
+  gtk_widget_set_size_request (label_type, 304, 56);
+
+  label_marque = gtk_label_new (_("Marque d'\303\251quipement :"));
+  gtk_widget_show (label_marque);
+  gtk_fixed_put (GTK_FIXED (fixed19), label_marque, 88, 40);
+  gtk_widget_set_size_request (label_marque, 304, 56);
+
+  label_ajout = gtk_label_new (_("Ajouter"));
+  gtk_widget_show (label_ajout);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook4), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook4), 1), label_ajout);
+
+  fixed21 = gtk_fixed_new ();
+  gtk_widget_show (fixed21);
+  gtk_container_add (GTK_CONTAINER (notebook4), fixed21);
+
+  entry_id_modif = gtk_entry_new ();
+  gtk_widget_show (entry_id_modif);
+  gtk_fixed_put (GTK_FIXED (fixed21), entry_id_modif, 456, 40);
+  gtk_widget_set_size_request (entry_id_modif, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_id_modif), 8226);
+
+  entry_type_modif = gtk_entry_new ();
+  gtk_widget_show (entry_type_modif);
+  gtk_fixed_put (GTK_FIXED (fixed21), entry_type_modif, 456, 136);
+  gtk_widget_set_size_request (entry_type_modif, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_type_modif), 8226);
+
+  entrymarque_modif = gtk_entry_new ();
+  gtk_widget_show (entrymarque_modif);
+  gtk_fixed_put (GTK_FIXED (fixed21), entrymarque_modif, 456, 232);
+  gtk_widget_set_size_request (entrymarque_modif, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entrymarque_modif), 8226);
+
+  entry_date_modif = gtk_entry_new ();
+  gtk_widget_show (entry_date_modif);
+  gtk_fixed_put (GTK_FIXED (fixed21), entry_date_modif, 456, 328);
+  gtk_widget_set_size_request (entry_date_modif, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_date_modif), 8226);
+
+  entry_prix_modif = gtk_entry_new ();
+  gtk_widget_show (entry_prix_modif);
+  gtk_fixed_put (GTK_FIXED (fixed21), entry_prix_modif, 456, 424);
+  gtk_widget_set_size_request (entry_prix_modif, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_prix_modif), 8226);
+
+  label71 = gtk_label_new (_("Date :"));
+  gtk_widget_show (label71);
+  gtk_fixed_put (GTK_FIXED (fixed21), label71, 136, 328);
+  gtk_widget_set_size_request (label71, 200, 56);
+
+  label72 = gtk_label_new (_("Prix :"));
+  gtk_widget_show (label72);
+  gtk_fixed_put (GTK_FIXED (fixed21), label72, 136, 424);
+  gtk_widget_set_size_request (label72, 200, 48);
+
+  label75 = gtk_label_new (_("Type :"));
+  gtk_widget_show (label75);
+  gtk_fixed_put (GTK_FIXED (fixed21), label75, 80, 136);
+  gtk_widget_set_size_request (label75, 304, 56);
+
+  label76 = gtk_label_new (_("Marque d'\303\251quipement :"));
+  gtk_widget_show (label76);
+  gtk_fixed_put (GTK_FIXED (fixed21), label76, 80, 232);
+  gtk_widget_set_size_request (label76, 304, 56);
+
+  label74 = gtk_label_new (_("Identifiant :"));
+  gtk_widget_show (label74);
+  gtk_fixed_put (GTK_FIXED (fixed21), label74, 80, 40);
+  gtk_widget_set_size_request (label74, 304, 56);
+
+  button26 = gtk_button_new ();
+  gtk_widget_show (button26);
+  gtk_fixed_put (GTK_FIXED (fixed21), button26, 200, 520);
+  gtk_widget_set_size_request (button26, 496, 40);
+
+  alignment18 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment18);
+  gtk_container_add (GTK_CONTAINER (button26), alignment18);
+
+  hbox18 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox18);
+  gtk_container_add (GTK_CONTAINER (alignment18), hbox18);
+
+  image18 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image18);
+  gtk_box_pack_start (GTK_BOX (hbox18), image18, FALSE, FALSE, 0);
+
+  label73 = gtk_label_new_with_mnemonic (_("   Modifier"));
+  gtk_widget_show (label73);
+  gtk_box_pack_start (GTK_BOX (hbox18), label73, FALSE, FALSE, 0);
+
+  label_modif = gtk_label_new (_("Modifier"));
+  gtk_widget_show (label_modif);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook4), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook4), 2), label_modif);
+
+  fixed22 = gtk_fixed_new ();
+  gtk_widget_show (fixed22);
+  gtk_container_add (GTK_CONTAINER (notebook4), fixed22);
+
+  entry25 = gtk_entry_new ();
+  gtk_widget_show (entry25);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry25, 464, 112);
+  gtk_widget_set_size_request (entry25, 416, 80);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry25), 8226);
+
+  label77 = gtk_label_new (_("Identifiant d'\303\251quipement \303\240 supprimer :"));
+  gtk_widget_show (label77);
+  gtk_fixed_put (GTK_FIXED (fixed22), label77, 16, 112);
+  gtk_widget_set_size_request (label77, 432, 80);
+
+  entry26 = gtk_entry_new ();
+  gtk_widget_show (entry26);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry26, 16, 320);
+  gtk_widget_set_size_request (entry26, 896, 80);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry26), 8226);
+
+  label78 = gtk_label_new (_("Raison :"));
+  gtk_widget_show (label78);
+  gtk_fixed_put (GTK_FIXED (fixed22), label78, 0, 248);
+  gtk_widget_set_size_request (label78, 128, 88);
+
+  button_supprimer = gtk_button_new ();
+  gtk_widget_show (button_supprimer);
+  gtk_fixed_put (GTK_FIXED (fixed22), button_supprimer, 256, 464);
+  gtk_widget_set_size_request (button_supprimer, 384, 96);
+
+  alignment19 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment19);
+  gtk_container_add (GTK_CONTAINER (button_supprimer), alignment19);
+
+  hbox19 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox19);
+  gtk_container_add (GTK_CONTAINER (alignment19), hbox19);
+
+  image19 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image19);
+  gtk_box_pack_start (GTK_BOX (hbox19), image19, FALSE, FALSE, 0);
+
+  label79 = gtk_label_new_with_mnemonic (_(" Supprimer"));
+  gtk_widget_show (label79);
+  gtk_box_pack_start (GTK_BOX (hbox19), label79, FALSE, FALSE, 0);
+
+  label_suppr = gtk_label_new (_("Supprimer"));
+  gtk_widget_show (label_suppr);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook4), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook4), 3), label_suppr);
+
+  label_equip = gtk_label_new (_("Les \303\251quipements"));
+  gtk_widget_show (label_equip);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook3), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook3), 0), label_equip);
+
+  notebook5 = gtk_notebook_new ();
+  gtk_widget_show (notebook5);
+  gtk_container_add (GTK_CONTAINER (notebook3), notebook5);
+
+  scrolledwindow9 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow9);
+  gtk_container_add (GTK_CONTAINER (notebook5), scrolledwindow9);
+
+  treeview6 = gtk_tree_view_new ();
+  gtk_widget_show (treeview6);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow9), treeview6);
+
+  label_histo = gtk_label_new (_("Historique"));
+  gtk_widget_show (label_histo);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook5), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook5), 0), label_histo);
+
+  fixed18 = gtk_fixed_new ();
+  gtk_widget_show (fixed18);
+  gtk_container_add (GTK_CONTAINER (notebook5), fixed18);
+
+  entry7 = gtk_entry_new ();
+  gtk_widget_show (entry7);
+  gtk_fixed_put (GTK_FIXED (fixed18), entry7, 456, 56);
+  gtk_widget_set_size_request (entry7, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry7), 8226);
+
+  entry8 = gtk_entry_new ();
+  gtk_widget_show (entry8);
+  gtk_fixed_put (GTK_FIXED (fixed18), entry8, 456, 176);
+  gtk_widget_set_size_request (entry8, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry8), 8226);
+
+  entry_entreteneur = gtk_entry_new ();
+  gtk_widget_show (entry_entreteneur);
+  gtk_fixed_put (GTK_FIXED (fixed18), entry_entreteneur, 456, 296);
+  gtk_widget_set_size_request (entry_entreteneur, 336, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_entreteneur), 8226);
+
+  entry10 = gtk_entry_new ();
+  gtk_widget_show (entry10);
+  gtk_fixed_put (GTK_FIXED (fixed18), entry10, 368, 400);
+  gtk_widget_set_size_request (entry10, 168, 64);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry10), 8226);
+
+  button_confirm = gtk_button_new ();
+  gtk_widget_show (button_confirm);
+  gtk_fixed_put (GTK_FIXED (fixed18), button_confirm, 200, 520);
+  gtk_widget_set_size_request (button_confirm, 496, 40);
+
+  alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment16);
+  gtk_container_add (GTK_CONTAINER (button_confirm), alignment16);
+
+  hbox16 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox16);
+  gtk_container_add (GTK_CONTAINER (alignment16), hbox16);
+
+  image16 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image16);
+  gtk_box_pack_start (GTK_BOX (hbox16), image16, FALSE, FALSE, 0);
+
+  label59 = gtk_label_new_with_mnemonic (_("   Confirmer"));
+  gtk_widget_show (label59);
+  gtk_box_pack_start (GTK_BOX (hbox16), label59, FALSE, FALSE, 0);
+
+  label_id = gtk_label_new (_("Identifiant d'\303\251quipement entretenu :"));
+  gtk_widget_show (label_id);
+  gtk_fixed_put (GTK_FIXED (fixed18), label_id, 88, 56);
+  gtk_widget_set_size_request (label_id, 304, 56);
+
+  label__date_entretien = gtk_label_new (_("Date de l'entretien :"));
+  gtk_widget_show (label__date_entretien);
+  gtk_fixed_put (GTK_FIXED (fixed18), label__date_entretien, 88, 176);
+  gtk_widget_set_size_request (label__date_entretien, 304, 56);
+
+  label_entreteneur = gtk_label_new (_("Entreteneur :"));
+  gtk_widget_show (label_entreteneur);
+  gtk_fixed_put (GTK_FIXED (fixed18), label_entreteneur, 88, 296);
+  gtk_widget_set_size_request (label_entreteneur, 304, 56);
+
+  label_montant = gtk_label_new (_("Montant :"));
+  gtk_widget_show (label_montant);
+  gtk_fixed_put (GTK_FIXED (fixed18), label_montant, 144, 400);
+  gtk_widget_set_size_request (label_montant, 200, 64);
+
+  checkbutton_pay__ = gtk_check_button_new_with_mnemonic (_("Pay\303\251"));
+  gtk_widget_show (checkbutton_pay__);
+  gtk_fixed_put (GTK_FIXED (fixed18), checkbutton_pay__, 640, 416);
+  gtk_widget_set_size_request (checkbutton_pay__, 110, 32);
+
+  label_ajout_entretien = gtk_label_new (_("Ajouter"));
+  gtk_widget_show (label_ajout_entretien);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook5), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook5), 1), label_ajout_entretien);
+
+  label_entretien = gtk_label_new (_("Les entretiens"));
+  gtk_widget_show (label_entretien);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook3), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook3), 1), label_entretien);
+
+  fixed17 = gtk_fixed_new ();
+  gtk_widget_show (fixed17);
+  gtk_container_add (GTK_CONTAINER (notebook3), fixed17);
+
+  entry5 = gtk_entry_new ();
+  gtk_widget_show (entry5);
+  gtk_fixed_put (GTK_FIXED (fixed17), entry5, 464, 80);
+  gtk_widget_set_size_request (entry5, 384, 56);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry5), 8226);
+
+  entry6 = gtk_entry_new ();
+  gtk_widget_show (entry6);
+  gtk_fixed_put (GTK_FIXED (fixed17), entry6, 16, 312);
+  gtk_widget_set_size_request (entry6, 896, 144);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry6), 8226);
+
+  label51 = gtk_label_new (_("Commentaires  :  "));
+  gtk_widget_show (label51);
+  gtk_fixed_put (GTK_FIXED (fixed17), label51, 8, 224);
+  gtk_widget_set_size_request (label51, 184, 96);
+
+  button23 = gtk_button_new ();
+  gtk_widget_show (button23);
+  gtk_fixed_put (GTK_FIXED (fixed17), button23, 616, 488);
+  gtk_widget_set_size_request (button23, 272, 48);
+
+  alignment15 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment15);
+  gtk_container_add (GTK_CONTAINER (button23), alignment15);
+
+  hbox15 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox15);
+  gtk_container_add (GTK_CONTAINER (alignment15), hbox15);
+
+  image15 = gtk_image_new_from_stock ("gtk-yes", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image15);
+  gtk_box_pack_start (GTK_BOX (hbox15), image15, FALSE, FALSE, 0);
+
+  label52 = gtk_label_new_with_mnemonic (_("  Envoyer"));
+  gtk_widget_show (label52);
+  gtk_box_pack_start (GTK_BOX (hbox15), label52, FALSE, FALSE, 0);
+
+  radiobutton5 = gtk_radio_button_new_with_mnemonic (NULL, _("Declaration urgente"));
+  gtk_widget_show (radiobutton5);
+  gtk_fixed_put (GTK_FIXED (fixed17), radiobutton5, 176, 176);
+  gtk_widget_set_size_request (radiobutton5, 192, 48);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton5), radiobutton5_group);
+  radiobutton5_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton5));
+
+  radiobutton6 = gtk_radio_button_new_with_mnemonic (NULL, _("D\303\251claration Normale"));
+  gtk_widget_show (radiobutton6);
+  gtk_fixed_put (GTK_FIXED (fixed17), radiobutton6, 560, 176);
+  gtk_widget_set_size_request (radiobutton6, 192, 48);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton6), radiobutton6_group);
+  radiobutton6_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton6));
+
+  label53 = gtk_label_new (_("Type de d\303\251claration :"));
+  gtk_widget_show (label53);
+  gtk_fixed_put (GTK_FIXED (fixed17), label53, 72, 80);
+  gtk_widget_set_size_request (label53, 240, 56);
+
+  label_declarations = gtk_label_new (_("D\303\251clarations"));
+  gtk_widget_show (label_declarations);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook3), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook3), 2), label_declarations);
+
+  label_equip = gtk_label_new (_("Gestion des \303\251quipements"));
+  gtk_widget_show (label_equip);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 0), label_equip);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (window1, window1, "window1");
+  GLADE_HOOKUP_OBJECT_NO_REF (window_equipements, window_equipements, "window_equipements");
+  GLADE_HOOKUP_OBJECT (window_equipements, notebook2, "notebook2");
+  GLADE_HOOKUP_OBJECT (window_equipements, notebook3, "notebook3");
+  GLADE_HOOKUP_OBJECT (window_equipements, notebook4, "notebook4");
+  GLADE_HOOKUP_OBJECT (window_equipements, scrolledwindow8, "scrolledwindow8");
+  GLADE_HOOKUP_OBJECT (window_equipements, treeview5, "treeview5");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_list, "label_list");
+  GLADE_HOOKUP_OBJECT (window_equipements, fixed19, "fixed19");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_marque, "entry_marque");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_type, "entry_type");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_id_aj_eq, "entry_id_aj_eq");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_date_ajout, "entry_date_ajout");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_prix_aj, "entry_prix_aj");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_date_ajout_eq, "label_date_ajout_eq");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_prix_eq, "label_prix_eq");
+  GLADE_HOOKUP_OBJECT (window_equipements, button_ajout_eq, "button_ajout_eq");
+  GLADE_HOOKUP_OBJECT (window_equipements, alignment17, "alignment17");
+  GLADE_HOOKUP_OBJECT (window_equipements, hbox17, "hbox17");
+  GLADE_HOOKUP_OBJECT (window_equipements, image17, "image17");
+  GLADE_HOOKUP_OBJECT (window_equipements, label60, "label60");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_ajout_id, "label_ajout_id");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_type, "label_type");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_marque, "label_marque");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_ajout, "label_ajout");
+  GLADE_HOOKUP_OBJECT (window_equipements, fixed21, "fixed21");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_id_modif, "entry_id_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_type_modif, "entry_type_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, entrymarque_modif, "entrymarque_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_date_modif, "entry_date_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_prix_modif, "entry_prix_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, label71, "label71");
+  GLADE_HOOKUP_OBJECT (window_equipements, label72, "label72");
+  GLADE_HOOKUP_OBJECT (window_equipements, label75, "label75");
+  GLADE_HOOKUP_OBJECT (window_equipements, label76, "label76");
+  GLADE_HOOKUP_OBJECT (window_equipements, label74, "label74");
+  GLADE_HOOKUP_OBJECT (window_equipements, button26, "button26");
+  GLADE_HOOKUP_OBJECT (window_equipements, alignment18, "alignment18");
+  GLADE_HOOKUP_OBJECT (window_equipements, hbox18, "hbox18");
+  GLADE_HOOKUP_OBJECT (window_equipements, image18, "image18");
+  GLADE_HOOKUP_OBJECT (window_equipements, label73, "label73");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_modif, "label_modif");
+  GLADE_HOOKUP_OBJECT (window_equipements, fixed22, "fixed22");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry25, "entry25");
+  GLADE_HOOKUP_OBJECT (window_equipements, label77, "label77");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry26, "entry26");
+  GLADE_HOOKUP_OBJECT (window_equipements, label78, "label78");
+  GLADE_HOOKUP_OBJECT (window_equipements, button_supprimer, "button_supprimer");
+  GLADE_HOOKUP_OBJECT (window_equipements, alignment19, "alignment19");
+  GLADE_HOOKUP_OBJECT (window_equipements, hbox19, "hbox19");
+  GLADE_HOOKUP_OBJECT (window_equipements, image19, "image19");
+  GLADE_HOOKUP_OBJECT (window_equipements, label79, "label79");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_suppr, "label_suppr");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_equip, "label_equip");
+  GLADE_HOOKUP_OBJECT (window_equipements, notebook5, "notebook5");
+  GLADE_HOOKUP_OBJECT (window_equipements, scrolledwindow9, "scrolledwindow9");
+  GLADE_HOOKUP_OBJECT (window_equipements, treeview6, "treeview6");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_histo, "label_histo");
+  GLADE_HOOKUP_OBJECT (window_equipements, fixed18, "fixed18");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry7, "entry7");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry8, "entry8");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry_entreteneur, "entry_entreteneur");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry10, "entry10");
+  GLADE_HOOKUP_OBJECT (window_equipements, button_confirm, "button_confirm");
+  GLADE_HOOKUP_OBJECT (window_equipements, alignment16, "alignment16");
+  GLADE_HOOKUP_OBJECT (window_equipements, hbox16, "hbox16");
+  GLADE_HOOKUP_OBJECT (window_equipements, image16, "image16");
+  GLADE_HOOKUP_OBJECT (window_equipements, label59, "label59");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_id, "label_id");
+  GLADE_HOOKUP_OBJECT (window_equipements, label__date_entretien, "label__date_entretien");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_entreteneur, "label_entreteneur");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_montant, "label_montant");
+  GLADE_HOOKUP_OBJECT (window_equipements, checkbutton_pay__, "checkbutton_pay__");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_ajout_entretien, "label_ajout_entretien");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_entretien, "label_entretien");
+  GLADE_HOOKUP_OBJECT (window_equipements, fixed17, "fixed17");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry5, "entry5");
+  GLADE_HOOKUP_OBJECT (window_equipements, entry6, "entry6");
+  GLADE_HOOKUP_OBJECT (window_equipements, label51, "label51");
+  GLADE_HOOKUP_OBJECT (window_equipements, button23, "button23");
+  GLADE_HOOKUP_OBJECT (window_equipements, alignment15, "alignment15");
+  GLADE_HOOKUP_OBJECT (window_equipements, hbox15, "hbox15");
+  GLADE_HOOKUP_OBJECT (window_equipements, image15, "image15");
+  GLADE_HOOKUP_OBJECT (window_equipements, label52, "label52");
+  GLADE_HOOKUP_OBJECT (window_equipements, radiobutton5, "radiobutton5");
+  GLADE_HOOKUP_OBJECT (window_equipements, radiobutton6, "radiobutton6");
+  GLADE_HOOKUP_OBJECT (window_equipements, label53, "label53");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_declarations, "label_declarations");
+  GLADE_HOOKUP_OBJECT (window_equipements, label_equip, "label_equip");
 
-  return window1;
+  return window_equipements;
 }
 
