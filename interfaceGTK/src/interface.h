@@ -4,4 +4,5 @@
 
 GtkWidget* create_window_login (void);
 GtkWidget* create_window_employee (void);
-GtkWidget* create_window1 (void);
+GtkWidget* create_Gestion_des_clients (void);
+GtkWidget* create_window_troup (void);
