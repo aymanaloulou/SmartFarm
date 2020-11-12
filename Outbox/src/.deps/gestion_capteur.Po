@@ -1,3 +1,0 @@
-gestion_capteur.o: gestion_capteur.c /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

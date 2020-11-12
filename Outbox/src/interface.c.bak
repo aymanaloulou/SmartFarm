@@ -56,7 +56,7 @@ create_dialog_add_troup (void)
   GtkObject *spinbutton40_adj;
   GtkWidget *spinbutton40;
   GtkWidget *hbuttonbox3;
-  GtkWidget *button13;
+  GtkWidget *buttontestahmed;
   GtkWidget *button14;
 
   dialog_add_troup = gtk_dialog_new ();
@@ -173,10 +173,10 @@ create_dialog_add_troup (void)
   gtk_widget_show (hbuttonbox3);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (hbuttonbox3), GTK_BUTTONBOX_END);
 
-  button13 = gtk_button_new_from_stock ("gtk-cancel");
-  gtk_widget_show (button13);
-  gtk_dialog_add_action_widget (GTK_DIALOG (dialog_add_troup), button13, GTK_RESPONSE_CANCEL);
-  GTK_WIDGET_SET_FLAGS (button13, GTK_CAN_DEFAULT);
+  buttontestahmed = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (buttontestahmed);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog_add_troup), buttontestahmed, GTK_RESPONSE_CANCEL);
+  GTK_WIDGET_SET_FLAGS (buttontestahmed, GTK_CAN_DEFAULT);
 
   button14 = gtk_button_new_from_stock ("gtk-ok");
   gtk_widget_show (button14);
@@ -205,7 +205,7 @@ create_dialog_add_troup (void)
   GLADE_HOOKUP_OBJECT (dialog_add_troup, spinbutton39, "spinbutton39");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, spinbutton40, "spinbutton40");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_add_troup, hbuttonbox3, "hbuttonbox3");
-  GLADE_HOOKUP_OBJECT (dialog_add_troup, button13, "button13");
+  GLADE_HOOKUP_OBJECT (dialog_add_troup, buttontestahmed, "buttontestahmed");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, button14, "button14");
 
   return dialog_add_troup;

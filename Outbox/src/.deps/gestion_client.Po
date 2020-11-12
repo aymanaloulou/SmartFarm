@@ -1,3 +1,0 @@
-gestion_client.o: gestion_client.c /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

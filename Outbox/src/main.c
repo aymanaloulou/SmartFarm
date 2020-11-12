@@ -15,8 +15,43 @@
 int
 main (int argc, char *argv[])
 {
-  //GtkWidget *window_troup;
-GtkWidget *window_login;
+  GtkWidget *dialog_add_troup;
+  GtkWidget *dialog_edit_troup;
+  GtkWidget *dialog_event;
+  GtkWidget *dialog_milk;
+  GtkWidget *dialog_ajout_ouvrier;
+  GtkWidget *window_gest_ouvrier;
+  GtkWidget *dialog_modif_ouvrier;
+  GtkWidget *dialog_modif_employee;
+  GtkWidget *dialog_ajout_employee;
+  GtkWidget *window_employee_space;
+  GtkWidget *dialog_ajouter_client;
+  GtkWidget *window_gestion_des_clients;
+  GtkWidget *window_troup;
+  GtkWidget *dialog_modifier_client;
+  GtkWidget *dialog_ajouter_produit;
+  GtkWidget *dialog_modifier_produit;
+  GtkWidget *dialog_ajouter_facture;
+  GtkWidget *dialog_modif_facture;
+  GtkWidget *window_login;
+  GtkWidget *dialog_commentaire;
+  GtkWidget *dialog_add_plant;
+  GtkWidget *dialog_delete_plant;
+  GtkWidget *window_gestion_capteurs;
+  GtkWidget *dialog_capteur_add;
+  GtkWidget *dialog_capteur_edit;
+  GtkWidget *dialog_capteur_delete;
+  GtkWidget *dialog_capteur_add_value;
+  GtkWidget *window_gestion_equipment;
+  GtkWidget *dialog_add_equipment;
+  GtkWidget *dialog_edit_equipment;
+  GtkWidget *dialog_delete_equipment;
+  GtkWidget *dialog_entretien;
+  GtkWidget *window_gest_employee;
+  GtkWidget *window_gestion_achat;
+  GtkWidget *window_gest_plantations;
+  GtkWidget *dialog_edit_plant;
+
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -26,18 +61,85 @@ GtkWidget *window_login;
   gtk_set_locale ();
   gtk_init (&argc, &argv);
 
-  add_pixmap_directory ("../pixmaps");
+  add_pixmap_directory (PACKAGE_DATA_DIR "/" PACKAGE "/pixmaps");
 
   /*
    * The following code was added by Glade to create one of each component
    * (except popup menus), just so that you see something after building
    * the project. Delete any components that you don't want shown initially.
    */
-  /*window_troup = create_window_troup ();
-  gtk_widget_show (window_troup);*/
+  dialog_add_troup = create_dialog_add_troup ();
+  gtk_widget_show (dialog_add_troup);
+  dialog_edit_troup = create_dialog_edit_troup ();
+  gtk_widget_show (dialog_edit_troup);
+  dialog_event = create_dialog_event ();
+  gtk_widget_show (dialog_event);
+  dialog_milk = create_dialog_milk ();
+  gtk_widget_show (dialog_milk);
+  dialog_ajout_ouvrier = create_dialog_ajout_ouvrier ();
+  gtk_widget_show (dialog_ajout_ouvrier);
+  window_gest_ouvrier = create_window_gest_ouvrier ();
+  gtk_widget_show (window_gest_ouvrier);
+  dialog_modif_ouvrier = create_dialog_modif_ouvrier ();
+  gtk_widget_show (dialog_modif_ouvrier);
+  dialog_modif_employee = create_dialog_modif_employee ();
+  gtk_widget_show (dialog_modif_employee);
+  dialog_ajout_employee = create_dialog_ajout_employee ();
+  gtk_widget_show (dialog_ajout_employee);
+  window_employee_space = create_window_employee_space ();
+  gtk_widget_show (window_employee_space);
+  dialog_ajouter_client = create_dialog_ajouter_client ();
+  gtk_widget_show (dialog_ajouter_client);
+  window_gestion_des_clients = create_window_gestion_des_clients ();
+  gtk_widget_show (window_gestion_des_clients);
+  window_troup = create_window_troup ();
+  gtk_widget_show (window_troup);
+  dialog_modifier_client = create_dialog_modifier_client ();
+  gtk_widget_show (dialog_modifier_client);
+  dialog_ajouter_produit = create_dialog_ajouter_produit ();
+  gtk_widget_show (dialog_ajouter_produit);
+  dialog_modifier_produit = create_dialog_modifier_produit ();
+  gtk_widget_show (dialog_modifier_produit);
+  dialog_ajouter_facture = create_dialog_ajouter_facture ();
+  gtk_widget_show (dialog_ajouter_facture);
+  dialog_modif_facture = create_dialog_modif_facture ();
+  gtk_widget_show (dialog_modif_facture);
   window_login = create_window_login ();
-  gtk_widget_show(window_login);
-  
+  gtk_widget_show (window_login);
+  dialog_commentaire = create_dialog_commentaire ();
+  gtk_widget_show (dialog_commentaire);
+  dialog_add_plant = create_dialog_add_plant ();
+  gtk_widget_show (dialog_add_plant);
+  dialog_delete_plant = create_dialog_delete_plant ();
+  gtk_widget_show (dialog_delete_plant);
+  window_gestion_capteurs = create_window_gestion_capteurs ();
+  gtk_widget_show (window_gestion_capteurs);
+  dialog_capteur_add = create_dialog_capteur_add ();
+  gtk_widget_show (dialog_capteur_add);
+  dialog_capteur_edit = create_dialog_capteur_edit ();
+  gtk_widget_show (dialog_capteur_edit);
+  dialog_capteur_delete = create_dialog_capteur_delete ();
+  gtk_widget_show (dialog_capteur_delete);
+  dialog_capteur_add_value = create_dialog_capteur_add_value ();
+  gtk_widget_show (dialog_capteur_add_value);
+  window_gestion_equipment = create_window_gestion_equipment ();
+  gtk_widget_show (window_gestion_equipment);
+  dialog_add_equipment = create_dialog_add_equipment ();
+  gtk_widget_show (dialog_add_equipment);
+  dialog_edit_equipment = create_dialog_edit_equipment ();
+  gtk_widget_show (dialog_edit_equipment);
+  dialog_delete_equipment = create_dialog_delete_equipment ();
+  gtk_widget_show (dialog_delete_equipment);
+  dialog_entretien = create_dialog_entretien ();
+  gtk_widget_show (dialog_entretien);
+  window_gest_employee = create_window_gest_employee ();
+  gtk_widget_show (window_gest_employee);
+  window_gestion_achat = create_window_gestion_achat ();
+  gtk_widget_show (window_gestion_achat);
+  window_gest_plantations = create_window_gest_plantations ();
+  gtk_widget_show (window_gest_plantations);
+  dialog_edit_plant = create_dialog_edit_plant ();
+  gtk_widget_show (dialog_edit_plant);
 
   gtk_main ();
   return 0;

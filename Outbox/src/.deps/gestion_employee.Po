@@ -1,3 +1,0 @@
-gestion_employee.o: gestion_employee.c /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

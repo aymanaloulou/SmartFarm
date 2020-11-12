@@ -2,7 +2,7 @@
 <!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
 
 <glade-project>
-  <name>finalproject</name>
-  <program_name>finalproject</program_name>
+  <name>Outbox</name>
+  <program_name>outbox</program_name>
   <gnome_support>FALSE</gnome_support>
 </glade-project>
