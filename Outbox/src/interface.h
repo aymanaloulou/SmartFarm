@@ -38,3 +38,4 @@ GtkWidget* create_window_gest_employee (void);
 GtkWidget* create_window_gestion_achat (void);
 GtkWidget* create_window_gest_plantations (void);
 GtkWidget* create_dialog_edit_plant (void);
+GtkWidget* create_window_dashboard (void);

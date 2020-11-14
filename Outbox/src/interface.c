@@ -806,6 +806,7 @@ create_window_gest_ouvrier (void)
   GtkWidget *scrolledwindow4;
   GtkWidget *treeview3;
   GtkWidget *image15;
+  GtkWidget *image109;
   GtkWidget *button23;
   GtkWidget *alignment13;
   GtkWidget *hbox12;
@@ -933,6 +934,11 @@ create_window_gest_ouvrier (void)
   gtk_widget_show (image15);
   gtk_fixed_put (GTK_FIXED (fixed15), image15, 120, 80);
   gtk_widget_set_size_request (image15, 21, 21);
+
+  image109 = create_pixmap (window_gest_ouvrier, "k.png");
+  gtk_widget_show (image109);
+  gtk_fixed_put (GTK_FIXED (fixed15), image109, 0, 0);
+  gtk_widget_set_size_request (image109, 1024, 813);
 
   button23 = gtk_button_new ();
   gtk_widget_show (button23);
@@ -1368,6 +1374,7 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, scrolledwindow4, "scrolledwindow4");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, treeview3, "treeview3");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image15, "image15");
+  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image109, "image109");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button23, "button23");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, alignment13, "alignment13");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, hbox12, "hbox12");
@@ -7881,5 +7888,41 @@ create_dialog_edit_plant (void)
   GLADE_HOOKUP_OBJECT (dialog_edit_plant, button156, "button156");
 
   return dialog_edit_plant;
+}
+
+GtkWidget*
+create_window_dashboard (void)
+{
+  GtkWidget *window_dashboard;
+  GtkWidget *fixed81;
+  GtkWidget *label574;
+  GtkWidget *image108;
+
+  window_dashboard = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (window_dashboard, 1045, 640);
+  gtk_window_set_title (GTK_WINDOW (window_dashboard), _("window1"));
+
+  fixed81 = gtk_fixed_new ();
+  gtk_widget_show (fixed81);
+  gtk_container_add (GTK_CONTAINER (window_dashboard), fixed81);
+
+  label574 = gtk_label_new (_("label574"));
+  gtk_widget_show (label574);
+  gtk_fixed_put (GTK_FIXED (fixed81), label574, 392, 168);
+  gtk_widget_set_size_request (label574, 57, 17);
+
+  image108 = create_pixmap (window_dashboard, "dashboard bordj lella.png");
+  gtk_widget_show (image108);
+  gtk_fixed_put (GTK_FIXED (fixed81), image108, 0, 0);
+  gtk_widget_set_size_request (image108, 1045, 640);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_dashboard, window_dashboard, "window_dashboard");
+  GLADE_HOOKUP_OBJECT (window_dashboard, fixed81, "fixed81");
+  GLADE_HOOKUP_OBJECT (window_dashboard, label574, "label574");
+  GLADE_HOOKUP_OBJECT (window_dashboard, image108, "image108");
+
+  gtk_widget_grab_focus (fixed81);
+  return window_dashboard;
 }
 
