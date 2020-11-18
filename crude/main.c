@@ -3,7 +3,7 @@
 #include "client.h"
 
 void affichMenu (){
-		system ("cls");
+		
 		printf ("/////////////////////////////////////////////\n");
 		printf ("	1- Ajouter un client\n");
 		printf ("	2- Modifier un client\n");
@@ -30,10 +30,10 @@ void main(){
 		choix = getChoix ();
 		switch (choix){
 				case 1: ajoutClient ();break;
-				//case 2:// modifClient ();break;
+				case 2: modifClient ();break;
 				//case 3: //suppClient ();break;
 				case 4: affichListeClient ();break;
-				//case 5: /rechercheClient ();break;
+				case 5: rechercheClient ();break;
 		}
 	}while (choix != 6);
 

@@ -7,6 +7,7 @@ int verifCIN (char ch[]){
 	client c;
 	int k=1;
 	
+	
 	int i;
 	if (strlen (ch) != 8){
 		k=0;
@@ -20,7 +21,8 @@ int verifCIN (char ch[]){
 		FILE* f1;
 		f1=fopen("client.bin","rb");
 	
-	while (fread (&c,sizeof (client),1,f1) != 0){
+	while (fread (&c,sizeof (client),1,f1) != 0 && k == 1) {
+		
 		if (strcmp (c.cin,ch) == 0) 
 			 k=0;
 	}
@@ -43,10 +45,12 @@ int nomValide (char ch[]){
 int numValide (char ch[]){
 	int i=0,ok = 1;
 	while (ok == 1 && i<strlen (ch)){
-		if (ch[i]>'0' && ch[i] <'9')
-			i++;
-		else
+		if (ch[i]<'0' || ch[i] >'9')
 			ok = 0;
+			else
+			i++; 	
+			
+		
 	}
 	return ok;
 }
@@ -73,33 +77,35 @@ client readClient (FILE *f){
 	do{
 		printf ("cin : ");
 		getchar();
-		gets (c.cin);
+		scanf("%s",c.cin);
 	}while (verifCIN (c.cin)==0);
 	
 	do{
 		printf ("Nom : ");
-		gets (c.nom);
+		getchar();
+		scanf("%s",c.nom);
 	}while (nomValide (c.nom) == 0);
 	
 	do{
 		printf ("Prenom : ");
-		gets (c.prenom);
+		scanf("%s",c.prenom);
 	}while (nomValide (c.prenom) == 0);
 	
 	printf ("Genre : ");
-	gets (c.gender);
+	scanf("%s",c.gender);
 	
 	do{
 		printf ("Numero de telephone : ");
-		gets (c.numero_de_telephone);
+		scanf("%s",c.numero_de_telephone);
 	}while (numValide (c.numero_de_telephone) == 0);
 	
 	printf ("Adresse : ");
-	gets (c.adress);
+	scanf("%s",c.adress);
 	
 	do{
 		printf ("E-mail : ");
-		gets (c.email);
+		getchar();
+		scanf("%s",c.email);
 	}while (emailValide (c.email) == 0);
 	
 	printf ("Date de naissance : ");
@@ -112,7 +118,7 @@ client readClient (FILE *f){
 void ajoutClient (){
 		FILE* f;
 		client c;
-		system ("cls");
+		
 		
 		f = fopen ("client.bin","rb");
 		c = readClient (f);
@@ -123,6 +129,115 @@ void ajoutClient (){
 		fclose (f);
 		
 }
+//###############
+
+
+//#############
+int cinExiste (char ch[])
+{
+    client c;
+    int p=-1,ok=0;
+     
+    FILE* f = fopen ("client.bin","rb");
+
+    while (fread (&c,sizeof (client),1,f) != 0 && ok==0){
+        p++;
+        if (strcmp (c.cin,ch) == 0) 
+             ok=1;
+    }
+    fclose (f);
+    return p;
+
+}
+
+void modifClient ()  {
+    FILE* f;
+    client c,t;
+    
+
+    printf("cin : ");
+    scanf ("%s",c.cin);
+    while (cinExiste (c.cin) == -1){
+        printf("CIN n'exite pas !\n");
+        printf("cin : ");
+        scanf ("%s",c.cin);
+    }
+
+    f = fopen ("client.bin","r+b");
+    fseek (f,cinExiste (c.cin)*sizeof(client),SEEK_SET);
+    fread (&t,sizeof (client),1,f);
+    printf("cin : %s\n",t.cin);
+    printf("Nom : %s\n",t.nom    );
+    printf("prenom : %s\n",t.prenom);
+    printf("gender : %s\n",t.gender);
+       printf("Numéro de téléphone : %s\n",t.numero_de_telephone);
+       printf("date de naissance : %-2d/%-2d/%-11d\n",t. date_de_naissance.jour,t. date_de_naissance.mois,t. date_de_naissance.annee);
+       printf("Email : %s\n",t.email);
+       printf("adresse : %s\n",t.adress);
+
+       do{
+        printf ("Nom : ");
+        scanf ("%s",c.nom);
+    }while (nomValide (c.nom) == 0);
+
+    do{
+        printf ("Prenom : ");
+        scanf ("%s",c.prenom);
+    }while (nomValide (c.prenom) == 0);
+
+    printf ("Genre : ");
+    scanf ("%s",c.gender);
+
+    do{
+        printf ("Numero de telephone : ");
+        scanf ("%s",c.numero_de_telephone);
+    }while (numValide (c.numero_de_telephone) == 0);
+
+    printf ("Adresse : ");
+    scanf ("%s",c.adress);
+
+    do{
+        printf ("E-mail : ");
+        scanf ("%s",c.email);
+    }while (emailValide (c.email) == 0);
+
+    printf ("Date de naissance : ");
+    scanf ("%d %d %d",&c.date_de_naissance.jour,&c.date_de_naissance.mois,&c.date_de_naissance.annee);
+
+    fseek (f,-sizeof(client),SEEK_CUR);
+    fwrite (&c,sizeof(client),1,f);
+
+    fclose (f);
+}
+//##########
+void rechercheClient (){
+    FILE* f;
+    client c,t;
+    
+    printf("cin : ");
+    scanf ("%s",c.cin);
+    while (cinExiste (c.cin) == -1){
+        printf("CIN n'exite pas !\n");
+        printf("cin : ");
+        scanf ("%s",c.cin);
+    }
+
+    f = fopen ("client.bin","r+b");
+
+    fseek (f,cinExiste (c.cin)*sizeof(client),SEEK_SET);
+    fread (&t,sizeof (client),1,f);
+   
+    printf("Nom : %s\n",t.nom    );
+    printf("prenom : %s\n",t.prenom);
+    printf("gender : %s\n",t.gender);
+       printf("Numéro de téléphone : %s\n",t.numero_de_telephone);
+       printf("date de naissance : %-2d/%-2d/%-11d\n",t. date_de_naissance.jour,t. date_de_naissance.mois,t. date_de_naissance.annee);
+       printf("Email : %s\n",t.email);
+       printf("adresse : %s\n",t.adress);
+
+       fclose (f);
+}
+//############
 void affichListeClient()
 {
     FILE *F = NULL;
@@ -160,3 +275,4 @@ void affichListeClient()
           system("PAUSE");
 }
 }
+
