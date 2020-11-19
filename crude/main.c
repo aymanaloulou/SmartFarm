@@ -31,7 +31,7 @@ void main(){
 		switch (choix){
 				case 1: ajoutClient ();break;
 				case 2: modifClient ();break;
-				//case 3: //suppClient ();break;
+				case 3: suppClient ();break;
 				case 4: affichListeClient ();break;
 				case 5: rechercheClient ();break;
 		}

@@ -140,10 +140,11 @@ int cinExiste (char ch[])
      
     FILE* f = fopen ("client.bin","rb");
 
-    while (fread (&c,sizeof (client),1,f) != 0 && ok==0){
-        p++;
+    while (fread (&c,sizeof (client),1,f) != 0 && p==-1){
+       
         if (strcmp (c.cin,ch) == 0) 
-             ok=1;
+             p=ok;
+else ok++;
     }
     fclose (f);
     return p;
@@ -274,5 +275,33 @@ void affichListeClient()
           fclose(F);
           system("PAUSE");
 }
+}
+// suprimer
+
+void suppClient ()
+{
+client m;
+char ch123[9];
+FILE *s;
+FILE *s_tmp;
+
+s= fopen ("client.bin","rb");
+do {
+ printf("cin : ");
+        scanf ("%s",ch123);
+}while ((cinExiste (ch123)==-1));
+    
+
+s_tmp= fopen ("tmp.bin","ab");
+fseek(s,0,SEEK_SET);
+while (fread (&m,sizeof(client),1,s)!=0);
+{ if (strcmp(m.cin,ch123)!=0)
+{
+ fwrite (&m,sizeof(client),1,s_tmp);
+}}
+fclose (s);
+fclose (s_tmp);
+remove ("client.bin");
+rename ("tmp.bin","client.bin");
 }
 
