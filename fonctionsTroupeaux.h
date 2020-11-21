@@ -9,10 +9,10 @@ typedef struct
 
 typedef struct
     {
-   char identifiant;
+   char identifiant[20];
    int genre ;
    int poids ;
-   char identifiant_mere;
+   char identifiant_mere[20];
    char robe[20];
    char lot[100];
     }animal;
@@ -40,11 +40,6 @@ void suppr_voeux(animal v);
 void affiche_liste_voeux(animal v);
 void fiche_voeux(animal v);
 
-void ajout_brebis(animal b);
-void modif_brebis(animal b);
-void suppr_brebis(animal b);
-void affiche_liste_brebis(animal b);
-void fiche_brebis(animal b);
 
 void ajout_evenement(evenement e);
 void ajout_lait(evenement e);
@@ -52,3 +47,7 @@ void ajout_lait(evenement e);
 void etat_sante(sante s);
 void avis ();
 void affichage_alimentation();
+//partie 2:
+void affichage_nombre_voeux();
+void affichage_nombre_brebis();
+void affichage_quantite_lait();
