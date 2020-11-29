@@ -145,6 +145,8 @@ on_button_supp_ouvrier_clicked         (GtkWidget       *button,
 	if (strlen (cin_supp) == 8){
 		fn_supp_ouvrier (cin_supp);
 		gtk_label_set_text(GTK_LABEL(label),"");
+		strcpy (cin_supp,"");
+		strcpy (ouv_m.cin,"");
 	}
 	else{
 		gtk_label_set_text(GTK_LABEL(label),"Double click sur une ligne");
@@ -232,9 +234,10 @@ on_okbutton_modif_ouvrier_clicked      (GtkWidget       *button,
 	strcpy(ouv_m.email,gtk_entry_get_text(GTK_ENTRY(input_email)));
 	strcpy(ouv_m.secteur,gtk_entry_get_text(GTK_ENTRY(input_secteur)));
 
-	if (fn_modif_ouvrier (ouv_m,button))
+	if (fn_modif_ouvrier (ouv_m,button)){
 		gtk_widget_destroy(dialog);
-	strcpy (ouv_m.cin,""); 
+		strcpy (ouv_m.cin,""); 
+	}
 }
 
 
