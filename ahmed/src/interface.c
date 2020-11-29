@@ -460,15 +460,23 @@ create_dialog_ajouter_equipement (void)
   GtkWidget *id;
   GtkWidget *type;
   GtkWidget *marque;
-  GtkWidget *date;
   GtkWidget *prix;
   GtkWidget *association;
   GtkWidget *label88;
   GtkWidget *label89;
-  GtkWidget *label86;
-  GtkWidget *label87;
   GtkWidget *label91;
   GtkWidget *label90;
+  GtkObject *jour_adj;
+  GtkWidget *jour;
+  GtkObject *mois_adj;
+  GtkWidget *mois;
+  GtkObject *annee_adj;
+  GtkWidget *annee;
+  GtkWidget *label145;
+  GtkWidget *label146;
+  GtkWidget *label147;
+  GtkWidget *label86;
+  GtkWidget *label87;
   GtkWidget *dialog_action_area1;
   GtkWidget *cancelbutton1;
   GtkWidget *ok_ajouter1;
@@ -503,12 +511,6 @@ create_dialog_ajouter_equipement (void)
   gtk_widget_set_size_request (marque, 312, 40);
   gtk_entry_set_invisible_char (GTK_ENTRY (marque), 8226);
 
-  date = gtk_entry_new ();
-  gtk_widget_show (date);
-  gtk_fixed_put (GTK_FIXED (fixed24), date, 376, 296);
-  gtk_widget_set_size_request (date, 312, 48);
-  gtk_entry_set_invisible_char (GTK_ENTRY (date), 8226);
-
   prix = gtk_entry_new ();
   gtk_widget_show (prix);
   gtk_fixed_put (GTK_FIXED (fixed24), prix, 376, 392);
@@ -531,16 +533,6 @@ create_dialog_ajouter_equipement (void)
   gtk_fixed_put (GTK_FIXED (fixed24), label89, 64, 200);
   gtk_widget_set_size_request (label89, 304, 56);
 
-  label86 = gtk_label_new (_("Date :"));
-  gtk_widget_show (label86);
-  gtk_fixed_put (GTK_FIXED (fixed24), label86, 112, 296);
-  gtk_widget_set_size_request (label86, 200, 56);
-
-  label87 = gtk_label_new (_("Prix :"));
-  gtk_widget_show (label87);
-  gtk_fixed_put (GTK_FIXED (fixed24), label87, 112, 400);
-  gtk_widget_set_size_request (label87, 200, 48);
-
   label91 = gtk_label_new (_("Associ\303\251 \303\240 l'ouvrier : "));
   gtk_widget_show (label91);
   gtk_fixed_put (GTK_FIXED (fixed24), label91, 56, 472);
@@ -550,6 +542,49 @@ create_dialog_ajouter_equipement (void)
   gtk_widget_show (label90);
   gtk_fixed_put (GTK_FIXED (fixed24), label90, 80, 40);
   gtk_widget_set_size_request (label90, 280, 40);
+
+  jour_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  jour = gtk_spin_button_new (GTK_ADJUSTMENT (jour_adj), 1, 0);
+  gtk_widget_show (jour);
+  gtk_fixed_put (GTK_FIXED (fixed24), jour, 304, 304);
+  gtk_widget_set_size_request (jour, 72, 32);
+
+  mois_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  mois = gtk_spin_button_new (GTK_ADJUSTMENT (mois_adj), 1, 0);
+  gtk_widget_show (mois);
+  gtk_fixed_put (GTK_FIXED (fixed24), mois, 520, 304);
+  gtk_widget_set_size_request (mois, 64, 32);
+
+  annee_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
+  annee = gtk_spin_button_new (GTK_ADJUSTMENT (annee_adj), 1, 0);
+  gtk_widget_show (annee);
+  gtk_fixed_put (GTK_FIXED (fixed24), annee, 712, 304);
+  gtk_widget_set_size_request (annee, 64, 32);
+
+  label145 = gtk_label_new (_("Jour :"));
+  gtk_widget_show (label145);
+  gtk_fixed_put (GTK_FIXED (fixed24), label145, 200, 312);
+  gtk_widget_set_size_request (label145, 57, 17);
+
+  label146 = gtk_label_new (_("Mois :"));
+  gtk_widget_show (label146);
+  gtk_fixed_put (GTK_FIXED (fixed24), label146, 416, 312);
+  gtk_widget_set_size_request (label146, 57, 17);
+
+  label147 = gtk_label_new (_("Ann\303\251e :"));
+  gtk_widget_show (label147);
+  gtk_fixed_put (GTK_FIXED (fixed24), label147, 624, 312);
+  gtk_widget_set_size_request (label147, 57, 17);
+
+  label86 = gtk_label_new (_("Date :"));
+  gtk_widget_show (label86);
+  gtk_fixed_put (GTK_FIXED (fixed24), label86, 0, 296);
+  gtk_widget_set_size_request (label86, 200, 56);
+
+  label87 = gtk_label_new (_("Prix :"));
+  gtk_widget_show (label87);
+  gtk_fixed_put (GTK_FIXED (fixed24), label87, 112, 400);
+  gtk_widget_set_size_request (label87, 200, 48);
 
   dialog_action_area1 = GTK_DIALOG (dialog_ajouter_equipement)->action_area;
   gtk_widget_show (dialog_action_area1);
@@ -576,15 +611,20 @@ create_dialog_ajouter_equipement (void)
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, id, "id");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, type, "type");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, marque, "marque");
-  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, date, "date");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, prix, "prix");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, association, "association");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label88, "label88");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label89, "label89");
-  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label86, "label86");
-  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label87, "label87");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label91, "label91");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label90, "label90");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, jour, "jour");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, mois, "mois");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, annee, "annee");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label145, "label145");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label146, "label146");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label147, "label147");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label86, "label86");
+  GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, label87, "label87");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_ajouter_equipement, dialog_action_area1, "dialog_action_area1");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, cancelbutton1, "cancelbutton1");
   GLADE_HOOKUP_OBJECT (dialog_ajouter_equipement, ok_ajouter1, "ok_ajouter1");
@@ -1252,10 +1292,6 @@ create_affiche_equipements (void)
   gtk_widget_show (treeview1);
   gtk_container_add (GTK_CONTAINER (scrolledwindow12), treeview1);
 
-  g_signal_connect ((gpointer) treeview1, "row_activated",
-                    G_CALLBACK (on_treeview1_row_activated),
-                    NULL);
-
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (affiche_equipements, affiche_equipements, "affiche_equipements");
   GLADE_HOOKUP_OBJECT (affiche_equipements, scrolledwindow12, "scrolledwindow12");
@@ -1282,10 +1318,6 @@ create_affiche_entretiens (void)
   treeview2 = gtk_tree_view_new ();
   gtk_widget_show (treeview2);
   gtk_container_add (GTK_CONTAINER (scrolledwindow13), treeview2);
-
-  g_signal_connect ((gpointer) treeview2, "row_activated",
-                    G_CALLBACK (on_treeview2_row_activated),
-                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (affiche_entretiens, affiche_entretiens, "affiche_entretiens");

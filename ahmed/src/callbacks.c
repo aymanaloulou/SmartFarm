@@ -82,7 +82,7 @@ on_ok_ajouter1_clicked                 (GtkWidget       *objet,
 
 equipements eq;
 
-GtkWidget *input1, *input2, *input3, *input4, *input5, *input6;
+GtkWidget *input1, *input2, *input3, *input5, *input6, *input_j, *input_a, *input_m, *input_annee;
 /*GtkWidget *window1;
 window1 = lookup_widget(objet,"window1");*/
 GtkWidget *dialog_ajouter;
@@ -91,14 +91,18 @@ dialog_ajouter = lookup_widget(objet,"dialog_ajouter_equipement");
 input1=lookup_widget(objet,"id");
 input2=lookup_widget(objet,"type");
 input3=lookup_widget(objet,"marque");
-input4=lookup_widget(objet,"date");
+input_j = lookup_widget(objet, "jour");
+input_m = lookup_widget(objet, "mois");
+input_a = lookup_widget(objet, "annee");
 input5=lookup_widget(objet,"prix");
 input6=lookup_widget(objet,"association");
 
 strcpy(eq.id,gtk_entry_get_text(GTK_ENTRY(input1)));
 strcpy(eq.type,gtk_entry_get_text(GTK_ENTRY(input2)));
 strcpy(eq.marque,gtk_entry_get_text(GTK_ENTRY(input3)));
-strcpy(eq.date,gtk_entry_get_text(GTK_ENTRY(input4)));
+eq.date.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_j));
+eq.date.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+eq.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a));
 strcpy(eq.prix,gtk_entry_get_text(GTK_ENTRY(input5)));
 strcpy(eq.association,gtk_entry_get_text(GTK_ENTRY(input6)));
 
@@ -159,21 +163,25 @@ on_ok_modifier1_clicked                (GtkWidget       *objet,
 {
 equipements eq;
 
-GtkWidget *input1, *input2, *input3, *input4, *input5, *input6;
+GtkWidget *input1, *input2, *input3, *input5, *input6, *input_j, *input_m, *input_a, *input_annee;
 GtkWidget *dialog_modifier;
 dialog_modifier = lookup_widget(objet,"dialog_modifier_equipement");
 
 input1=lookup_widget(objet,"id");
 input2=lookup_widget(objet,"type");
 input3=lookup_widget(objet,"marque");
-input4=lookup_widget(objet,"date");
+input_j = lookup_widget(objet, "jour");
+input_m = lookup_widget(objet, "mois");
+input_a = lookup_widget(objet, "annee");
 input5=lookup_widget(objet,"prix");
 input6=lookup_widget(objet,"association");
 
 strcpy(eq.id,gtk_entry_get_text(GTK_ENTRY(input1)));
 strcpy(eq.type,gtk_entry_get_text(GTK_ENTRY(input2)));
 strcpy(eq.marque,gtk_entry_get_text(GTK_ENTRY(input3)));
-strcpy(eq.date,gtk_entry_get_text(GTK_ENTRY(input4)));
+eq.date.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_j));
+eq.date.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+eq.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a));
 strcpy(eq.prix,gtk_entry_get_text(GTK_ENTRY(input5)));
 strcpy(eq.association,gtk_entry_get_text(GTK_ENTRY(input6)));
 supprimer_equipement(eq.id);
