@@ -369,19 +369,22 @@ int fn_modif_ouvrier (ouvrier o,GtkWidget *button)  {
 		FILE* f = fopen ("ouvrier.bin","r+b");
 		ouvrier aux;int test = 0;int comp = 0;
 
-		while (fread (&aux,sizeof (ouvrier),1,f) != 0 && test == 0){
+		/*while (fread (&aux,sizeof (ouvrier),1,f) != 0 && test == 0){
 			if (strcmp (o.cin,aux.cin) == 0)
 				test = 1;
 			else 
 				comp++;
-		}
-		if (comp == 0){
-			f = fopen ("ouvrier.bin","r+b");
-		}
-		else{
-			fseek (f,comp*sizeof(ouvrier),SEEK_SET);
-		}
-    	fwrite (&o,sizeof(ouvrier),1,f);
+		}*/
+
+		do{
+			fread (&aux,sizeof (ouvrier),1,f);
+			if (strcmp (o.cin,aux.cin) == 0)
+				test = 1;
+			else 
+				comp++;
+		}while (test == 0);
+		fseek (f,comp*sizeof(ouvrier),SEEK_SET);
+    		fwrite (&o,sizeof(ouvrier),1,f);
 		fclose (f);
 	}
 
@@ -455,7 +458,7 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 
 			gtk_list_store_append (store, &iter);
 
-			fseek (f,-2*sizeof (ouvrier),SEEK_CUR);
+			fseek (f,comp*sizeof (ouvrier),SEEK_SET);
 			fread (&aux,sizeof (ouvrier),1,f);
 			sprintf (date_naiss,"%d/%d/%d",aux.date_nais.j,aux.date_nais.m,aux.date_nais.a);
 			/*if (strlen (aux.genre) != 4 && strlen (aux.genre) != 7)
