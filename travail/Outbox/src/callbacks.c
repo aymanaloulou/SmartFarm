@@ -10,6 +10,7 @@
 #include "ouvrier.h"
 
 ouvrier o,ouv_m;
+pointage pa;
 char cin_supp[9];
 
 void
@@ -149,7 +150,7 @@ on_button_supp_ouvrier_clicked         (GtkWidget       *button,
 		strcpy (ouv_m.cin,"");
 	}
 	else{
-		gtk_label_set_text(GTK_LABEL(label),"Double click sur une ligne");
+		gtk_label_set_text(GTK_LABEL(label),"Double click sur un ouvrier");
 	}
 }
 
@@ -189,7 +190,7 @@ on_button_modif_ouvrier_clicked        (GtkWidget       *button,
 		gtk_label_set_text(GTK_LABEL(label),"");
 	}
 	else{
-		gtk_label_set_text(GTK_LABEL(label),"Double click sur une ligne");
+		gtk_label_set_text(GTK_LABEL(label),"Double click sur un ouvrier");
 	}
 }
 
@@ -254,5 +255,105 @@ on_button_rech_ouvrier_clicked         (GtkWidget       *button,
 	strcpy (cin_rech,gtk_entry_get_text(GTK_ENTRY(cin_input)));
 
 	fn_rech_ouvrier (cin_rech,treeview_liste_ouvrier);
+}
+
+void
+on_button_liste_ouv_point_clicked      (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *treeview_liste_ouvrier;
+
+	treeview_liste_ouvrier = lookup_widget (button, "treeview_affich_point_ouv");
+	
+	fn_list_ouvrier (treeview_liste_ouvrier);
+}
+
+
+void
+on_button_rech_point_ouvrier_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+
+	GtkWidget *treeview_liste_ouvrier, *cin_input;
+	char cin_rech[9];
+
+	treeview_liste_ouvrier = lookup_widget (button, "treeview_affich_point_ouv");
+	cin_input = lookup_widget (button, "entry_cin_ouv_point_rech");
+
+	strcpy (cin_rech,gtk_entry_get_text(GTK_ENTRY(cin_input)));
+
+	fn_rech_ouvrier (cin_rech,treeview_liste_ouvrier);
+
+}
+
+
+void
+on_treeview_affich_point_ouv_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkTreeIter iter;
+	char* cinm;
+	char* nomm;
+	char* prenm;
+
+	GtkTreeModel *model = gtk_tree_view_get_model (treeview);
+
+	if (gtk_tree_model_get_iter (model, &iter, path)){
+		gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &cinm, 1, &nomm, 2, &prenm,-1);
+		strcpy (pa.cin, cinm);
+		strcpy (pa.nom, nomm);
+		strcpy (pa.pren, prenm);
+		//strcpy (cin_supp, ouv_m.cin);
+	}
+}
+}
+
+
+void
+on_button_ajout_point_clicked          (GtkWidget    *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *emh,*emm,*esh,*esm,*smh,*smm,*ssh,*ssm,*calendar,*abs;
+
+	if (strlen (pa.cin) == 8){
+		emh = lookup_widget (button, "spinbutton_entre_matin_h");
+		emm = lookup_widget (button, "spinbutton_entre_matin_m");
+		esh = lookup_widget (button, "spinbutton_entre_soir_h");
+		esm = lookup_widget (button, "spinbutton_entre_soir_m");
+		smh = lookup_widget (button, "spinbutton_sortie_matin_h");
+		smm = lookup_widget (button, "spinbutton_sortie_matin_m");
+		ssh = lookup_widget (button, "spinbutton_sortie_soir_h");
+		ssm = lookup_widget (button, "spinbutton_sortie_soir_m");
+		calender = lookup_widget (button, "calendar_date_point");
+		abs = lookup_widget (button, "checkbutton_ouv_abs");
+		
+		gtk_calendar_get_date (calendar,pa.date_point.y,pa.date_point.m,pa.date_point.j);
+		if (gtk_toggle_button_get_active (abs)){
+			pa.abs = 1;
+		}
+		else{
+			pa.abs = 0;
+			pa.entre_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emh));
+			pa.entre_matin.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emm));
+			pa.sort_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(smh));
+			pa.sort_matin.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(smm));
+			pa.entre_soir.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(esh));
+			pa.entre_soir.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(esm));
+			pa.sort_soir.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ssh));
+			pa.sort_soir.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ssm));
+		}
+		fn_ajout_point (pa,button);
+		strcpy (pa.cin,"");
+	}
+	else
+	{
+		GtkWidget *warning = lookup_widget (button, "label_warning");
+		gtk_label_set_text(GTK_LABEL(warning),"Double click sur un ouvrier");
+
+	}
+	
 }
 

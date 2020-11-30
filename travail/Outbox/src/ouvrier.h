@@ -24,11 +24,14 @@ typedef struct{
 
 typedef struct{
 	char cin[9];
+	char nom[20];
+	char pren[20];
 	struct date date_point;
 	struct heure entre_matin;
 	struct heure sort_matin;
 	struct heure entre_soir;
 	struct heure sort_soir;
+	int abs;
 }pointage;
 
 typedef struct{
@@ -48,7 +51,7 @@ void fn_supp_ouvrier (char* cin_supp);
 
 void fn_list_point (pointage* t,int* nb);
 void fn_rech_point (char* rech);
-void fn_ajout_point (pointage p);
+void fn_ajout_point (pointage p,GtkWidget *button);
 void fn_modif_point (pointage p);
 
 void fn_demande_conge (conge c);

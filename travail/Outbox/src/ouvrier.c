@@ -461,12 +461,35 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 			fseek (f,comp*sizeof (ouvrier),SEEK_SET);
 			fread (&aux,sizeof (ouvrier),1,f);
 			sprintf (date_naiss,"%d/%d/%d",aux.date_nais.j,aux.date_nais.m,aux.date_nais.a);
-			/*if (strlen (aux.genre) != 4 && strlen (aux.genre) != 7)
-				strcpy (aux.genre,"Male");*/
 			gtk_list_store_set (store, &iter, CIN, aux.cin, NOM, aux.nom, PREN, aux.pren, DATE, date_naiss, ETAT, aux.etat_civil, GENRE, aux.genre, NUM, aux.num_tel, ADR, aux.adr, EMAIL, aux.email, SECTEUR, aux.secteur, -1);
 			fclose (f);
 			gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
 			g_object_unref (store);
 			
 	}
+}
+
+
+void fn_ajout_point (pointage p,GtkWidget *button){
+	
+	FILE *f = fopen ("pointage.bin","rb");
+	GtkWidget *warning = lookup_widget (button, "label_warning");
+	int test;
+
+	while (fread (&p,sizeof (pointage),1,f1) != 0) {
+		
+		if (strcmp (p.cin,ch) == 0) 
+			 test = 1;
+	}
+
+	if (test == 1){
+		gtk_label_set_text(GTK_LABEL(warning),"CIN deja ajouté, utiliser la zone de modification");
+	}
+	else
+	{
+		f = fopen ("pointage.bin","ab");
+		fwrite (&p,sizeof (pointage),1,f);
+		gtk_label_set_text(GTK_LABEL(warning),"");
+	}
+
 }

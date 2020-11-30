@@ -58,3 +58,22 @@ on_okbutton_modif_ouvrier_clicked      (GtkWidget       *button,
 void
 on_button_rech_ouvrier_clicked         (GtkWidget       *button,
                                         gpointer         user_data);
+
+void
+on_button_liste_ouv_point_clicked      (GtkWidget       *button,
+                                        gpointer         user_data);
+
+void
+on_button_rech_point_ouvrier_clicked   (GtkWidget       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview_affich_point_ouv_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_ajout_point_clicked          (GtkWidget       *button,
+                                        gpointer         user_data);
