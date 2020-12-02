@@ -9,9 +9,11 @@
 #include "support.h"
 #include "ouvrier.h"
 
-ouvrier o,ouv_m;
-pointage pa;
+ouvrier o;
+ouvrier ouv_m;
+pointage pa,pm;
 char cin_supp[9];
+
 
 void
 on_button_ajout_ouvrier_clicked        (GtkWidget       *button,
@@ -21,6 +23,7 @@ on_button_ajout_ouvrier_clicked        (GtkWidget       *button,
 	gtk_widget_show(dialog);
 
 }
+
 
 
 void
@@ -306,10 +309,9 @@ on_treeview_affich_point_ouv_row_activated
 		strcpy (pa.cin, cinm);
 		strcpy (pa.nom, nomm);
 		strcpy (pa.pren, prenm);
-		//strcpy (cin_supp, ouv_m.cin);
 	}
 }
-}
+
 
 
 void
@@ -327,15 +329,16 @@ on_button_ajout_point_clicked          (GtkWidget    *button,
 		smm = lookup_widget (button, "spinbutton_sortie_matin_m");
 		ssh = lookup_widget (button, "spinbutton_sortie_soir_h");
 		ssm = lookup_widget (button, "spinbutton_sortie_soir_m");
-		calender = lookup_widget (button, "calendar_date_point");
+		calendar = lookup_widget (button, "calendar_date_point");
 		abs = lookup_widget (button, "checkbutton_ouv_abs");
-		
-		gtk_calendar_get_date (calendar,pa.date_point.y,pa.date_point.m,pa.date_point.j);
+
+		gtk_calendar_get_date (calendar,&pa.date_point.a,&pa.date_point.m,&pa.date_point.j);
+		pa.date_point.m++;
 		if (gtk_toggle_button_get_active (abs)){
-			pa.abs = 1;
+			pa.abs = 0;
 		}
 		else{
-			pa.abs = 0;
+			pa.abs = 1;
 			pa.entre_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emh));
 			pa.entre_matin.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emm));
 			pa.sort_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(smh));
@@ -355,5 +358,185 @@ on_button_ajout_point_clicked          (GtkWidget    *button,
 
 	}
 	
+}
+
+
+void
+on_button_liste_point_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *treeview_liste_point;
+
+	treeview_liste_point = lookup_widget (button, "treeview_liste_point");
+	
+	fn_list_point (treeview_liste_point);
+
+}
+
+
+void
+on_button_rech_point_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+	GtkWidget *treeview_liste_point, *date_input;
+	char date_rech[15];
+
+	treeview_liste_point = lookup_widget (button, "treeview_liste_point");
+	date_input = lookup_widget (button, "entry_rech_point");
+
+	strcpy (date_rech,gtk_entry_get_text(GTK_ENTRY(date_input)));
+
+	fn_rech_point (date_rech,treeview_liste_point);
+
+}
+
+
+void
+on_treeview_liste_point_row_activated  (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkTreeIter iter;
+	char* cinm;
+	char* nomm;
+	char* prenm;
+	char* absm;
+	char* datem;
+	char* em_m;
+	char* sm_m;
+	char* es_m;
+	char* ss_m;
+
+	GtkTreeModel *model = gtk_tree_view_get_model (treeview);
+
+	if (gtk_tree_model_get_iter (model, &iter, path)){
+		gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &cinm, 1, &nomm, 2, &prenm, 3, &datem, 4, &absm, 5, &em_m, 6, &sm_m, 7, &es_m, 8, &ss_m,-1);
+		strcpy (pm.cin, cinm);
+		strcpy (pm.nom, nomm);
+		strcpy (pm.pren, prenm);
+		if (strcmp (absm,"absent") == 0)
+			pm.abs = 0;
+		else
+			pm.abs = 1;
+		sscanf (datem,"%d/%d/%d",&pm.date_point.j,&pm.date_point.m,&pm.date_point.a);
+		sscanf (em_m,"%d:%d",&pm.entre_matin.h,&pm.entre_matin.m);
+		sscanf (sm_m,"%d:%d",&pm.sort_matin.h,&pm.sort_matin.m);
+		sscanf (es_m,"%d:%d",&pm.entre_soir.h,&pm.entre_soir.m);
+		sscanf (ss_m,"%d:%d",&pm.sort_soir.h,&pm.sort_soir.m);
+	}
+
+	GtkWidget *cin_io,*date_io;
+	GtkSpinButton *emh,*emm,*esh,*esm,*smh,*smm,*ssh,*ssm;
+
+	emh = lookup_widget (treeview, "spinbutton_entre_matin_modif_h");
+	emm = lookup_widget (treeview, "spinbutton_entre_matin_modif_m");
+	esh = lookup_widget (treeview, "spinbutton_entre_soir_modif_h");
+	esm = lookup_widget (treeview, "spinbutton_entre_soir_modif_m");
+	smh = lookup_widget (treeview, "spinbutton_sortie_matin_modif_h");
+	smm = lookup_widget (treeview, "spinbutton_sortie_matin_modif_m");
+	ssh = lookup_widget (treeview, "spinbutton_sortie_soir_modif_h");
+	ssm = lookup_widget (treeview, "spinbutton_sortie_soir_modif_m");
+	cin_io = lookup_widget (treeview, "entry_cin_point_modif");
+	date_io = lookup_widget (treeview, "entry_date_point_modif");
+
+	gtk_spin_button_set_value(emh,pm.entre_matin.h);
+	gtk_spin_button_set_value(emm,pm.entre_matin.m);
+	gtk_spin_button_set_value(smh,pm.sort_matin.h);
+	gtk_spin_button_set_value(smm,pm.sort_matin.m);
+	gtk_spin_button_set_value(esh,pm.entre_soir.h);
+	gtk_spin_button_set_value(esm,pm.entre_soir.m);
+	gtk_spin_button_set_value(ssh,pm.sort_soir.h);
+	gtk_spin_button_set_value(ssm,pm.sort_soir.m);
+	gtk_entry_set_text(GTK_ENTRY(cin_io),pm.cin);
+	gtk_entry_set_text(GTK_ENTRY(date_io),datem);
+
+}
+
+
+void
+on_button_modif_point_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkSpinButton *emh,*emm,*esh,*esm,*smh,*smm,*ssh,*ssm;
+	GtkWidget *cin_io,*date_io;
+
+	emh = lookup_widget (button, "spinbutton_entre_matin_modif_h");
+	emm = lookup_widget (button, "spinbutton_entre_matin_modif_m");
+	esh = lookup_widget (button, "spinbutton_entre_soir_modif_h");
+	esm = lookup_widget (button, "spinbutton_entre_soir_modif_m");
+	smh = lookup_widget (button, "spinbutton_sortie_matin_modif_h");
+	smm = lookup_widget (button, "spinbutton_sortie_matin_modif_m");
+	ssh = lookup_widget (button, "spinbutton_sortie_soir_modif_h");
+	ssm = lookup_widget (button, "spinbutton_sortie_soir_modif_m");
+	cin_io = lookup_widget (button, "entry_cin_point_modif");
+	date_io = lookup_widget (button, "entry_date_point_modif");
+
+	pm.entre_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emh));
+	pm.entre_matin.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(emm));
+	pm.sort_matin.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(smh));
+	pm.sort_matin.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(smm));
+	pm.entre_soir.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(esh));
+	pm.entre_soir.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(esm));
+	pm.sort_soir.h = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ssh));
+	pm.sort_soir.m = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ssm));
+
+	if (strlen (pm.cin) == 8){
+		fn_modif_point (pm);
+		strcpy (pm.cin,"");
+	}
+
+	gtk_spin_button_set_value(emh,0);
+	gtk_spin_button_set_value(emm,0);
+	gtk_spin_button_set_value(smh,0);
+	gtk_spin_button_set_value(smm,0);
+	gtk_spin_button_set_value(esh,0);
+	gtk_spin_button_set_value(esm,0);
+	gtk_spin_button_set_value(ssh,0);
+	gtk_spin_button_set_value(ssm,0);
+	gtk_entry_set_text(GTK_ENTRY(cin_io),"");
+	gtk_entry_set_text(GTK_ENTRY(date_io),"");
+}
+
+
+void
+on_button_ajout_conge_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *cin_i, *sect_i, *date_de, *date_jusqa,* rais_i;
+	conge c;
+
+	cin_i = lookup_widget (button, "entry_cin_conge"); 
+	sect_i = lookup_widget (button, "entry_secteur_conge");
+	date_de = lookup_widget (button, "calendar_conge_de");
+	date_jusqa = lookup_widget (button, "calendar_conge_jusqa");
+	rais_i = lookup_widget (button, "entry_raison_conge");
+
+	strcpy(c.cin,gtk_entry_get_text(GTK_ENTRY(cin_i)));
+	strcpy(c.secteur,gtk_entry_get_text(GTK_ENTRY(sect_i)));
+	strcpy(c.rais,gtk_entry_get_text(GTK_ENTRY(rais_i)));
+	gtk_calendar_get_date (date_de,&c.date_deb.a,&c.date_deb.m,&c.date_deb.j);
+	c.date_deb.m++;
+	gtk_calendar_get_date (date_jusqa,&c.date_fin.a,&c.date_fin.m,&c.date_fin.j);
+	c.date_fin.m++;
+
+	if (fn_demande_conge (c,button)){
+		gtk_entry_set_text(GTK_ENTRY(cin_i),"");
+		gtk_entry_set_text(GTK_ENTRY(sect_i),"");
+		gtk_entry_set_text(GTK_ENTRY(rais_i),"");
+	}
+}
+
+
+void
+on_button_affich_conge_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *treeview_liste_conge;
+
+	treeview_liste_conge = lookup_widget (button, "treeview_liste_conge");
+	
+	fn_list_conge (treeview_liste_conge);
 }
 

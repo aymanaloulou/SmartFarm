@@ -37,7 +37,6 @@ typedef struct{
 typedef struct{
 	char cin[9];
 	char secteur[20];
-	int dure;
 	struct date date_deb;
 	struct date date_fin;
 	char rais[50];
@@ -49,9 +48,10 @@ int fn_ajout_ouvrier (ouvrier ouv,GtkWidget *button);
 int fn_modif_ouvrier (ouvrier ouv,GtkWidget *button);
 void fn_supp_ouvrier (char* cin_supp);
 
-void fn_list_point (pointage* t,int* nb);
-void fn_rech_point (char* rech);
+void fn_list_point (GtkWidget *liste);
+void fn_rech_point (char *date, GtkWidget *liste);
 void fn_ajout_point (pointage p,GtkWidget *button);
 void fn_modif_point (pointage p);
 
-void fn_demande_conge (conge c);
+int fn_demande_conge (conge c,GtkWidget *button);
+void fn_list_conge (GtkWidget *liste);

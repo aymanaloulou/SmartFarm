@@ -77,3 +77,29 @@ on_treeview_affich_point_ouv_row_activated
 void
 on_button_ajout_point_clicked          (GtkWidget       *button,
                                         gpointer         user_data);
+
+void
+on_button_liste_point_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_rech_point_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview_liste_point_row_activated  (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_modif_point_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_ajout_conge_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_affich_conge_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
