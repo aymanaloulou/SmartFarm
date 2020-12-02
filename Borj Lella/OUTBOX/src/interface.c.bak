@@ -36,7 +36,6 @@ create_window_gest_ouvrier (void)
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_affich_ouv;
   GtkWidget *label5;
-  GtkWidget *cin;
   GtkWidget *ajout_ouv_clicked;
   GtkWidget *alignment1;
   GtkWidget *hbox1;
@@ -56,6 +55,7 @@ create_window_gest_ouvrier (void)
   GtkWidget *image4;
   GtkWidget *button_affich_list_ouv;
   GtkWidget *image5;
+  GtkWidget *cin;
   GtkWidget *label6;
   GtkWidget *fixed2;
   GtkWidget *entry_cin_ouv_point_rech;
@@ -123,7 +123,6 @@ create_window_gest_ouvrier (void)
   GtkWidget *treeview_liste_point;
   GtkWidget *button6;
   GtkWidget *image6;
-  GtkWidget *label30;
   GtkWidget *label31;
   GtkWidget *entry_rech_point;
   GtkWidget *button_rech_point_ouvrier;
@@ -143,6 +142,7 @@ create_window_gest_ouvrier (void)
   GtkWidget *image10;
   GtkWidget *button_liste_point;
   GtkWidget *image7;
+  GtkWidget *label_warning;
   GtkWidget *label34;
   GtkWidget *fixed3;
   GtkWidget *label35;
@@ -157,8 +157,6 @@ create_window_gest_ouvrier (void)
   GtkWidget *label37;
   GtkWidget *label38;
   GtkWidget *label39;
-  GtkWidget *label41;
-  GtkWidget *label42;
   GtkWidget *label43;
   GtkWidget *button_ajout_conge;
   GtkWidget *alignment6;
@@ -167,6 +165,8 @@ create_window_gest_ouvrier (void)
   GtkWidget *label40;
   GtkWidget *button_affich_conge;
   GtkWidget *image13;
+  GtkWidget *label_cinc_inv;
+  GtkWidget *label_sectc_inv;
   GtkWidget *label44;
 
   window_gest_ouvrier = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -204,11 +204,6 @@ create_window_gest_ouvrier (void)
   gtk_widget_show (label5);
   gtk_fixed_put (GTK_FIXED (fixed1), label5, 120, 56);
   gtk_widget_set_size_request (label5, 150, 19);
-
-  cin = gtk_label_new ("");
-  gtk_widget_show (cin);
-  gtk_fixed_put (GTK_FIXED (fixed1), cin, 112, 560);
-  gtk_widget_set_size_request (cin, 184, 16);
 
   ajout_ouv_clicked = gtk_button_new ();
   gtk_widget_show (ajout_ouv_clicked);
@@ -295,6 +290,11 @@ create_window_gest_ouvrier (void)
   image5 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image5);
   gtk_container_add (GTK_CONTAINER (button_affich_list_ouv), image5);
+
+  cin = gtk_label_new ("");
+  gtk_widget_show (cin);
+  gtk_fixed_put (GTK_FIXED (fixed1), cin, 112, 560);
+  gtk_widget_set_size_request (cin, 184, 16);
 
   label6 = gtk_label_new (_("G\303\251neral"));
   gtk_widget_show (label6);
@@ -571,11 +571,6 @@ create_window_gest_ouvrier (void)
   gtk_widget_show (image6);
   gtk_container_add (GTK_CONTAINER (button6), image6);
 
-  label30 = gtk_label_new ("");
-  gtk_widget_show (label30);
-  gtk_fixed_put (GTK_FIXED (fixed2), label30, 72, 440);
-  gtk_widget_set_size_request (label30, 424, 16);
-
   label31 = gtk_label_new (_("Date du pointage :"));
   gtk_widget_show (label31);
   gtk_fixed_put (GTK_FIXED (fixed2), label31, 512, 248);
@@ -662,6 +657,11 @@ create_window_gest_ouvrier (void)
   gtk_widget_show (image7);
   gtk_container_add (GTK_CONTAINER (button_liste_point), image7);
 
+  label_warning = gtk_label_new ("");
+  gtk_widget_show (label_warning);
+  gtk_fixed_put (GTK_FIXED (fixed2), label_warning, 72, 440);
+  gtk_widget_set_size_request (label_warning, 424, 16);
+
   label34 = gtk_label_new (_("Syst\303\250me pointage"));
   gtk_widget_show (label34);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook1), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook1), 1), label34);
@@ -738,16 +738,6 @@ create_window_gest_ouvrier (void)
   gtk_fixed_put (GTK_FIXED (fixed3), label39, 184, 324);
   gtk_widget_set_size_request (label39, 56, 16);
 
-  label41 = gtk_label_new ("");
-  gtk_widget_show (label41);
-  gtk_fixed_put (GTK_FIXED (fixed3), label41, 456, 80);
-  gtk_widget_set_size_request (label41, 57, 17);
-
-  label42 = gtk_label_new ("");
-  gtk_widget_show (label42);
-  gtk_fixed_put (GTK_FIXED (fixed3), label42, 456, 120);
-  gtk_widget_set_size_request (label42, 57, 17);
-
   label43 = gtk_label_new (_("Cin d'ouvrier :"));
   gtk_widget_show (label43);
   gtk_fixed_put (GTK_FIXED (fixed3), label43, 128, 80);
@@ -782,6 +772,16 @@ create_window_gest_ouvrier (void)
   image13 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image13);
   gtk_container_add (GTK_CONTAINER (button_affich_conge), image13);
+
+  label_cinc_inv = gtk_label_new ("");
+  gtk_widget_show (label_cinc_inv);
+  gtk_fixed_put (GTK_FIXED (fixed3), label_cinc_inv, 456, 80);
+  gtk_widget_set_size_request (label_cinc_inv, 57, 17);
+
+  label_sectc_inv = gtk_label_new ("");
+  gtk_widget_show (label_sectc_inv);
+  gtk_fixed_put (GTK_FIXED (fixed3), label_sectc_inv, 456, 120);
+  gtk_widget_set_size_request (label_sectc_inv, 57, 17);
 
   label44 = gtk_label_new (_("Demande Cong\303\251"));
   gtk_widget_show (label44);
@@ -844,7 +844,6 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, treeview_affich_ouv, "treeview_affich_ouv");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label5, "label5");
-  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, cin, "cin");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, ajout_ouv_clicked, "ajout_ouv_clicked");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, alignment1, "alignment1");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, hbox1, "hbox1");
@@ -864,6 +863,7 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image4, "image4");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button_affich_list_ouv, "button_affich_list_ouv");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image5, "image5");
+  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, cin, "cin");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label6, "label6");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, fixed2, "fixed2");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, entry_cin_ouv_point_rech, "entry_cin_ouv_point_rech");
@@ -915,7 +915,6 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, treeview_liste_point, "treeview_liste_point");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button6, "button6");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image6, "image6");
-  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label30, "label30");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label31, "label31");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, entry_rech_point, "entry_rech_point");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button_rech_point_ouvrier, "button_rech_point_ouvrier");
@@ -935,6 +934,7 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image10, "image10");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button_liste_point, "button_liste_point");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image7, "image7");
+  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label_warning, "label_warning");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label34, "label34");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, fixed3, "fixed3");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label35, "label35");
@@ -949,8 +949,6 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label37, "label37");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label38, "label38");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label39, "label39");
-  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label41, "label41");
-  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label42, "label42");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label43, "label43");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button_ajout_conge, "button_ajout_conge");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, alignment6, "alignment6");
@@ -959,6 +957,8 @@ create_window_gest_ouvrier (void)
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label40, "label40");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, button_affich_conge, "button_affich_conge");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, image13, "image13");
+  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label_cinc_inv, "label_cinc_inv");
+  GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label_sectc_inv, "label_sectc_inv");
   GLADE_HOOKUP_OBJECT (window_gest_ouvrier, label44, "label44");
 
   return window_gest_ouvrier;
@@ -994,19 +994,19 @@ create_dialog_ajout_ouvrier (void)
   GtkWidget *spinbutton_mois_nais_ouv;
   GtkObject *spinbutton_annee_nais_ouv_adj;
   GtkWidget *spinbutton_annee_nais_ouv;
-  GtkWidget *label56;
-  GtkWidget *label57;
-  GtkWidget *label58;
-  GtkWidget *label59;
-  GtkWidget *label60;
-  GtkWidget *label61;
-  GtkWidget *label62;
-  GtkWidget *label63;
-  GtkWidget *label64;
   GtkWidget *comboboxentry_etat_civil_ouv;
   GtkWidget *radiobutton_ouv_male;
   GSList *radiobutton_ouv_male_group = NULL;
   GtkWidget *radiobutton_ouv_femelle;
+  GtkWidget *label_cin_ouv_inv;
+  GtkWidget *label_nom_ouv_inv;
+  GtkWidget *label_pren_ouv_inv;
+  GtkWidget *label_genre_ouv_inv;
+  GtkWidget *label_etat_ouv_inv;
+  GtkWidget *label_num_tel_ouv_inv;
+  GtkWidget *label_secteur_ouv_inv;
+  GtkWidget *label_email_ouv_inv;
+  GtkWidget *label_adr_ouv_inv;
   GtkWidget *hbuttonbox1;
   GtkWidget *cancelbutton_ajout_ouv;
   GtkWidget *okbutton_ajout_ouv;
@@ -1140,51 +1140,6 @@ create_dialog_ajout_ouvrier (void)
   gtk_fixed_put (GTK_FIXED (fixed4), spinbutton_annee_nais_ouv, 312, 160);
   gtk_widget_set_size_request (spinbutton_annee_nais_ouv, 72, 24);
 
-  label56 = gtk_label_new ("");
-  gtk_widget_show (label56);
-  gtk_fixed_put (GTK_FIXED (fixed4), label56, 472, 56);
-  gtk_widget_set_size_request (label56, 57, 17);
-
-  label57 = gtk_label_new ("");
-  gtk_widget_show (label57);
-  gtk_fixed_put (GTK_FIXED (fixed4), label57, 472, 90);
-  gtk_widget_set_size_request (label57, 57, 17);
-
-  label58 = gtk_label_new ("");
-  gtk_widget_show (label58);
-  gtk_fixed_put (GTK_FIXED (fixed4), label58, 472, 280);
-  gtk_widget_set_size_request (label58, 57, 17);
-
-  label59 = gtk_label_new ("");
-  gtk_widget_show (label59);
-  gtk_fixed_put (GTK_FIXED (fixed4), label59, 472, 312);
-  gtk_widget_set_size_request (label59, 57, 17);
-
-  label60 = gtk_label_new ("");
-  gtk_widget_show (label60);
-  gtk_fixed_put (GTK_FIXED (fixed4), label60, 472, 392);
-  gtk_widget_set_size_request (label60, 57, 17);
-
-  label61 = gtk_label_new ("");
-  gtk_widget_show (label61);
-  gtk_fixed_put (GTK_FIXED (fixed4), label61, 472, 432);
-  gtk_widget_set_size_request (label61, 57, 17);
-
-  label62 = gtk_label_new ("");
-  gtk_widget_show (label62);
-  gtk_fixed_put (GTK_FIXED (fixed4), label62, 472, 240);
-  gtk_widget_set_size_request (label62, 57, 17);
-
-  label63 = gtk_label_new ("");
-  gtk_widget_show (label63);
-  gtk_fixed_put (GTK_FIXED (fixed4), label63, 472, 216);
-  gtk_widget_set_size_request (label63, 57, 17);
-
-  label64 = gtk_label_new ("");
-  gtk_widget_show (label64);
-  gtk_fixed_put (GTK_FIXED (fixed4), label64, 472, 128);
-  gtk_widget_set_size_request (label64, 57, 17);
-
   comboboxentry_etat_civil_ouv = gtk_combo_box_entry_new_text ();
   gtk_widget_show (comboboxentry_etat_civil_ouv);
   gtk_fixed_put (GTK_FIXED (fixed4), comboboxentry_etat_civil_ouv, 200, 235);
@@ -1207,6 +1162,51 @@ create_dialog_ajout_ouvrier (void)
   gtk_widget_set_size_request (radiobutton_ouv_femelle, 115, 24);
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_ouv_femelle), radiobutton_ouv_male_group);
   radiobutton_ouv_male_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_ouv_femelle));
+
+  label_cin_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_cin_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_cin_ouv_inv, 472, 128);
+  gtk_widget_set_size_request (label_cin_ouv_inv, 57, 17);
+
+  label_nom_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_nom_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_nom_ouv_inv, 472, 56);
+  gtk_widget_set_size_request (label_nom_ouv_inv, 57, 17);
+
+  label_pren_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_pren_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_pren_ouv_inv, 472, 90);
+  gtk_widget_set_size_request (label_pren_ouv_inv, 57, 17);
+
+  label_genre_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_genre_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_genre_ouv_inv, 472, 216);
+  gtk_widget_set_size_request (label_genre_ouv_inv, 57, 17);
+
+  label_etat_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_etat_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_etat_ouv_inv, 472, 240);
+  gtk_widget_set_size_request (label_etat_ouv_inv, 57, 17);
+
+  label_num_tel_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_num_tel_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_num_tel_ouv_inv, 472, 280);
+  gtk_widget_set_size_request (label_num_tel_ouv_inv, 57, 17);
+
+  label_secteur_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_secteur_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_secteur_ouv_inv, 472, 432);
+  gtk_widget_set_size_request (label_secteur_ouv_inv, 57, 17);
+
+  label_email_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_email_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_email_ouv_inv, 472, 392);
+  gtk_widget_set_size_request (label_email_ouv_inv, 57, 17);
+
+  label_adr_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_adr_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_adr_ouv_inv, 472, 312);
+  gtk_widget_set_size_request (label_adr_ouv_inv, 57, 17);
 
   hbuttonbox1 = GTK_DIALOG (dialog_ajout_ouvrier)->action_area;
   gtk_widget_show (hbuttonbox1);
@@ -1260,18 +1260,18 @@ create_dialog_ajout_ouvrier (void)
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, spinbutton_jour_nais_ouv, "spinbutton_jour_nais_ouv");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, spinbutton_mois_nais_ouv, "spinbutton_mois_nais_ouv");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, spinbutton_annee_nais_ouv, "spinbutton_annee_nais_ouv");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label56, "label56");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label57, "label57");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label58, "label58");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label59, "label59");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label60, "label60");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label61, "label61");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label62, "label62");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label63, "label63");
-  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label64, "label64");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, comboboxentry_etat_civil_ouv, "comboboxentry_etat_civil_ouv");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, radiobutton_ouv_male, "radiobutton_ouv_male");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, radiobutton_ouv_femelle, "radiobutton_ouv_femelle");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_cin_ouv_inv, "label_cin_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_nom_ouv_inv, "label_nom_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_pren_ouv_inv, "label_pren_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_genre_ouv_inv, "label_genre_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_etat_ouv_inv, "label_etat_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_num_tel_ouv_inv, "label_num_tel_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_secteur_ouv_inv, "label_secteur_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_email_ouv_inv, "label_email_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, label_adr_ouv_inv, "label_adr_ouv_inv");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_ajout_ouvrier, hbuttonbox1, "hbuttonbox1");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, cancelbutton_ajout_ouv, "cancelbutton_ajout_ouv");
   GLADE_HOOKUP_OBJECT (dialog_ajout_ouvrier, okbutton_ajout_ouv, "okbutton_ajout_ouv");
@@ -1305,6 +1305,7 @@ create_dialog_modif_ouvrier (void)
   GtkWidget *spinbutton1;
   GtkObject *spinbutton2_adj;
   GtkWidget *spinbutton2;
+  GtkWidget *comboboxentry_etatm_civil_ouv;
   GtkWidget *fixed6;
   GtkWidget *label76;
   GtkWidget *label77;
@@ -1323,20 +1324,19 @@ create_dialog_modif_ouvrier (void)
   GtkWidget *spinbutton_moism_nais_ouv;
   GtkObject *spinbutton_anneem_nais_ouv_adj;
   GtkWidget *spinbutton_anneem_nais_ouv;
-  GtkWidget *label86;
-  GtkWidget *label87;
-  GtkWidget *label88;
-  GtkWidget *label89;
-  GtkWidget *label90;
-  GtkWidget *label91;
-  GtkWidget *label93;
-  GtkWidget *label94;
-  GtkWidget *label95;
-  GtkWidget *label_cinm_ouv;
   GtkWidget *radiobutton_ouv_male;
   GSList *radiobutton_ouv_male_group = NULL;
   GtkWidget *radiobutton_ouv_femelle;
-  GtkWidget *comboboxentry_etatm_civil_ouv;
+  GtkWidget *label_nom_ouv_inv;
+  GtkWidget *label_cinm_ouv;
+  GtkWidget *label_genre_ouv_inv;
+  GtkWidget *label_pren_ouv_inv;
+  GtkWidget *label_genre_ouv_inv;
+  GtkWidget *label_etat_ouv_inv;
+  GtkWidget *label_num_tel_ouv_inv;
+  GtkWidget *label_adr_ouv_inv;
+  GtkWidget *label_email_ouv_inv;
+  GtkWidget *label_secteur_ouv_inv;
   GtkWidget *hbuttonbox2;
   GtkWidget *cancelbutton_modif_ouvrier;
   GtkWidget *okbutton_modif_ouvrier;
@@ -1451,6 +1451,14 @@ create_dialog_modif_ouvrier (void)
   gtk_fixed_put (GTK_FIXED (fixed5), spinbutton2, 256, 160);
   gtk_widget_set_size_request (spinbutton2, 48, 24);
 
+  comboboxentry_etatm_civil_ouv = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (comboboxentry_etatm_civil_ouv);
+  gtk_fixed_put (GTK_FIXED (fixed5), comboboxentry_etatm_civil_ouv, 200, 232);
+  gtk_widget_set_size_request (comboboxentry_etatm_civil_ouv, 189, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("C\303\251l\303\251ba"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("Mari\303\251"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("Divorc\303\251"));
+
   fixed6 = gtk_fixed_new ();
   gtk_widget_show (fixed6);
   gtk_fixed_put (GTK_FIXED (fixed5), fixed6, 0, 0);
@@ -1530,57 +1538,6 @@ create_dialog_modif_ouvrier (void)
   gtk_fixed_put (GTK_FIXED (fixed6), spinbutton_anneem_nais_ouv, 312, 160);
   gtk_widget_set_size_request (spinbutton_anneem_nais_ouv, 72, 24);
 
-  label86 = gtk_label_new ("");
-  gtk_widget_show (label86);
-  gtk_fixed_put (GTK_FIXED (fixed6), label86, 472, 128);
-  gtk_widget_set_size_request (label86, 57, 17);
-
-  label87 = gtk_label_new ("");
-  gtk_widget_show (label87);
-  gtk_fixed_put (GTK_FIXED (fixed6), label87, 472, 280);
-  gtk_widget_set_size_request (label87, 57, 17);
-
-  label88 = gtk_label_new ("");
-  gtk_widget_show (label88);
-  gtk_fixed_put (GTK_FIXED (fixed6), label88, 472, 312);
-  gtk_widget_set_size_request (label88, 57, 17);
-
-  label89 = gtk_label_new ("");
-  gtk_widget_show (label89);
-  gtk_fixed_put (GTK_FIXED (fixed6), label89, 472, 392);
-  gtk_widget_set_size_request (label89, 57, 17);
-
-  label90 = gtk_label_new ("");
-  gtk_widget_show (label90);
-  gtk_fixed_put (GTK_FIXED (fixed6), label90, 472, 432);
-  gtk_widget_set_size_request (label90, 57, 17);
-
-  label91 = gtk_label_new ("");
-  gtk_widget_show (label91);
-  gtk_fixed_put (GTK_FIXED (fixed6), label91, 472, 56);
-  gtk_widget_set_size_request (label91, 57, 17);
-
-  label93 = gtk_label_new ("");
-  gtk_widget_show (label93);
-  gtk_fixed_put (GTK_FIXED (fixed6), label93, 472, 90);
-  gtk_widget_set_size_request (label93, 57, 17);
-
-  label94 = gtk_label_new ("");
-  gtk_widget_show (label94);
-  gtk_fixed_put (GTK_FIXED (fixed6), label94, 464, 240);
-  gtk_widget_set_size_request (label94, 57, 17);
-
-  label95 = gtk_label_new ("");
-  gtk_widget_show (label95);
-  gtk_fixed_put (GTK_FIXED (fixed6), label95, 464, 216);
-  gtk_widget_set_size_request (label95, 57, 17);
-
-  label_cinm_ouv = gtk_label_new ("");
-  gtk_widget_show (label_cinm_ouv);
-  gtk_fixed_put (GTK_FIXED (fixed6), label_cinm_ouv, 144, 120);
-  gtk_widget_set_size_request (label_cinm_ouv, 168, 24);
-  gtk_misc_set_alignment (GTK_MISC (label_cinm_ouv), 0.52, 0.5);
-
   radiobutton_ouv_male = gtk_radio_button_new_with_mnemonic (NULL, _("Male"));
   gtk_widget_show (radiobutton_ouv_male);
   gtk_fixed_put (GTK_FIXED (fixed6), radiobutton_ouv_male, 200, 204);
@@ -1596,13 +1553,56 @@ create_dialog_modif_ouvrier (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton_ouv_femelle), radiobutton_ouv_male_group);
   radiobutton_ouv_male_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton_ouv_femelle));
 
-  comboboxentry_etatm_civil_ouv = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (comboboxentry_etatm_civil_ouv);
-  gtk_fixed_put (GTK_FIXED (fixed5), comboboxentry_etatm_civil_ouv, 200, 235);
-  gtk_widget_set_size_request (comboboxentry_etatm_civil_ouv, 189, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("C\303\251l\303\251ba"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("Mari\303\251"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry_etatm_civil_ouv), _("Divorc\303\251"));
+  label_nom_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_nom_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_nom_ouv_inv, 472, 56);
+  gtk_widget_set_size_request (label_nom_ouv_inv, 57, 17);
+
+  label_cinm_ouv = gtk_label_new ("");
+  gtk_widget_show (label_cinm_ouv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_cinm_ouv, 144, 120);
+  gtk_widget_set_size_request (label_cinm_ouv, 168, 24);
+  gtk_misc_set_alignment (GTK_MISC (label_cinm_ouv), 0.52, 0.5);
+
+  label_genre_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_genre_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_genre_ouv_inv, 464, 208);
+  gtk_widget_set_size_request (label_genre_ouv_inv, 57, 17);
+
+  label_pren_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_pren_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_pren_ouv_inv, 472, 90);
+  gtk_widget_set_size_request (label_pren_ouv_inv, 57, 17);
+
+  label_genre_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_genre_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_genre_ouv_inv, 480, 208);
+  gtk_widget_set_size_request (label_genre_ouv_inv, 57, 17);
+
+  label_etat_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_etat_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_etat_ouv_inv, 480, 240);
+  gtk_widget_set_size_request (label_etat_ouv_inv, 57, 17);
+
+  label_num_tel_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_num_tel_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_num_tel_ouv_inv, 472, 280);
+  gtk_widget_set_size_request (label_num_tel_ouv_inv, 57, 17);
+
+  label_adr_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_adr_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_adr_ouv_inv, 472, 312);
+  gtk_widget_set_size_request (label_adr_ouv_inv, 57, 17);
+
+  label_email_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_email_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_email_ouv_inv, 472, 392);
+  gtk_widget_set_size_request (label_email_ouv_inv, 57, 17);
+
+  label_secteur_ouv_inv = gtk_label_new ("");
+  gtk_widget_show (label_secteur_ouv_inv);
+  gtk_fixed_put (GTK_FIXED (fixed6), label_secteur_ouv_inv, 472, 432);
+  gtk_widget_set_size_request (label_secteur_ouv_inv, 57, 17);
 
   hbuttonbox2 = GTK_DIALOG (dialog_modif_ouvrier)->action_area;
   gtk_widget_show (hbuttonbox2);
@@ -1653,6 +1653,7 @@ create_dialog_modif_ouvrier (void)
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label75, "label75");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, spinbutton1, "spinbutton1");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, spinbutton2, "spinbutton2");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, comboboxentry_etatm_civil_ouv, "comboboxentry_etatm_civil_ouv");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, fixed6, "fixed6");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label76, "label76");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label77, "label77");
@@ -1668,19 +1669,18 @@ create_dialog_modif_ouvrier (void)
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, spinbutton_jourm_nais_ouv, "spinbutton_jourm_nais_ouv");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, spinbutton_moism_nais_ouv, "spinbutton_moism_nais_ouv");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, spinbutton_anneem_nais_ouv, "spinbutton_anneem_nais_ouv");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label86, "label86");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label87, "label87");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label88, "label88");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label89, "label89");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label90, "label90");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label91, "label91");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label93, "label93");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label94, "label94");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label95, "label95");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_cinm_ouv, "label_cinm_ouv");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, radiobutton_ouv_male, "radiobutton_ouv_male");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, radiobutton_ouv_femelle, "radiobutton_ouv_femelle");
-  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, comboboxentry_etatm_civil_ouv, "comboboxentry_etatm_civil_ouv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_nom_ouv_inv, "label_nom_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_cinm_ouv, "label_cinm_ouv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_genre_ouv_inv, "label_genre_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_pren_ouv_inv, "label_pren_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_genre_ouv_inv, "label_genre_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_etat_ouv_inv, "label_etat_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_num_tel_ouv_inv, "label_num_tel_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_adr_ouv_inv, "label_adr_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_email_ouv_inv, "label_email_ouv_inv");
+  GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, label_secteur_ouv_inv, "label_secteur_ouv_inv");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_modif_ouvrier, hbuttonbox2, "hbuttonbox2");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, cancelbutton_modif_ouvrier, "cancelbutton_modif_ouvrier");
   GLADE_HOOKUP_OBJECT (dialog_modif_ouvrier, okbutton_modif_ouvrier, "okbutton_modif_ouvrier");
