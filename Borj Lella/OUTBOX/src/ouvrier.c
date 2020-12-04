@@ -455,7 +455,7 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 
 		store = NULL;
 		store = gtk_tree_view_get_model(liste);
-
+/*
 			renderer = gtk_cell_renderer_text_new ();
 			column = gtk_tree_view_column_new_with_attributes (" CIN",renderer,"text",CIN,NULL);
 			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
@@ -495,7 +495,7 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 			renderer = gtk_cell_renderer_text_new ();
 			column = gtk_tree_view_column_new_with_attributes (" Secteur",renderer,"text",SECTEUR,NULL);
 			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
+*/
 			store = gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 			gtk_list_store_append (store, &iter);
