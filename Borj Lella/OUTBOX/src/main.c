@@ -30,6 +30,10 @@ main (int argc, char *argv[])
   window_gest_ouvrier = create_window_gest_ouvrier ();
   gtk_widget_show (window_gest_ouvrier);
 
+  GtkWidget *window_gest_emp;
+  window_gest_emp = create_window_gest_emp ();
+  gtk_widget_show (window_gest_emp);
+
   /*
    * The following code was added by Glade to create one of each component
    * (except popup menus), just so that you see something after building

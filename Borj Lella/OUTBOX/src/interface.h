@@ -5,3 +5,6 @@
 GtkWidget* create_window_gest_ouvrier (void);
 GtkWidget* create_dialog_ajout_ouvrier (void);
 GtkWidget* create_dialog_modif_ouvrier (void);
+GtkWidget* create_window_gest_emp (void);
+GtkWidget* create_dialog_ajout_emp (void);
+GtkWidget* create_dialog_modif_emp (void);
