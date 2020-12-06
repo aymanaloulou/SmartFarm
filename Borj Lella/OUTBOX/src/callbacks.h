@@ -1,4 +1,6 @@
 #include <gtk/gtk.h>
+#include<stdio.h>
+
 
 void
 on_button_ajouter_ouvrier_clicked      (GtkWidget       *button,
@@ -187,3 +189,195 @@ void
 on_button_affich_conge_clicked         (GtkButton       *button,
                                         gpointer         user_data);
 
+////////////////// GESTION CLIENTS /////////
+
+void
+on_button_gestion_clients_clicked      (GtkWidget    *objet_graphique1,
+                                        gpointer         user_data);
+
+
+
+
+void
+on_button_ajouter_client_clicked        (GtkWidget       *objet_graphique3,
+                                        gpointer         user_data);
+void
+on_button_modifier_client_clicked      (GtkWidget       *objet_graphique4,
+                                        gpointer         user_data);
+
+void
+on_button_supprimer_client_clicked     (GtkWidget       *objet_graphique5,
+                                        gpointer         user_data);
+
+void
+on_button_cancel_ajouter_client_clicked
+                                      (GtkWidget       *objet_graphique6,
+                                        gpointer         user_data);
+ 
+
+void
+on_button_cancel_modifier_client_clicked
+                                        (GtkWidget       *objet_graphique7,
+                                        gpointer         user_data);
+
+
+void
+on_button_aj_client_clicked      (GtkWidget       *objet_graphique18,
+                                        gpointer         user_data) ;
+
+
+
+
+                                     
+void
+on_button_modifier_c_clicked           (GtkWidget       *objet_graphique20,
+                                        gpointer         user_data);
+
+
+
+void
+on_button_aff_clicked                  (GtkWidget      *objet_graphique22,
+                                        gpointer         user_data);
+
+void
+on_button_recherche_clicked            (GtkWidget       *objet_graphique23,
+                                        gpointer         user_data);
+
+
+
+void
+on_button_rechercheee_client_clicked   (GtkWidget       *objet_graphique25,
+                                        gpointer         user_data);
+
+void
+on_button_aff_historique_clicked       (GtkWidget       *objet_graphique26,
+                                        gpointer         user_data);
+
+void
+on_button_supp_histo_clicked           (GtkWidget       *objet_graphique27,
+                                        gpointer         user_data);
+
+
+void
+on_button_recup_histo_clicked          (GtkWidget       *objet_graphique29,
+                                        gpointer         user_data);
+
+
+
+void
+on_radiobutton_h_aj_group_changed      (GtkRadioButton  *radiobutton,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_f_aj_group_changed      (GtkRadioButton  *radiobutton,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_h_mod_group_changed     (GtkRadioButton  *radiobutton,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_f_mod_group_changed     (GtkRadioButton  *radiobutton,
+                                        gpointer         user_data);
+
+void
+on_treeview_client_row_activated       (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *col,
+                                        gpointer         user_data);
+
+void
+on_button_ajouter_res_clicked          (GtkWidget       *objet_graphique31,
+                                        gpointer         user_data);
+
+void
+on_okbutton_aj_reser_clicked           (GtkWidget       *objet_graphique32,
+                                        gpointer         user_data);
+
+void
+on_button_aff_reservation_clicked      (GtkWidget       *objet_graphique33,
+                                        gpointer         user_data);
+//
+void
+on_checkbutton3_toggled                (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbutton2_toggled                (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbutton1_toggled                (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+//
+
+void
+on_cancelbutton1_clicked               (GtkWidget       *objet_graphique34,
+                                        gpointer         user_data);
+
+
+void
+on_treeview_reservation_row_activated  (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_modifier_res_clicked         (GtkWidget       *objet_graphique35,
+                                        gpointer         user_data);
+
+void
+on_cancelbutton_rese_mod_clicked       (GtkWidget       *objet_graphique36,
+                                        gpointer         user_data);
+
+void
+on_okbutton_modifier_reser_clicked     (GtkWidget       *objet_graphique37,
+                                        gpointer         user_data);
+/*
+void
+on_button_existe_res_clicked           (GtkWidget       *objet_graphique38,
+                                      gpointer         user_data);
+
+*/
+void
+on_button_rech_res_clicked             (GtkWidget       *objet_graphique39,
+                                        gpointer         user_data);
+
+void
+on_button_rech_rch_clicked             (GtkWidget       *objet_graphique40,
+                                        gpointer         user_data);
+
+void
+on_okbutton2_clicked                   (GtkWidget       *objet_graphique41,
+                                        gpointer         user_data);
+
+void
+on_treeview_historique_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+
+void
+on_button_rech_hiss_clicked            (GtkButton       *objet_graphique43,
+                                        gpointer         user_data);
+
+void
+on_button_envoyer_email_clicked        (GtkButton       *bojet_graphique44,
+                                        gpointer         user_data);
+
+void
+on_button_sp_new_clicked               (GtkButton       *objet_graphique45,
+                                        gpointer         user_data);
+
+void
+on_open_pdf_clicked                    (GtkButton       *objet_graphique46,
+                                        gpointer         user_data);
+
+void
+on_button_help_clicked                 (GtkButton       *objet_graphique47,
+                                        gpointer         user_data);
+
+void
+on_button_jeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);

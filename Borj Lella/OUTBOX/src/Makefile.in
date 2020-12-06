@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_outbox_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) ouvrier.$(OBJEXT) \
-	employee.$(OBJEXT)
+	employee.$(OBJEXT) gestion_clients.$(OBJEXT)
 outbox_OBJECTS = $(am_outbox_OBJECTS)
 am__DEPENDENCIES_1 =
 outbox_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -284,7 +284,8 @@ outbox_SOURCES = \
 	interface.c interface.h \
 	callbacks.c callbacks.h \
 	ouvrier.c ouvrier.h \
-	employee.c employee.h
+	employee.c employee.h \
+	gestion_clients.h gestion_clients.c
 
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 all: all-am
@@ -375,6 +376,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/employee.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gestion_clients.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ouvrier.Po@am__quote@

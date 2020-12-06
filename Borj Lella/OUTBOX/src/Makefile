@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_outbox_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) ouvrier.$(OBJEXT) \
-	employee.$(OBJEXT)
+	employee.$(OBJEXT) gestion_clients.$(OBJEXT)
 outbox_OBJECTS = $(am_outbox_OBJECTS)
 am__DEPENDENCIES_1 =
 outbox_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -161,12 +161,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} "/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/missing" aclocal-1.15
+ACLOCAL = ${SHELL} "/home/aymen/Desktop/Borj Lella/OUTBOX/missing" aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} "/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/missing" autoconf
-AUTOHEADER = ${SHELL} "/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/missing" autoheader
-AUTOMAKE = ${SHELL} "/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/missing" automake-1.15
+AUTOCONF = ${SHELL} "/home/aymen/Desktop/Borj Lella/OUTBOX/missing" autoconf
+AUTOHEADER = ${SHELL} "/home/aymen/Desktop/Borj Lella/OUTBOX/missing" autoheader
+AUTOMAKE = ${SHELL} "/home/aymen/Desktop/Borj Lella/OUTBOX/missing" automake-1.15
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -201,7 +201,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} "/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/missing" makeinfo
+MAKEINFO = ${SHELL} "/home/aymen/Desktop/Borj Lella/OUTBOX/missing" makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -209,8 +209,8 @@ MSGFMT_OPTS = -c
 OBJEXT = o
 PACKAGE = outbox
 PACKAGE_BUGREPORT = 
-PACKAGE_CFLAGS = -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16
-PACKAGE_LIBS = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype
+PACKAGE_CFLAGS = -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/harfbuzz -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/atk-1.0 -pthread   
+PACKAGE_LIBS = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype  
 PACKAGE_NAME = 
 PACKAGE_STRING = 
 PACKAGE_TARNAME = 
@@ -230,10 +230,10 @@ STRIP =
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/src
-abs_srcdir = /home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/src
-abs_top_builddir = /home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX
-abs_top_srcdir = /home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX
+abs_builddir = /home/aymen/Desktop/Borj Lella/OUTBOX/src
+abs_srcdir = /home/aymen/Desktop/Borj Lella/OUTBOX/src
+abs_top_builddir = /home/aymen/Desktop/Borj Lella/OUTBOX
+abs_top_srcdir = /home/aymen/Desktop/Borj Lella/OUTBOX
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -252,7 +252,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} '/home/spy/Desktop/SmartFarm/SmartFarm/Borj Lella/OUTBOX/install-sh'
+install_sh = ${SHELL} '/home/aymen/Desktop/Borj Lella/OUTBOX/install-sh'
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -276,7 +276,7 @@ top_srcdir = ..
 INCLUDES = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	-pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libpng16
+	-I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/harfbuzz -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/atk-1.0 -pthread   
 
 outbox_SOURCES = \
 	main.c \
@@ -284,9 +284,10 @@ outbox_SOURCES = \
 	interface.c interface.h \
 	callbacks.c callbacks.h \
 	ouvrier.c ouvrier.h \
-	employee.c employee.h
+	employee.c employee.h \
+	gestion_clients.h gestion_clients.c
 
-outbox_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
+outbox_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype   $(INTLLIBS)
 all: all-am
 
 .SUFFIXES:
@@ -375,6 +376,7 @@ distclean-compile:
 
 include ./$(DEPDIR)/callbacks.Po
 include ./$(DEPDIR)/employee.Po
+include ./$(DEPDIR)/gestion_clients.Po
 include ./$(DEPDIR)/interface.Po
 include ./$(DEPDIR)/main.Po
 include ./$(DEPDIR)/ouvrier.Po

@@ -1,0 +1,1 @@
+curl --ssl-reqd --url 'smtps://smtp.gmail.com:465'  --user 'borjlela@gmail.com:outbox123'  --mail-from 'zeidiaymen97@gmail.com'  --mail-rcpt 'oumaima.benzarti@esprit.tn' --upload-file email.txt

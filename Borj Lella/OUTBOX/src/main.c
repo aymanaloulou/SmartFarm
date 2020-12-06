@@ -15,6 +15,7 @@
 int
 main (int argc, char *argv[])
 {
+GtkWidget *window_employee_space;
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -25,7 +26,7 @@ main (int argc, char *argv[])
   gtk_set_locale ();
   gtk_init (&argc, &argv);
 
-  add_pixmap_directory (PACKAGE_DATA_DIR "/" PACKAGE "/pixmaps");
+  add_pixmap_directory ("../pixmaps");
   GtkWidget *window_gest_ouvrier;
   window_gest_ouvrier = create_window_gest_ouvrier ();
   gtk_widget_show (window_gest_ouvrier);
@@ -33,6 +34,8 @@ main (int argc, char *argv[])
   GtkWidget *window_gest_emp;
   window_gest_emp = create_window_gest_emp ();
   gtk_widget_show (window_gest_emp);
+ window_employee_space=create_window_employee_space();
+gtk_widget_show(window_employee_space);
 
   /*
    * The following code was added by Glade to create one of each component
