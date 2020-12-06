@@ -1,5 +1,0 @@
-nom : Omar prenom :  Naffeti username : Omar7400 password : est74008036.. role :  1 
-nom : Omar prenom :  Naffeti username : omar7400 password : test role :  1 
-nom : test prenom :  test username : test password : test role :  test 
-nom : Omar prenom :  Naffeti username : omar74 password : test role :  1 
-nom : Omar prenom :  Naffeti username : test password : test role :  1 
