@@ -1,0 +1,18 @@
+---------- Reservation sous reference : ijk123 ---------- 
+
+
+     nom : ahmed  
+ 
+     Prenom : mounir  
+ 
+     Numero: 12345678  
+ 
+     nombre de personne :  2  
+ 
+     Option:  petit-dejeuner déjeuner   autre   
+ 
+     Periode: lundi-vendredi  
+ 
+     Commentaire : !kn,;nkn; 
+ 
+     Date : 24  / 12 / 12        heure : 10 ------------------------------------------------------- 

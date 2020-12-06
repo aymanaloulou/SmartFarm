@@ -1,0 +1,27 @@
+*Pour ajouter un client , une reservation : il suffit de clicker deux fois sur la ligne 
+	souhaiter puis sur le button ajouter et entrer les information puis appuier sur ok  
+	ou bien appuier sur  Cancel pour annuller l'operation .
+*Pour modifier les informations d'un client ou une  reservation : il suffit de cliquer deux
+ 	fois sur la ligne souhaiter puis  sur modifier apres le changement d'information 
+	appuiez sur ok ou bien sur cancel pour annuller l'operation .
+*Pour supprimer un client , historique ou bien une reservation : il suffit de clicker deux
+ 	fois sur la ligne souhaité sur le button supprimer  
+	ou bien appuier sur  Cancel pour annuller l'operation .
+*Pour recuperer les information d'un client de l'historique :  il suffit de clicker deux 
+fois sur la ligne souhaité sur le button récuperer  
+	ou bien appuier sur  Cancel pour annuller l'operation .
+*Pour rechercher entrer l'information dans la zone du text et appuiez sur le button recherche .
+*Pour afficher les informations dans le treeview : il suffit de cliquer sur le button reload 
+	a coté du treeview .
+*Pour envoyer un email : remplir les champs puis appuiez sur envoyer .
+*Pour lancer le tirage au sort il suffit de cliquer sur le button lancer un email sera automatiquement envoyer vers le client gagnat .
+
+
+
+
+
+
+
+
+
+								©Equipe OutBox.

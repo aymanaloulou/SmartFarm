@@ -1,0 +1,2 @@
+0000 aa bb 22/02/2000 250000 flen 
+1111 ff ff ff ff ff 
