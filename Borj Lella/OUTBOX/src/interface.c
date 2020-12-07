@@ -4821,6 +4821,11 @@ create_window_espace_admin (void)
   GtkWidget *hseparator6;
   GtkWidget *hseparator5;
   GtkWidget *button170;
+  GtkWidget *button171;
+  GtkWidget *alignment27;
+  GtkWidget *hbox27;
+  GtkWidget *image54;
+  GtkWidget *label207;
 
   window_espace_admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_espace_admin), 1);
@@ -4933,6 +4938,27 @@ create_window_espace_admin (void)
   gtk_fixed_put (GTK_FIXED (fixed21), button170, 360, 544);
   gtk_widget_set_size_request (button170, 280, 72);
 
+  button171 = gtk_button_new ();
+  gtk_widget_show (button171);
+  gtk_fixed_put (GTK_FIXED (fixed21), button171, 864, 680);
+  gtk_widget_set_size_request (button171, 122, 32);
+
+  alignment27 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment27);
+  gtk_container_add (GTK_CONTAINER (button171), alignment27);
+
+  hbox27 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox27);
+  gtk_container_add (GTK_CONTAINER (alignment27), hbox27);
+
+  image54 = gtk_image_new_from_stock ("gtk-help", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image54);
+  gtk_box_pack_start (GTK_BOX (hbox27), image54, FALSE, FALSE, 0);
+
+  label207 = gtk_label_new_with_mnemonic (_("Param\303\250tre"));
+  gtk_widget_show (label207);
+  gtk_box_pack_start (GTK_BOX (hbox27), label207, FALSE, FALSE, 0);
+
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (window_espace_admin, window_espace_admin, "window_espace_admin");
   GLADE_HOOKUP_OBJECT (window_espace_admin, fixed21, "fixed21");
@@ -4956,7 +4982,140 @@ create_window_espace_admin (void)
   GLADE_HOOKUP_OBJECT (window_espace_admin, hseparator6, "hseparator6");
   GLADE_HOOKUP_OBJECT (window_espace_admin, hseparator5, "hseparator5");
   GLADE_HOOKUP_OBJECT (window_espace_admin, button170, "button170");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button171, "button171");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, alignment27, "alignment27");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, hbox27, "hbox27");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, image54, "image54");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label207, "label207");
 
   return window_espace_admin;
+}
+
+GtkWidget*
+create_dialog_parametre_admin (void)
+{
+  GtkWidget *dialog_parametre_admin;
+  GtkWidget *dialog_vbox1;
+  GtkWidget *fixed22;
+  GtkWidget *label210;
+  GtkWidget *hseparator7;
+  GtkWidget *label208;
+  GtkWidget *label209;
+  GtkWidget *label211;
+  GtkWidget *label212;
+  GtkWidget *entry244;
+  GtkWidget *entry245;
+  GtkWidget *entry246;
+  GtkWidget *entry247;
+  GtkWidget *hseparator8;
+  GtkWidget *dialog_action_area1;
+  GtkWidget *cancelbutton2;
+  GtkWidget *okbutton1;
+
+  dialog_parametre_admin = gtk_dialog_new ();
+  gtk_window_set_title (GTK_WINDOW (dialog_parametre_admin), _("Param\303\251tres"));
+  gtk_window_set_type_hint (GTK_WINDOW (dialog_parametre_admin), GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_dialog_set_has_separator (GTK_DIALOG (dialog_parametre_admin), FALSE);
+
+  dialog_vbox1 = GTK_DIALOG (dialog_parametre_admin)->vbox;
+  gtk_widget_show (dialog_vbox1);
+
+  fixed22 = gtk_fixed_new ();
+  gtk_widget_show (fixed22);
+  gtk_box_pack_start (GTK_BOX (dialog_vbox1), fixed22, TRUE, TRUE, 0);
+
+  label210 = gtk_label_new (_("Changer login : "));
+  gtk_widget_show (label210);
+  gtk_fixed_put (GTK_FIXED (fixed22), label210, 8, 8);
+  gtk_widget_set_size_request (label210, 120, 24);
+
+  hseparator7 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator7);
+  gtk_fixed_put (GTK_FIXED (fixed22), hseparator7, 64, 48);
+  gtk_widget_set_size_request (hseparator7, 336, 16);
+
+  label208 = gtk_label_new (_("Username actuel :"));
+  gtk_widget_show (label208);
+  gtk_fixed_put (GTK_FIXED (fixed22), label208, 40, 80);
+  gtk_widget_set_size_request (label208, 144, 24);
+
+  label209 = gtk_label_new (_("Mot de passe actuel :"));
+  gtk_widget_show (label209);
+  gtk_fixed_put (GTK_FIXED (fixed22), label209, 32, 120);
+  gtk_widget_set_size_request (label209, 144, 24);
+
+  label211 = gtk_label_new (_("Nouveau username : "));
+  gtk_widget_show (label211);
+  gtk_fixed_put (GTK_FIXED (fixed22), label211, 24, 216);
+  gtk_widget_set_size_request (label211, 168, 24);
+
+  label212 = gtk_label_new (_("Nouveau mot de passe : "));
+  gtk_widget_show (label212);
+  gtk_fixed_put (GTK_FIXED (fixed22), label212, 16, 256);
+  gtk_widget_set_size_request (label212, 160, 24);
+
+  entry244 = gtk_entry_new ();
+  gtk_widget_show (entry244);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry244, 176, 80);
+  gtk_widget_set_size_request (entry244, 256, 24);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry244), 8226);
+
+  entry245 = gtk_entry_new ();
+  gtk_widget_show (entry245);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry245, 176, 120);
+  gtk_widget_set_size_request (entry245, 256, 24);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry245), 8226);
+
+  entry246 = gtk_entry_new ();
+  gtk_widget_show (entry246);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry246, 176, 216);
+  gtk_widget_set_size_request (entry246, 256, 24);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry246), 8226);
+
+  entry247 = gtk_entry_new ();
+  gtk_widget_show (entry247);
+  gtk_fixed_put (GTK_FIXED (fixed22), entry247, 176, 256);
+  gtk_widget_set_size_request (entry247, 256, 24);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry247), 8226);
+
+  hseparator8 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator8);
+  gtk_fixed_put (GTK_FIXED (fixed22), hseparator8, 64, 176);
+  gtk_widget_set_size_request (hseparator8, 336, 16);
+
+  dialog_action_area1 = GTK_DIALOG (dialog_parametre_admin)->action_area;
+  gtk_widget_show (dialog_action_area1);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area1), GTK_BUTTONBOX_END);
+
+  cancelbutton2 = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (cancelbutton2);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog_parametre_admin), cancelbutton2, GTK_RESPONSE_CANCEL);
+  GTK_WIDGET_SET_FLAGS (cancelbutton2, GTK_CAN_DEFAULT);
+
+  okbutton1 = gtk_button_new_from_stock ("gtk-ok");
+  gtk_widget_show (okbutton1);
+  gtk_dialog_add_action_widget (GTK_DIALOG (dialog_parametre_admin), okbutton1, GTK_RESPONSE_OK);
+  GTK_WIDGET_SET_FLAGS (okbutton1, GTK_CAN_DEFAULT);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (dialog_parametre_admin, dialog_parametre_admin, "dialog_parametre_admin");
+  GLADE_HOOKUP_OBJECT_NO_REF (dialog_parametre_admin, dialog_vbox1, "dialog_vbox1");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, fixed22, "fixed22");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, label210, "label210");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, hseparator7, "hseparator7");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, label208, "label208");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, label209, "label209");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, label211, "label211");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, label212, "label212");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, entry244, "entry244");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, entry245, "entry245");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, entry246, "entry246");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, entry247, "entry247");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, hseparator8, "hseparator8");
+  GLADE_HOOKUP_OBJECT_NO_REF (dialog_parametre_admin, dialog_action_area1, "dialog_action_area1");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, cancelbutton2, "cancelbutton2");
+  GLADE_HOOKUP_OBJECT (dialog_parametre_admin, okbutton1, "okbutton1");
+
+  return dialog_parametre_admin;
 }
 
