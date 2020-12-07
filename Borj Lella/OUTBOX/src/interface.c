@@ -4796,3 +4796,167 @@ create_dialog_mod_res (void)
   return dialog_mod_res;
 }
 
+GtkWidget*
+create_window_espace_admin (void)
+{
+  GtkWidget *window_espace_admin;
+  GtkWidget *fixed21;
+  GtkWidget *label196;
+  GtkWidget *label198;
+  GtkWidget *label197;
+  GtkWidget *button_val_alarm;
+  GtkWidget *label201;
+  GtkWidget *label203;
+  GtkWidget *label202;
+  GtkWidget *button163;
+  GtkWidget *button164;
+  GtkWidget *button165;
+  GtkWidget *button166;
+  GtkWidget *label204;
+  GtkWidget *button167;
+  GtkWidget *label205;
+  GtkWidget *label206;
+  GtkWidget *button168;
+  GtkWidget *button169;
+  GtkWidget *hseparator6;
+  GtkWidget *hseparator5;
+  GtkWidget *button170;
+
+  window_espace_admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_container_set_border_width (GTK_CONTAINER (window_espace_admin), 1);
+  gtk_window_set_title (GTK_WINDOW (window_espace_admin), _("Espace admin"));
+  gtk_window_set_default_size (GTK_WINDOW (window_espace_admin), 1024, 745);
+
+  fixed21 = gtk_fixed_new ();
+  gtk_widget_show (fixed21);
+  gtk_container_add (GTK_CONTAINER (window_espace_admin), fixed21);
+
+  label196 = gtk_label_new (_("Statistiques :"));
+  gtk_widget_show (label196);
+  gtk_fixed_put (GTK_FIXED (fixed21), label196, 96, 56);
+  gtk_widget_set_size_request (label196, 112, 16);
+
+  label198 = gtk_label_new (_("-  La marque ayant le maximum de capteur defectueux"));
+  gtk_widget_show (label198);
+  gtk_fixed_put (GTK_FIXED (fixed21), label198, 176, 168);
+  gtk_widget_set_size_request (label198, 400, 24);
+
+  label197 = gtk_label_new (_("-  Capteur ayant des valeurs alarmantes"));
+  gtk_widget_show (label197);
+  gtk_fixed_put (GTK_FIXED (fixed21), label197, 152, 120);
+  gtk_widget_set_size_request (label197, 360, 40);
+  gtk_label_set_justify (GTK_LABEL (label197), GTK_JUSTIFY_CENTER);
+  gtk_misc_set_alignment (GTK_MISC (label197), 0.48, 0.46);
+
+  button_val_alarm = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button_val_alarm);
+  gtk_fixed_put (GTK_FIXED (fixed21), button_val_alarm, 576, 120);
+  gtk_widget_set_size_request (button_val_alarm, 120, 24);
+
+  label201 = gtk_label_new (_("- Meilleur ouvrier"));
+  gtk_widget_show (label201);
+  gtk_fixed_put (GTK_FIXED (fixed21), label201, 173, 248);
+  gtk_widget_set_size_request (label201, 163, 24);
+
+  label203 = gtk_label_new (_("- Taux d'absent\303\251isme"));
+  gtk_widget_show (label203);
+  gtk_fixed_put (GTK_FIXED (fixed21), label203, 160, 288);
+  gtk_widget_set_size_request (label203, 216, 24);
+
+  label202 = gtk_label_new (_("- Distribution des clients "));
+  gtk_widget_show (label202);
+  gtk_fixed_put (GTK_FIXED (fixed21), label202, 174, 208);
+  gtk_widget_set_size_request (label202, 216, 24);
+
+  button163 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button163);
+  gtk_fixed_put (GTK_FIXED (fixed21), button163, 576, 160);
+  gtk_widget_set_size_request (button163, 120, 24);
+
+  button164 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button164);
+  gtk_fixed_put (GTK_FIXED (fixed21), button164, 576, 200);
+  gtk_widget_set_size_request (button164, 120, 24);
+
+  button165 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button165);
+  gtk_fixed_put (GTK_FIXED (fixed21), button165, 576, 240);
+  gtk_widget_set_size_request (button165, 120, 24);
+
+  button166 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button166);
+  gtk_fixed_put (GTK_FIXED (fixed21), button166, 576, 280);
+  gtk_widget_set_size_request (button166, 120, 24);
+
+  label204 = gtk_label_new (_("- Equipements et ses entretiens"));
+  gtk_widget_show (label204);
+  gtk_fixed_put (GTK_FIXED (fixed21), label204, 192, 328);
+  gtk_widget_set_size_request (label204, 216, 24);
+
+  button167 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button167);
+  gtk_fixed_put (GTK_FIXED (fixed21), button167, 576, 320);
+  gtk_widget_set_size_request (button167, 120, 24);
+
+  label205 = gtk_label_new (_("- L'ann\303\251e la plus s\303\251che"));
+  gtk_widget_show (label205);
+  gtk_fixed_put (GTK_FIXED (fixed21), label205, 160, 368);
+  gtk_widget_set_size_request (label205, 216, 24);
+
+  label206 = gtk_label_new (_("- Le nombre de troupeaux de chaque type"));
+  gtk_widget_show (label206);
+  gtk_fixed_put (GTK_FIXED (fixed21), label206, 160, 400);
+  gtk_widget_set_size_request (label206, 341, 32);
+
+  button168 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button168);
+  gtk_fixed_put (GTK_FIXED (fixed21), button168, 576, 360);
+  gtk_widget_set_size_request (button168, 120, 24);
+
+  button169 = gtk_button_new_with_mnemonic (_("afficher"));
+  gtk_widget_show (button169);
+  gtk_fixed_put (GTK_FIXED (fixed21), button169, 576, 400);
+  gtk_widget_set_size_request (button169, 120, 24);
+
+  hseparator6 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator6);
+  gtk_fixed_put (GTK_FIXED (fixed21), hseparator6, 104, 496);
+  gtk_widget_set_size_request (hseparator6, 800, 32);
+
+  hseparator5 = gtk_hseparator_new ();
+  gtk_widget_show (hseparator5);
+  gtk_fixed_put (GTK_FIXED (fixed21), hseparator5, 104, 88);
+  gtk_widget_set_size_request (hseparator5, 808, 24);
+
+  button170 = gtk_button_new_with_mnemonic (_("Gestion des employ\303\251es"));
+  gtk_widget_show (button170);
+  gtk_fixed_put (GTK_FIXED (fixed21), button170, 360, 544);
+  gtk_widget_set_size_request (button170, 280, 72);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_espace_admin, window_espace_admin, "window_espace_admin");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, fixed21, "fixed21");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label196, "label196");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label198, "label198");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label197, "label197");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button_val_alarm, "button_val_alarm");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label201, "label201");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label203, "label203");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label202, "label202");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button163, "button163");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button164, "button164");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button165, "button165");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button166, "button166");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label204, "label204");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button167, "button167");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label205, "label205");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, label206, "label206");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button168, "button168");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button169, "button169");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, hseparator6, "hseparator6");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, hseparator5, "hseparator5");
+  GLADE_HOOKUP_OBJECT (window_espace_admin, button170, "button170");
+
+  return window_espace_admin;
+}
+
