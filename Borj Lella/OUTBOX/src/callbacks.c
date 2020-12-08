@@ -2390,3 +2390,90 @@ gtk_entry_set_text(GTK_ENTRY(D5),k.numero_de_telephone);
 
 
 
+/****************************************************
+ 
+ * Meilleur ouvrier / taux absentéisme
+
+*****************************************************/
+void
+on_okbutton_meilleur_ouv_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    GtkWidget *dialog = lookup_widget(button,"dialog_meilleur_ouv");
+	gtk_widget_destroy(dialog);
+}
+
+
+void
+on_button_affich_best_ouv_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    struct date be;
+    GtkWidget *calendar = lookup_widget (button,"calendar_best_ouv");
+    gtk_calendar_get_date (calendar,&be.a,&be.m,&be.j);
+	be.m++;
+    fn_meilleur_ouvrier (be,button);
+}
+
+
+void
+on_okbutton_taux_abs_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    GtkWidget *dialog = lookup_widget(button,"dialog_taux_abs");
+	gtk_widget_destroy(dialog);
+}
+
+void
+on_button_affich_ta_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+    struct date be;
+    GtkWidget *calendar = lookup_widget (button,"calendar_ta");
+    gtk_calendar_get_date (calendar,&be.a,&be.m,&be.j);
+	be.m++;
+    fn_taux_abs (be, button);    
+}
+
+
+
+
+
+
+void
+on_button_gestion_ouv_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *window_gest_ouvrier;
+  	window_gest_ouvrier = create_window_gest_ouvrier ();
+ 	gtk_widget_show (window_gest_ouvrier);
+}
+
+
+void
+on_button_gestion_employee_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *window_gest_emp;	
+	window_gest_emp = create_window_gest_emp ();
+  	gtk_widget_show (window_gest_emp);
+}
+
+
+void
+on_button_show_bw_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *dialog = create_dialog_meilleur_ouv ();
+	gtk_widget_show(dialog);
+}
+
+
+void
+on_button_show_ta_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *dialog = create_dialog_taux_abs ();
+	gtk_widget_show(dialog);
+}
+

@@ -404,3 +404,43 @@ on_button_gangant_but_clicked          (GtkButton       *button,
 void
 on_button_stat_client_clicked          (GtkButton       *button,
                                         gpointer         user_data);
+
+/***************************************************************************
+
+	partie 2 ouvrier
+
+***************************************************************************/
+
+void
+on_okbutton_meilleur_ouv_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_affich_best_ouv_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_okbutton_taux_abs_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+                                        
+void
+on_button_affich_ta_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+
+void
+on_button_gestion_ouv_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_gestion_employee_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_show_bw_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_show_ta_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
