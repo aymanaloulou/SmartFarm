@@ -921,8 +921,6 @@ on_button_reset_conge_clicked          (GtkButton       *button,
 
 **************************************************************************/
 
-
-
                            ////////////////////// liaison entre les windows + button supprimer /////////////////////
 
 Client A;
@@ -2030,7 +2028,7 @@ on_button_help_clicked                 (GtkButton       *objet_graphique47,
 system ("evince help.pdf \n");
 }
 
-
+Client k;
 void
 on_button_jeux_clicked                 (GtkButton       *button,
                                         gpointer         user_data)
@@ -2048,8 +2046,8 @@ a1=lookup_widget (button,"entry_nom_jx");
 a2=lookup_widget (button,"entry_prenom_jx");
 a3=lookup_widget (button,"entry_email_jx");
 a4=lookup_widget (button,"entry_gsm_jx");
-Client k;
-f=fopen("jeux.bin","r");
+
+f=fopen("jeux.bin","rb");
 ab=jeux_client(k);
 
 g_print("%d",ab);
@@ -2070,8 +2068,325 @@ fclose(f);
 }
 
 
+void
+on_button_stat_client_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *stat;
+stat=create_window_dashbord_client();
+gtk_widget_show(stat);
+}
 
 
+void
+on_button_GEO_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+Client p;
+int nTUNIS=0,nMANOUBA=0,nSEL=0,nKEF=0,nMAH=0,nKAI=0,nBEJA=0,nNAB=0,nSOUSSE=0,nKEB=0,nZAG=0,nBEN=0,nMON=0,nSIDI=0,nKASS=0,nSFAX=0,nTOUZ=0,nMED=0,nGAS=0,nTATA=0,nJEN=0,nBIZ=0,nARIANA=0,nGAB=0;
+GtkWidget *nTUNIS1,*nMANOUBA1,*nSEL1,*nKEF1,*nMAH1,*nKAI1,*nBEJA1,*nNAB1,*nSOUSSE1,*nKEB1,*nZAG1,*nBEN1,*nMON1,*nSIDI1,*nKASS1,*nSFAX1,*nTOUZ1,*nMED1,*nGAS1,*nTATA1,*nJEN1,*nBIZ1,*nARIANA1,*nGAB1;
+
+FILE *q;
+int kn=0;
+
+q=fopen ("client.bin","rb");
+
+while (fread (&p,sizeof (Client),1,q)!=0)
+{ 
+	if (strcmp (p.adress,"TUNIS")==0)
+	
+	nTUNIS++;
+	if (strcmp (p.adress,"MANOUBA")==0)
+	nMANOUBA++;
+	if (strcmp (p.adress,"SELIANA")==0)
+	nSEL++;
+	if (strcmp (p.adress,"KEF")==0)
+	nKEF++;
+	if (strcmp (p.adress,"MAHDIA")==0)
+	nMAH++;
+	if (strcmp (p.adress,"KAIROUAN")==0)
+	nKAI++;
+	if (strcmp (p.adress,"BEJA")==0)
+	nBEJA++;
+	if (strcmp (p.adress,"NABEUL")==0)
+	nNAB++;
+	if (strcmp (p.adress,"SOUSSE")==0)
+	nSOUSSE++;
+	if (strcmp (p.adress,"KEBILI")==0)
+	nKEB++;
+	if (strcmp (p.adress,"ZAGHOUAN")==0)
+	nZAG++;
+	if (strcmp (p.adress,"BEN AROUS")==0)
+	nBEN++;
+	if (strcmp (p.adress,"MONASTIR")==0)
+	nMON++;
+	if (strcmp (p.adress,"SIDI BOUZID")==0)
+	nSIDI++;
+	if (strcmp (p.adress,"KASSERINE")==0)
+	nKASS++;
+	if (strcmp (p.adress,"SFAX")==0)
+	nSFAX++;
+	if (strcmp (p.adress,"TOUZEUR")==0)
+	nTOUZ++;
+	if (strcmp (p.adress,"MEDNINE")==0)
+	nMED++;
+	if (strcmp (p.adress,"GAFSA")==0)
+	nGAS++;
+	if (strcmp (p.adress,"TATAOUINE")==0)
+	nTATA++;
+	if (strcmp (p.adress,"JENDOUBA")==0)
+	nJEN++;
+	if (strcmp (p.adress,"BIZERTE")==0)
+	nBIZ++;
+	if (strcmp (p.adress,"ARIANA")==0)
+	nARIANA++;
+	if (strcmp (p.adress,"GABES")==0)
+	nGAB++;
+	
+kn++;
+
+
+}
+g_print ("%d",nTUNIS);
+fclose (q);
+nTUNIS1=lookup_widget (button,"entryTn");
+	float m= (nTUNIS*100)/kn;
+	
+  char *str = g_strdup_printf ("%.1f",m);
+	strcat (str," %");
+gtk_entry_set_text(GTK_ENTRY(nTUNIS1),str);
+
+nMANOUBA1=lookup_widget (button,"entryMAN");
+float m1= (nMANOUBA*100)/kn;
+ char *str1 = g_strdup_printf ("%.1f", m1);
+	strcat (str1," %");
+gtk_entry_set_text(GTK_ENTRY(nMANOUBA1),str1);
+
+nSEL1=lookup_widget (button,"entryS");
+float m2= (nSEL*100)/kn;
+ char *str2 = g_strdup_printf ("%.1f", m2);
+strcat (str2," %");
+gtk_entry_set_text(GTK_ENTRY(nSEL1),str2);
+
+nKEF1=lookup_widget (button,"entryKE");
+	float m3= (nKEF*100)/kn;
+ char *str3 = g_strdup_printf ("%.1f", m3);
+strcat (str3," %");
+gtk_entry_set_text(GTK_ENTRY(nKEF1),str3);
+
+nMAH1=lookup_widget (button,"entryMA");
+	float m4= (nMAH*100)/kn;
+ char *str4 = g_strdup_printf ("%.1f", m4);
+	strcat (str4," %");
+gtk_entry_set_text(GTK_ENTRY(nMAH1),str4);
+
+nKAI1=lookup_widget (button,"entryKA");
+	float m5= (nKAI*100)/kn;
+ char *str5 = g_strdup_printf ("%.1f", m5);
+	strcat (str5," %");
+gtk_entry_set_text(GTK_ENTRY(nKAI1),str5);
+
+nBEJA1=lookup_widget (button,"entryBE");
+float m6= (nBEJA*100)/kn;
+ char *str6 = g_strdup_printf ("%.1f", m6);
+	strcat (str6," %");
+gtk_entry_set_text(GTK_ENTRY(nBEJA1),str6);
+
+nNAB1=lookup_widget (button,"entryNAB");
+	float m7= (nNAB*100)/kn;
+ char *str7 = g_strdup_printf ("%.1f", m7);
+	strcat (str7," %");
+gtk_entry_set_text(GTK_ENTRY(nNAB1),str7);
+
+nSOUSSE1=lookup_widget (button,"entrySO");
+	float m8= (nSOUSSE*100)/kn;
+ char *str8 = g_strdup_printf ("%.1f", m8);
+	strcat (str8," %");
+gtk_entry_set_text(GTK_ENTRY(nSOUSSE1),str8);
+///////
+nKEB1=lookup_widget (button,"entryKEB");
+	float m9= (nKEB*100)/kn;
+ char *str9 = g_strdup_printf ("%.1f", m9);
+		strcat (str9," %");
+gtk_entry_set_text(GTK_ENTRY(nKEB1),str9);
+
+nZAG1=lookup_widget (button,"entryZAG");
+	float m10= (nZAG*100)/kn;
+ char *str10 = g_strdup_printf ("%.1f", m10);
+	strcat (str10," %");
+gtk_entry_set_text(GTK_ENTRY(nZAG1),str10);
+
+
+
+nBEN1=lookup_widget (button,"entryBEN");
+	float m11= (nBEN*100)/kn;
+ char *str11 = g_strdup_printf ("%.1f", m11);
+	strcat (str11," %");
+gtk_entry_set_text(GTK_ENTRY(nBEN1),str11);
+
+
+nMON1=lookup_widget (button,"entryMO");
+	float m12= (nMON*100)/kn;
+ char *str12 = g_strdup_printf ("%.1f", m12);
+	strcat (str12," %");
+gtk_entry_set_text(GTK_ENTRY(nMON1),str12);
+
+nSIDI1=lookup_widget (button,"entrySI");
+	float m13= (nSIDI*100)/kn;
+ char *str13 = g_strdup_printf ("%.1f", m13);
+	strcat (str13," %");
+gtk_entry_set_text(GTK_ENTRY(nSIDI1),str13);
+
+
+nKASS1=lookup_widget (button,"entryKAS");
+	float m14= (nKASS*100)/kn;
+ char *str14 = g_strdup_printf ("%.1f", m14);
+	strcat (str14," %");
+gtk_entry_set_text(GTK_ENTRY(nKASS1),str14);
+
+
+nSFAX1=lookup_widget (button,"entrySF");
+	float m15= (nSFAX*100)/kn;
+ char *str15 = g_strdup_printf ("%.1f", m15);
+	strcat (str15," %");
+gtk_entry_set_text(GTK_ENTRY(nSFAX1),str15);
+
+nTOUZ1=lookup_widget (button,"entryTO");
+	float m16= (nTOUZ*100)/kn;
+ char *str16 = g_strdup_printf ("%.1f", m16);
+	strcat (str16," %");
+gtk_entry_set_text(GTK_ENTRY(nTOUZ1),str16);
+
+
+
+
+nMED1=lookup_widget (button,"entryME");
+	float m17= (nMED*100)/kn;
+ char *str17 = g_strdup_printf ("%.1f", m17);
+	strcat (str17," %");
+gtk_entry_set_text(GTK_ENTRY(nMED1),str17);
+
+
+nGAS1=lookup_widget (button,"entryGAF");
+	float m18= (nGAS*100)/kn;
+ char *str18 = g_strdup_printf ("%.1f", m18);
+	strcat (str18," %");
+gtk_entry_set_text(GTK_ENTRY(nGAS1),str18);
+
+
+nTATA1=lookup_widget (button,"entryTATA");
+	float m19= (nTATA*100)/kn;
+ char *str19 = g_strdup_printf ("%.1f", m19);
+	strcat (str19," %");
+gtk_entry_set_text(GTK_ENTRY(nTATA1),str19);
+
+
+nJEN1=lookup_widget (button,"entryJEN");
+	float m20= (nJEN*100)/kn;
+ char *str20 = g_strdup_printf ("%.1f", m20);
+strcat (str20," %");	
+gtk_entry_set_text(GTK_ENTRY(nJEN1),str20);
+
+
+nBIZ1=lookup_widget (button,"entryBI");
+	float m21= (nBIZ*100)/kn;
+ char *str21 = g_strdup_printf ("%.1f", m21);
+	strcat (str21," %");
+gtk_entry_set_text(GTK_ENTRY(nBIZ1),str21);
+
+
+
+nARIANA1=lookup_widget (button,"entryAR");
+	float m22= (nARIANA*100)/kn;
+ char *str22 = g_strdup_printf ("%.1f", m22);
+	strcat (str22," %");
+gtk_entry_set_text(GTK_ENTRY(nARIANA1),str22);
+
+
+nGAB1=lookup_widget (button,"entryGA");
+	float m23= (nGAB*100)/kn;
+ char *str23 = g_strdup_printf ("%.1f", m23);
+	strcat (str23," %");
+gtk_entry_set_text(GTK_ENTRY(nGAB1),str23);
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+void
+on_button_SEXE_clicked                 (GtkButton       *objet_graphique55,
+                                        gpointer         user_data)
+{GtkWidget *d,*MA;
+FILE *m;
+Client i;
+int nbh=0,nbf=0;
+m=fopen ("client.bin","rb");
+int n=0;
+while (fread (&i,sizeof (Client),1,m)!=0)
+{ 
+	if (strcmp (i.gender,"homme")==0)
+	
+	nbh++;
+	if (strcmp (i.gender,"femme")==0)
+	
+	nbf++;
+
+	n++;
+}
+fclose (m);
+
+float o= (nbh*100)/n;
+g_print ("%f",o);
+float x= (nbf*100)/n;
+d=lookup_widget (objet_graphique55,"entrygh");
+ char *str30 = g_strdup_printf ("%f", o);
+	strcat (str30, " %");
+gtk_entry_set_text(GTK_ENTRY(d),str30);
+
+
+MA=lookup_widget (objet_graphique55,"entrygf");
+ char *str31 = g_strdup_printf ("%f", x);
+strcat (str31, " %");
+gtk_entry_set_text(GTK_ENTRY(MA),str31);
+
+
+
+
+}
+
+void
+on_button_gangant_but_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *d1,*MA1,*D5;
+FILE *m1;
+Client i1;
+
+//m1=fopen ("jeux.bin","rb");
+
+d1=lookup_widget (button,"entry_GCIN");
+MA1=lookup_widget (button,"entryGNOM");
+D5=lookup_widget (button,"entryGGSM");
+//while (fread (&i1,sizeof (Client),1,m1)!=0)
+
+{ 
+gtk_entry_set_text(GTK_ENTRY(d1),k.cin);
+gtk_entry_set_text(GTK_ENTRY(MA1),k.nom);
+gtk_entry_set_text(GTK_ENTRY(D5),k.numero_de_telephone);
+
+
+}
+}
+//////////////////////////////////////////////////////////////////////// FIN GESTION CLIENT /////////////////////////////////////////////////
 
 
 

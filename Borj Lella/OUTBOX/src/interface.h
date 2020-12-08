@@ -16,3 +16,4 @@ GtkWidget* create_dialog_reserv (void);
 GtkWidget* create_dialog_mod_res (void);
 GtkWidget* create_window_espace_admin (void);
 GtkWidget* create_dialog_parametre_admin (void);
+GtkWidget* create_window_dashbord_client (void);

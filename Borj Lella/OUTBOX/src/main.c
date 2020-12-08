@@ -31,11 +31,13 @@ GtkWidget *window_employee_space;
   window_gest_ouvrier = create_window_gest_ouvrier ();
   gtk_widget_show (window_gest_ouvrier);
 
-  GtkWidget *window_gest_emp;
+  GtkWidget *window_gest_emp,*window_employee_space1;
   window_gest_emp = create_window_gest_emp ();
   gtk_widget_show (window_gest_emp);
- window_employee_space=create_window_employee_space();
+  window_employee_space=create_window_espace_admin();
 gtk_widget_show(window_employee_space);
+window_employee_space1=create_window_employee_space();
+gtk_widget_show(window_employee_space1);
 
   /*
    * The following code was added by Glade to create one of each component

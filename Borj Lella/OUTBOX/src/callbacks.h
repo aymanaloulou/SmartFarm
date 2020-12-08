@@ -190,6 +190,8 @@ on_button_affich_conge_clicked         (GtkButton       *button,
                                         gpointer         user_data);
 
 ////////////////// GESTION CLIENTS /////////
+#include <gtk/gtk.h>
+#include<stdio.h>
 
 void
 on_button_gestion_clients_clicked      (GtkWidget    *objet_graphique1,
@@ -380,4 +382,25 @@ on_button_help_clicked                 (GtkButton       *objet_graphique47,
 
 void
 on_button_jeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_stat_client_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_GEO_clicked                  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_SEXE_clicked                 (GtkButton       *objet_graphique55,
+                                        gpointer         user_data);
+
+void
+on_button_gangant_but_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+//////////////////////////////////////////////////////////////// FIN GESTION CLIENT //////////////////////////////////////////////////////////
+
+void
+on_button_stat_client_clicked          (GtkButton       *button,
                                         gpointer         user_data);
