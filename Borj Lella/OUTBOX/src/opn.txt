@@ -1,0 +1,18 @@
+---------- Reservation sous reference :  a ---------- 
+
+
+     nom :     
+ 
+     Prenom :     
+ 
+     Numero: 12345678  
+ 
+     nombre de personne :  3  
+ 
+     Option:  petit-dejeuner  autre   
+ 
+     Periode: Weekend  
+ 
+     Commentaire : TEST 
+ 
+     Date : 8  / 12 / 12        heure : 2 ------------------------------------------------------- 

@@ -12,7 +12,9 @@ outbox_SOURCES = \
 	support.c support.h \
 	interface.c interface.h \
 	callbacks.c callbacks.h \
-	ouvrier.c ouvrier.h
+	ouvrier.c ouvrier.h \
+	employee.c employee.h \
+	gestion_clients.h gestion_clients.c
 
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 

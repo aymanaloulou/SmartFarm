@@ -42,6 +42,13 @@ typedef struct{
 	char rais[50];
 }conge;
 
+typedef struct
+{
+	pointage p;
+	int nb_heures;
+	int nb_abs;
+}best;
+
 void fn_list_ouvrier (GtkWidget *liste);
 void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste);
 int fn_ajout_ouvrier (ouvrier ouv,GtkWidget *button);
@@ -55,3 +62,6 @@ void fn_modif_point (pointage p);
 
 int fn_demande_conge (conge c,GtkWidget *button);
 void fn_list_conge (GtkWidget *liste);
+
+void fn_meilleur_ouvrier (struct date be, GtkWidget *button);
+void fn_taux_abs (struct date be, GtkWidget *button);

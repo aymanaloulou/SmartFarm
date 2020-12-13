@@ -479,6 +479,7 @@ config.status:894: creating Makefile
 config.status:894: creating src/Makefile
 config.status:894: creating po/Makefile.in
 config.status:894: creating config.h
+config.status:1075: config.h is unchanged
 config.status:1123: executing depfiles commands
 config.status:1123: executing default-1 commands
 

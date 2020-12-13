@@ -436,9 +436,11 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 
 	FILE* f = fopen ("ouvrier.bin","r+b");
 	ouvrier aux;int test = 0;int comp = 0;
+	char* sub = NULL;
 
 	while (fread (&aux,sizeof (ouvrier),1,f) != 0 && test == 0){
-		if (strcmp (cin_rech,aux.cin) == 0)
+		sub = strstr (aux.cin,cin_rech);
+		if (sub != NULL)
 			test = 1;
 		else 
 			comp++;
@@ -453,7 +455,7 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 
 		store = NULL;
 		store = gtk_tree_view_get_model(liste);
-
+/*
 			renderer = gtk_cell_renderer_text_new ();
 			column = gtk_tree_view_column_new_with_attributes (" CIN",renderer,"text",CIN,NULL);
 			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
@@ -493,7 +495,7 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 			renderer = gtk_cell_renderer_text_new ();
 			column = gtk_tree_view_column_new_with_attributes (" Secteur",renderer,"text",SECTEUR,NULL);
 			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
+*/
 			store = gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 			gtk_list_store_append (store, &iter);
@@ -809,4 +811,128 @@ void fn_list_conge (GtkWidget *liste){
 	fclose (f);
 	gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
 	g_object_unref (store);
+}
+
+
+int fn_pos_tab (char *rech,best *t,int n){
+	int i;
+	for (i=0;i<n;i++){
+		if (strcmp (rech,t[i].p.cin) == 0){
+			return i;break;
+		}
+	}
+	return -1;
+}
+
+best fn_max (best *t,int n){
+	int i;
+	best max = t[0];
+	for (i=0;i<n;i++)
+	if (max.nb_heures < t[i].nb_heures){
+		max = t[i];
+	}
+	return max;
+
+}
+
+int fn_nb_ouv (){
+	FILE *f = fopen ("ouvrier.bin","rb");
+	int nb = 0;
+	ouvrier a;
+	while (fread (&a,sizeof (ouvrier),1,f) != 0)
+		nb++;
+	return nb;
+	fclose (f);
+}
+
+void fn_meilleur_ouvrier (struct date be, GtkWidget *button){
+
+	int taille = fn_nb_ouv ();
+	pointage aux;
+	best *t = malloc (taille*sizeof (best));
+	FILE *f = fopen ("pointage.bin","rb");
+	int n = 0,ind;
+
+	while (fread (&aux,sizeof (pointage),1,f) != 0)
+		if (be.m == aux.date_point.m && be.a == aux.date_point.a){
+			ind = fn_pos_tab (aux.cin,t,n);
+			if (ind == -1){
+				n++;
+				t[n-1].p = aux;
+				if (aux.abs != 1){
+					t[n-1].nb_abs = 1;
+					t[n-1].nb_heures = 0;
+				}
+				else{
+					t[n-1].nb_heures = ((aux.sort_matin.h*60 + aux.sort_matin.m - aux.entre_matin.h*60 - aux.entre_matin.m + aux.sort_soir.h*60 + aux.sort_soir.m - aux.entre_soir.h*60 - aux.entre_soir.m)/60);
+					t[n-1].nb_abs = 0;
+				}
+			}
+			else{
+				if (aux.abs != 1)
+					t[ind].nb_abs += 1;
+				else 
+					t[ind].nb_heures += ((aux.sort_matin.h*60 + aux.sort_matin.m - aux.entre_matin.h*60 - aux.entre_matin.m + aux.sort_soir.h*60 + aux.sort_soir.m - aux.entre_soir.h*60 - aux.entre_soir.m)/60);
+			}
+		}
+	
+	if (n != 0){
+		best ouv_mois = fn_max (t,n);
+
+		GtkWidget *date_o, *cin_o, *nom_o, *pren_o, *nbh_o, *nbabs_o;
+		date_o = lookup_widget (button, "label_bo_date");
+		cin_o = lookup_widget (button, "label_bo_cin");
+		nom_o = lookup_widget (button, "label_bo_nom");
+		pren_o = lookup_widget (button, "label_bo_pren");
+		nbh_o = lookup_widget (button, "label_bo_nb_heures");
+		nbabs_o = lookup_widget (button, "label_bo_nb_abs");
+		char d[10];
+		sprintf (d,"%d/%d",be.m,be.a);
+		char nbh[10];
+		sprintf (nbh,"%d",ouv_mois.nb_heures);
+		char nba[10];
+		sprintf (nba,"%d",ouv_mois.nb_abs);
+
+		gtk_label_set_text(GTK_LABEL(date_o),d);
+		gtk_label_set_text(GTK_LABEL(cin_o),ouv_mois.p.cin);
+		gtk_label_set_text(GTK_LABEL(nom_o),ouv_mois.p.nom);
+		gtk_label_set_text(GTK_LABEL(pren_o),ouv_mois.p.pren);
+		gtk_label_set_text(GTK_LABEL(nbh_o),nbh);
+		gtk_label_set_text(GTK_LABEL(nbabs_o),nba);
+	}
+	fclose (f);
+
+}
+
+void fn_taux_abs (struct date be, GtkWidget *button){
+	
+	int nbh_abs =0;
+	FILE *f = fopen ("pointage.bin","rb");
+	pointage aux;
+	int e;
+	while (fread (&aux,sizeof (pointage),1,f) != 0)
+		if (be.m == aux.date_point.m && be.a == aux.date_point.a && aux.abs == 0)
+			nbh_abs += 8;
+	
+	if (nbh_abs != 0){
+
+		char nb[8];char ta[15];
+		sprintf (nb,"%d",nbh_abs);
+
+		char d[10];
+		float y = nbh_abs;
+		float x = (y/(8*22))*100;
+		sprintf (d,"%d/%d",be.m,be.a);
+		sprintf (ta,"%.2f",x);
+
+		GtkWidget *out1, *out2, *out3;
+		out1 = lookup_widget (button, "label_date_ta");
+		out2 = lookup_widget (button, "label_nbh");
+		out3 = lookup_widget (button, "label_ta");
+
+		gtk_label_set_text(GTK_LABEL(out1),d);
+		gtk_label_set_text(GTK_LABEL(out2),nb);
+		gtk_label_set_text(GTK_LABEL(out3),ta);	
+	}
+	fclose (f);
 }
