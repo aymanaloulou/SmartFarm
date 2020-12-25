@@ -15,7 +15,8 @@
 int
 main (int argc, char *argv[])
 {
-GtkWidget *window_employee_space;
+//GtkWidget *window_employee_space;
+GtkWidget *window_authentification;
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -29,12 +30,14 @@ GtkWidget *window_employee_space;
   add_pixmap_directory ("../pixmaps");
   
 
-  GtkWidget *window_employee_space1;
+ /* GtkWidget *window_employee_space1;
   
-  window_employee_space=create_window_espace_admin();
+ window_employee_space=create_window_espace_admin();
 gtk_widget_show(window_employee_space);
 window_employee_space1=create_window_employee_space();
-gtk_widget_show(window_employee_space1);
+gtk_widget_show(window_employee_space1);*/
+window_authentification = create_window_authentification();
+gtk_widget_show(window_authentification);
 
   /*
    * The following code was added by Glade to create one of each component

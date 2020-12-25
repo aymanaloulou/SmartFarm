@@ -101,7 +101,9 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_outbox_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) ouvrier.$(OBJEXT) \
-	employee.$(OBJEXT) gestion_clients.$(OBJEXT)
+	employee.$(OBJEXT) gestion_clients.$(OBJEXT) \
+	equipements.$(OBJEXT) entretiens.$(OBJEXT) \
+	authentification.$(OBJEXT)
 outbox_OBJECTS = $(am_outbox_OBJECTS)
 am__DEPENDENCIES_1 =
 outbox_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -161,12 +163,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} "/home/omar/SmartFarm/Borj Lella/OUTBOX/missing" aclocal-1.15
+ACLOCAL = ${SHELL} "/home/ahmed/Desktop/Borj Lella/OUTBOX/missing" aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} "/home/omar/SmartFarm/Borj Lella/OUTBOX/missing" autoconf
-AUTOHEADER = ${SHELL} "/home/omar/SmartFarm/Borj Lella/OUTBOX/missing" autoheader
-AUTOMAKE = ${SHELL} "/home/omar/SmartFarm/Borj Lella/OUTBOX/missing" automake-1.15
+AUTOCONF = ${SHELL} "/home/ahmed/Desktop/Borj Lella/OUTBOX/missing" autoconf
+AUTOHEADER = ${SHELL} "/home/ahmed/Desktop/Borj Lella/OUTBOX/missing" autoheader
+AUTOMAKE = ${SHELL} "/home/ahmed/Desktop/Borj Lella/OUTBOX/missing" automake-1.15
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -201,7 +203,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} "/home/omar/SmartFarm/Borj Lella/OUTBOX/missing" makeinfo
+MAKEINFO = ${SHELL} "/home/ahmed/Desktop/Borj Lella/OUTBOX/missing" makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -230,10 +232,10 @@ STRIP =
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/omar/SmartFarm/Borj Lella/OUTBOX/src
-abs_srcdir = /home/omar/SmartFarm/Borj Lella/OUTBOX/src
-abs_top_builddir = /home/omar/SmartFarm/Borj Lella/OUTBOX
-abs_top_srcdir = /home/omar/SmartFarm/Borj Lella/OUTBOX
+abs_builddir = /home/ahmed/Desktop/Borj Lella/OUTBOX/src
+abs_srcdir = /home/ahmed/Desktop/Borj Lella/OUTBOX/src
+abs_top_builddir = /home/ahmed/Desktop/Borj Lella/OUTBOX
+abs_top_srcdir = /home/ahmed/Desktop/Borj Lella/OUTBOX
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -252,7 +254,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} '/home/omar/SmartFarm/Borj Lella/OUTBOX/install-sh'
+install_sh = ${SHELL} '/home/ahmed/Desktop/Borj Lella/OUTBOX/install-sh'
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -285,7 +287,10 @@ outbox_SOURCES = \
 	callbacks.c callbacks.h \
 	ouvrier.c ouvrier.h \
 	employee.c employee.h \
-	gestion_clients.h gestion_clients.c
+	gestion_clients.h gestion_clients.c \
+	equipements.c equipements.h \
+	entretiens.c entretiens.h \
+	authentification.c authentification.h
 
 outbox_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
 all: all-am
@@ -374,8 +379,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/authentification.Po
 include ./$(DEPDIR)/callbacks.Po
 include ./$(DEPDIR)/employee.Po
+include ./$(DEPDIR)/entretiens.Po
+include ./$(DEPDIR)/equipements.Po
 include ./$(DEPDIR)/gestion_clients.Po
 include ./$(DEPDIR)/interface.Po
 include ./$(DEPDIR)/main.Po

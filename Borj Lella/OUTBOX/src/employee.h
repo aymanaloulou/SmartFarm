@@ -1,4 +1,4 @@
-
+#include<gtk/gtk.h>
 struct datee{
 	int j;
 	int m;
@@ -14,7 +14,7 @@ typedef struct {
 	char genre[10];
 	char num_tel[9];
 	char adr[50];
-	char email[25];
+	char email[100];
 	char secteur[20];
 }employee;
 
@@ -26,6 +26,7 @@ typedef struct {
 	char rais[50];
 }congee;
 
+int verifCINem (char ch[]);
 int fn_ajout_employee (employee e,GtkWidget *button);
 void fn_rech_employee (char *cin_rech, GtkWidget *liste);
 void fn_list_employee (GtkWidget *liste);

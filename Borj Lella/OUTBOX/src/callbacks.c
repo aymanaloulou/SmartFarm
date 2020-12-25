@@ -10,16 +10,136 @@
 #include "ouvrier.h"
 #include "employee.h"
 #include "gestion_clients.h"
+#include "equipements.h" 
+#include "entretiens.h"
+#include "authentification.h"
 
+entretiens entr;
 employee e,em;
 congee cc;
 
-
+admin ad;
 ouvrier o;
 ouvrier ouv_m;
 pointage pa,pm;
 char cin_supp[9];
 
+
+////////////////////////////////////////////////
+void
+on_button_change_admin_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget* dialog_modif_admin;
+	dialog_modif_admin= create_dialog_modif_admin();
+	GtkWidget *input1, *input2, *input3;
+	input1 = lookup_widget(dialog_modif_admin, "admin_username");
+	input2 = lookup_widget(dialog_modif_admin, "admin_mdp");
+	input3 = lookup_widget(dialog_modif_admin, "admin_email");
+FILE *f;
+f=fopen("admin.bin","rb");
+fread(&ad,sizeof(admin),1,f);
+	gtk_entry_set_text(GTK_ENTRY(input1),ad.username);
+	gtk_entry_set_text(GTK_ENTRY(input2),ad.mdp);
+	gtk_entry_set_text(GTK_ENTRY(input3),ad.email);
+fclose(f);
+	gtk_widget_show(dialog_modif_admin);
+}
+
+void
+on_cancel_par_admin_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_modif_admin");
+gtk_widget_destroy(dialog);
+}
+
+
+void
+on_ok_par_admin_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *input1, *input2, *input3;
+GtkWidget *dialog = lookup_widget(button,"dialog_modif_admin");
+input1 = lookup_widget(dialog, "admin_username");
+input2 = lookup_widget(dialog, "admin_mdp");
+input3 = lookup_widget(dialog, "admin_email");
+FILE *f;
+f=fopen("admin.bin","wb");
+strcpy(ad.username,gtk_entry_get_text(GTK_ENTRY(input1)));
+strcpy(ad.mdp,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(ad.email,gtk_entry_get_text(GTK_ENTRY(input3)));
+fwrite (&ad,sizeof(admin),1,f);
+fclose(f);
+gtk_widget_destroy(dialog);
+}
+
+///////////////////////////////////////////////
+char to_auth[100];
+char pass_auth[50];
+void
+on_button_login_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+FILE *f;
+f=fopen("admin.bin","rb");
+fread(&ad,sizeof(admin),1,f);
+fclose(f);
+GtkWidget *input1, *input2;
+GtkWidget *window_mdp = create_window_wrong_pass();
+GtkWidget *window_id = create_window_wrong_id();
+GtkWidget *window_admin = create_window_espace_admin();
+GtkWidget *window_employee = create_window_employee_space();
+GtkWidget *window_auth = lookup_widget(button,"window_authentification");
+char id[50],mdp[50];
+input1 = lookup_widget(button, "user_id");
+input2 = lookup_widget(button, "user_mdp");
+strcpy(id,gtk_entry_get_text(GTK_ENTRY(input1)));
+strcpy(mdp,gtk_entry_get_text(GTK_ENTRY(input2)));
+
+if (strcmp(id,ad.username)==0)
+	{
+		if (strcmp(mdp,ad.mdp)==0)
+			{gtk_widget_show(window_admin);
+			gtk_widget_destroy(window_auth);}
+		else
+			{
+				strcpy(to_auth,ad.email);
+				strcpy(pass_auth,ad.mdp);
+				gtk_widget_show(window_mdp);
+			}
+	}
+else
+	{
+		if (CINExiste_emp (id))
+			{
+				get_pass(id, pass_auth);
+				get_mail( id, to_auth);
+				if (strcmp(mdp,pass_auth)==0)
+					{gtk_widget_show(window_employee);
+					gtk_widget_destroy(window_auth);}
+				else
+					gtk_widget_show(window_mdp);
+			}
+		else
+			gtk_widget_show(window_id);
+	}
+}
+
+
+void
+on_button_mdp_oublie_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *window_mdp = lookup_widget(button,"window_wrong_pass");
+GtkWidget *window_mail = create_window_mail_envoye();
+mail_mdp_oub(to_auth,pass_auth);
+system ("./email.sh \n");
+gtk_widget_destroy(window_mdp);
+gtk_widget_show(window_mail);
+}
+
+///////////////////////////////////////////////
 
 void
 on_button_ajout_ouvrier_clicked        (GtkWidget       *button,
@@ -2476,4 +2596,1062 @@ on_button_show_ta_clicked              (GtkButton       *button,
 	GtkWidget *dialog = create_dialog_taux_abs ();
 	gtk_widget_show(dialog);
 }
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////   GESTION D'EQUIPEMENTS ET SES ENTRETIENS  //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+void
+on_button_gestion_equipements_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *window1;
+  	window1 = create_window_equipements ();
+ 	gtk_widget_show (window1);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+/* EQUIPEMENTS !!!
+//////////////////////////////////////////////////////////////////////*/
+
+equipements eq2;
+char info0[200]="";
+
+void
+on_button_ajouter_equipement_clicked   (GtkWidget       *button, gpointer         user_data)
+{
+	GtkWidget* dialog_ajouter_equipement;
+	dialog_ajouter_equipement=create_dialog_ajouter_equipement();
+	gtk_widget_show(dialog_ajouter_equipement);
+}
+
+void
+on_treeview_equipement_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=create_choix_equipement();
+	GtkWidget *e_id = lookup_widget (window_choix,"e_id");
+
+	GtkTreeIter iter;
+	gchar* id;
+	gchar* type;
+	gchar* marque;
+	gchar* date;
+	gchar* prix;
+	gchar* association;
+	equipements eq;
+	
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+		gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &id,1, &type,2, &marque,3, &date,4, &prix,5, &association, -1);
+		strcpy(eq2.id,id);
+		strcpy(eq2.type,type);
+		strcpy(eq2.marque,marque);
+		strcpy(eq2.date,date);
+		sscanf (eq2.date,"%2d/%2d/%4d",&eq2.jour,&eq2.mois,&eq2.annee);
+		strcpy(eq2.prix,prix);
+		strcpy(eq2.association,association);
+		strcat(info0,"Equipement d'identifiant ");
+		strcat(info0,eq2.id);
+		strcat(info0," qui a été ajouté le ");
+		strcat(info0,date);
+
+		gtk_label_set_text(GTK_LABEL(e_id),info0);
+		gtk_widget_show(window_choix);
+strcpy(info0,"");
+		
+}
+}
+
+
+void
+on_actualiser_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview;
+treeview = lookup_widget(button,"treeview_equipement");
+afficher_equipement(treeview);
+}
+
+
+void
+on_recherche1_clicked                  (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkTreeView *treeview;
+treeview = lookup_widget(objet,"treeview_equipement");
+GtkWidget  *input_1;
+input_1 = lookup_widget (objet, "entry_eq");
+rech_eq(gtk_entry_get_text(GTK_ENTRY(input_1)),treeview);
+}
+
+void
+on_ok_ajouter1_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+
+equipements eq;
+GtkWidget *input1, *input2, *input3, *input5, *input6, *input_date;
+
+GtkWidget *dialog_ajouter;
+dialog_ajouter = lookup_widget(objet,"dialog_ajouter_equipement");
+
+input1=lookup_widget(objet,"id");
+input2=lookup_widget(objet,"type");
+input3=lookup_widget(objet,"marque");
+input_date = lookup_widget(objet, "calendar_aj_eq");
+input5=lookup_widget(objet,"prix");
+input6=lookup_widget(objet,"association");
+strcpy(eq.date,"");
+strcpy(eq.id,gtk_entry_get_text(GTK_ENTRY(input1)));
+strcpy(eq.type,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(eq.marque,gtk_entry_get_text(GTK_ENTRY(input3)));
+gtk_calendar_get_date(input_date,&eq.annee,&eq.mois,&eq.jour);
+eq.mois++;
+sprintf (eq.date,"%d/%d/%d",eq.jour,eq.mois,eq.annee);
+strcpy(eq.prix,gtk_entry_get_text(GTK_ENTRY(input5)));
+strcpy(eq.association,gtk_entry_get_text(GTK_ENTRY(input6)));
+
+if(ajouter_equipement(eq,objet))
+	gtk_widget_destroy(dialog_ajouter);
+
+}
+
+void
+on_cancel_aj_eq_clicked                (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_ajouter;
+dialog_ajouter = lookup_widget(objet,"dialog_ajouter_equipement");
+	gtk_widget_destroy(dialog_ajouter);
+}
+
+
+void
+on_button_modifier_equipement_clicked  (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+	GtkWidget* dialog_modifier_equipement;
+	GtkWidget* window_choix;
+	GtkWidget *input1, *input2, *input3, *input4, *input5, *input_j, *input_a, *input_m;
+dialog_modifier_equipement=create_dialog_modifier_equipement();
+input1=lookup_widget(dialog_modifier_equipement,"id");
+input2=lookup_widget(dialog_modifier_equipement,"type");
+input3=lookup_widget(dialog_modifier_equipement,"marque");
+input4=lookup_widget(dialog_modifier_equipement,"prix");
+input5=lookup_widget(dialog_modifier_equipement,"association");
+input_j = lookup_widget(dialog_modifier_equipement, "jour");
+input_m = lookup_widget(dialog_modifier_equipement, "mois");
+input_a = lookup_widget(dialog_modifier_equipement, "annee");
+	gtk_entry_set_text (GTK_ENTRY (input1), _(eq2.id));
+	gtk_entry_set_text (GTK_ENTRY (input2), _(eq2.type));
+	gtk_entry_set_text (GTK_ENTRY (input3), _(eq2.marque));
+	gtk_entry_set_text (GTK_ENTRY (input4), _(eq2.prix));
+	gtk_entry_set_text (GTK_ENTRY (input5), _(eq2.association));
+	gtk_spin_button_set_value (input_j,eq2.jour);
+	gtk_spin_button_set_value (input_m,eq2.mois);
+	gtk_spin_button_set_value (input_a,eq2.annee);
+	window_choix=lookup_widget(objet,"choix_equipement");
+	gtk_widget_destroy(window_choix);
+	gtk_widget_show(dialog_modifier_equipement);
+}
+
+	
+void
+on_ok_modifier1_clicked                (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *input1, *input2, *input3, *input5, *input6, *input_j, *input_m, *input_a, *input_annee;
+GtkWidget *dialog_modifier;
+dialog_modifier = lookup_widget(objet,"dialog_modifier_equipement");
+supprimer_equipement(eq2.id);
+input1=lookup_widget(objet,"id");
+input2=lookup_widget(objet,"type");
+input3=lookup_widget(objet,"marque");
+input_j = lookup_widget(objet, "jour");
+input_m = lookup_widget(objet, "mois");
+input_a = lookup_widget(objet, "annee");
+input5=lookup_widget(objet,"prix");
+input6=lookup_widget(objet,"association");
+
+strcpy(eq2.id,gtk_entry_get_text(GTK_ENTRY(input1)));
+strcpy(eq2.type,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(eq2.marque,gtk_entry_get_text(GTK_ENTRY(input3)));
+eq2.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_j));
+eq2.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+eq2.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a));
+sprintf (eq2.date,"%d/%d/%d",eq2.jour,eq2.mois,eq2.annee);
+strcpy(eq2.prix,gtk_entry_get_text(GTK_ENTRY(input5)));
+strcpy(eq2.association,gtk_entry_get_text(GTK_ENTRY(input6)));
+
+if(ajouter_equipement(eq2,objet))
+	gtk_widget_destroy(dialog_modifier);
+}
+
+void
+on_cancel_moif_eq_clicked              (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_modifier;
+dialog_modifier = lookup_widget(objet,"dialog_modifier_equipement");
+	gtk_widget_destroy(dialog_modifier);
+}
+
+void
+on_button_supprimer_equipement_clicked (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=lookup_widget(objet,"choix_equipement");
+	supprimer_equipement(eq2.id);
+	gtk_widget_destroy(window_choix);
+
+}
+
+void
+on_button_declarer_eq_clicked          (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+window_choix=lookup_widget(objet,"choix_equipement");
+declarer_eq(eq2);
+gtk_widget_destroy(window_choix);
+}
+
+void
+on_combo_entry_tri_changed             (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview, *combotri, *combo_entry_tri ;
+char ch[20];
+combotri = lookup_widget(editable,"combotri");
+combo_entry_tri = GTK_COMBO(combotri)->entry;
+strcpy(ch,gtk_entry_get_text(GTK_ENTRY(combo_entry_tri)));
+treeview = lookup_widget(editable,"treeview_equipement");
+if (strcmp("ID+",ch )==0)
+	{
+	tri_file_min_id_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("ID-",ch )==0)
+	{
+	tri_file_max_id_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Prix-",ch )==0)
+	{
+	tri_file_max_prix_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Prix+",ch )==0)
+	{
+	tri_file_min_prix_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Type+",ch )==0)
+	{
+	tri_file_min_type_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Type-",ch )==0)
+	{
+	tri_file_max_type_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Marque+",ch )==0)
+	{
+	tri_file_min_marque_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Marque-",ch )==0)
+	{
+	tri_file_max_marque_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Ouvriers+",ch )==0)
+	{
+	tri_file_min_association_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Ouvriers-",ch )==0)
+	{
+	tri_file_max_association_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Date+",ch )==0)
+	{
+	tri_file_min_date_eq();
+	afficher_tri_eq(treeview);
+	}
+if (strcmp("Date-",ch )==0)
+	{
+	tri_file_max_date_eq();
+	afficher_tri_eq(treeview);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////
+/* ENTRETIENS !!!
+//////////////////////////////////////////////////////////////////////*/
+int paye[]={0,0,0};
+void
+on_checkbutton_ajout_toggled           (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+
+if (gtk_toggle_button_get_active(togglebutton))
+	paye[0]=1;
+
+}
+
+
+void
+on_radiobutton_espece_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+	paye[1]=1;
+	paye[2]=0;
+}
+
+
+void
+on_radiobutton_autre_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	paye[2]=1;
+	paye[1]=0;
+}
+
+//////////////////////////////////////////////////////
+
+void
+on_button_ajouter_entretien_clicked    (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget* dialog_ajouter_entretien;
+	GtkComboBox *combobox;
+	dialog_ajouter_entretien=create_dialog_ajouter_entretien();
+	combobox = lookup_widget(dialog_ajouter_entretien,"combobox_id");
+	set_combo_entretien(combobox);
+	gtk_widget_show(dialog_ajouter_entretien);
+}
+
+entretiens entr2;
+char info[1000]="";
+
+void
+on_treeview_entretien_row_activated    (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=create_choix_entretien();
+	GtkWidget *e_id = lookup_widget (window_choix,"e_id");
+
+	GtkTreeIter iter;
+	gchar* id_eq;
+	gchar* id_entr;
+	gchar* date;
+	gchar* entreteneur ;
+	gchar* montant;
+	gchar* payement;
+	gchar* type_payement;
+	gchar* reference;
+	
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+		gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &id_eq,1, &date,2, &entreteneur,3, &montant,4, &payement,5,&type_payement,6,&reference, -1);
+		strcpy(entr2.id_eq,id_eq);
+		strcpy(entr2.date,date);
+		sscanf (entr2.date,"%2d/%2d/%4d",&entr2.jour,&entr2.mois,&entr2.annee);
+		strcpy(entr2.entreteneur,entreteneur);
+		strcpy(entr2.montant,montant);
+		strcpy(entr2.payement,payement);
+		strcpy(entr2.type_payement,type_payement);
+		strcpy(entr2.reference,reference);
+		strcat(info,"Entretien de l'équipements ");
+		strcat(info,entr2.id_eq);
+		strcat(info," qui a été le ");
+		strcat(info,date);
+
+strcpy(entr2.id_entr,entr2.date);
+strcat(entr2.id_entr,entr2.id_eq);
+
+
+		gtk_label_set_text(GTK_LABEL(e_id),info);
+		gtk_widget_show(window_choix);
+strcpy(info,"");
+		
+}
+}
+
+void
+on_button_modifier_entretien_clicked   (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+	GtkWidget* dialog_modifier_entretien;
+	GtkComboBox *combobox;
+	GtkWidget* window_choix;
+dialog_modifier_entretien=create_dialog_modifier_entretien();
+GtkWidget *id_modif = lookup_widget (dialog_modifier_entretien,"id_modif");
+
+GtkWidget  *input2, *input3, *input4, *input_j, *input_m, *input_a;
+
+input2=lookup_widget(dialog_modifier_entretien,"entreteneur");
+input3=lookup_widget(dialog_modifier_entretien,"montant");
+input4=lookup_widget(dialog_modifier_entretien,"reference");
+input_j = lookup_widget(dialog_modifier_entretien, "jour");
+input_m = lookup_widget(dialog_modifier_entretien, "mois");
+input_a = lookup_widget(dialog_modifier_entretien, "annee");
+
+	window_choix=lookup_widget(objet,"choix_entretien");
+
+	combobox = lookup_widget(dialog_modifier_entretien,"combobox_id");
+	set_combo_entretien(combobox);
+	gtk_entry_set_text (GTK_ENTRY (input2), _(entr2.entreteneur));
+	gtk_entry_set_text (GTK_ENTRY (input3), _(entr2.montant));
+	gtk_entry_set_text (GTK_ENTRY (input4), _(entr2.reference));
+	gtk_spin_button_set_value (input_j,entr2.jour);
+	gtk_spin_button_set_value (input_m,entr2.mois);
+	gtk_spin_button_set_value (input_a,entr2.annee);
+
+	
+		strcat(info,"Entretien de l'équipements ");
+		strcat(info,entr2.id_eq);
+		strcat(info," qui a été le ");
+		strcat(info,entr2.date);
+ 	gtk_label_set_text(GTK_LABEL(id_modif),info);
+	gtk_widget_show(dialog_modifier_entretien);
+	gtk_widget_destroy(window_choix);
+strcpy(info,"");
+
+}
+
+void
+on_button_pdf_entr_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+pdf_entr (entr2);
+system ("./pdf.sh");
+system ("evince opn.pdf \n");
+}
+
+void
+on_ok_ajouter2_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+entretiens entr;
+char text1[20]="";
+char text2[20]="";
+GtkWidget  *input2, *input3,*input4, *input_date;
+GtkComboBox *input1;
+GtkWidget *dialog_ajouter;
+dialog_ajouter = lookup_widget(objet,"dialog_ajouter_entretien");
+
+input1 = lookup_widget(objet,"combobox_id");
+input_date = lookup_widget(objet, "calendar_aj_entr");
+input2=lookup_widget(objet,"entreteneur");
+input3=lookup_widget(objet,"montant");
+input4=lookup_widget(objet,"reference");
+
+payement(paye, text1,text2);
+paye[0]=0;
+paye[1]=0;
+paye[2]=0;
+strcpy(entr.payement,text1);
+strcpy(entr.type_payement,text2);
+strcpy(entr.id_eq, gtk_combo_box_get_active_text(GTK_COMBO_BOX(input1)));
+gtk_calendar_get_date(input_date,&entr.annee,&entr.mois,&entr.jour);
+entr.mois++;
+sprintf (entr.date,"%d/%d/%d",entr.jour,entr.mois,entr.annee);
+strcpy(entr.entreteneur,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(entr.montant,gtk_entry_get_text(GTK_ENTRY(input3)));
+strcpy(entr.reference,gtk_entry_get_text(GTK_ENTRY(input4)));
+
+
+strcpy(entr.id_entr,entr.date);
+strcat(entr.id_entr,entr.id_eq);
+
+if (ajouter_entretien(entr,objet))
+	gtk_widget_destroy(dialog_ajouter);
+}
+
+
+void
+on_cancel_aj_entr_clicked              (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_ajouter;
+dialog_ajouter = lookup_widget(objet,"dialog_ajouter_entretien");
+	gtk_widget_destroy(dialog_ajouter);
+}
+
+
+void
+on_ok_modifier2_clicked                (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+
+char text1[20]="";
+char text2[20]="";
+int j,m,a;
+GtkWidget  *input2, *input3, *input4, *input_j, *input_m, *input_a, *input_annee;
+GtkComboBox *input1;
+GtkWidget *dialog_modifier;
+
+dialog_modifier = lookup_widget(objet,"dialog_modifier_entretien");
+
+
+supprimer_entretien(entr2);
+
+input1 = lookup_widget(objet,"combobox_id");
+input_j = lookup_widget(objet, "jour");
+input_m = lookup_widget(objet, "mois");
+input_a = lookup_widget(objet, "annee");
+input2=lookup_widget(objet,"entreteneur");
+input3=lookup_widget(objet,"montant");
+input4=lookup_widget(objet,"reference");
+
+payement(paye, text1,text2);
+paye[0]=0;
+paye[1]=0;
+paye[2]=0;
+strcpy(entr2.payement,text1);
+strcpy(entr2.type_payement,text2);
+strcpy(entr2.id_eq, gtk_combo_box_get_active_text(GTK_COMBO_BOX(input1)));
+entr2.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_j));
+entr2.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+entr2.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a));
+sprintf (entr2.date,"%d/%d/%d",entr2.jour,entr2.mois,entr2.annee);
+strcpy(entr2.entreteneur,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(entr2.montant,gtk_entry_get_text(GTK_ENTRY(input3)));
+strcpy(entr2.reference,gtk_entry_get_text(GTK_ENTRY(input4)));
+strcpy(entr2.id_entr,entr2.date);
+strcat(entr2.id_entr,entr2.id_eq);
+
+if (ajouter_entretien(entr2,objet))
+	gtk_widget_destroy(dialog_modifier);
+}
+
+void
+on_cancel_modif_entr_clicked           (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_modifier;
+dialog_modifier = lookup_widget(objet,"dialog_modifier_entretien");
+	gtk_widget_destroy(dialog_modifier);
+}
+
+void
+on_button_supprimer_entretien_clicked  (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=lookup_widget(objet,"choix_entretien");
+
+supprimer_entretien(entr2);
+gtk_widget_destroy(window_choix);
+}
+
+void
+on_recherche2_clicked                  (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkTreeView *treeview;
+treeview = lookup_widget(objet,"treeview_entretien");
+GtkWidget  *input_1;
+input_1 = lookup_widget (objet, "entry_entr");
+rech_entr(gtk_entry_get_text(GTK_ENTRY(input_1)),treeview);
+
+}
+
+void
+on_actualiser2_clicked                 (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkTreeView *treeview;
+treeview = lookup_widget(objet,"treeview_entretien");
+afficher_entretien(treeview);
+}
+
+
+void
+on_combobox_id_changed                 (GtkComboBox     *combobox,
+                                        gpointer         user_data)
+{
+
+}
+
+void
+on_combo_entry_tri_entr_changed        (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview, *combotri, *combo_entry_tri ;
+char ch[20];
+combotri = lookup_widget(editable,"combotrientr");
+combo_entry_tri = GTK_COMBO(combotri)->entry;
+strcpy(ch,gtk_entry_get_text(GTK_ENTRY(combo_entry_tri)));
+treeview = lookup_widget(editable,"treeview_entretien");
+if (strcmp("ID+",ch )==0)
+	{
+	tri_file_min_id_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("ID-",ch )==0)
+	{
+	tri_file_max_id_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Date+",ch )==0)
+	{
+	tri_file_min_date_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Date-",ch )==0)
+	{
+	tri_file_max_date_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Entreteneur+",ch )==0)
+	{
+	tri_file_min_entreteneur_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Entreteneur-",ch )==0)
+	{
+	tri_file_max_entreteneur_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Montant+",ch )==0)
+	{
+	tri_file_min_montant_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Montant-",ch )==0)
+	{
+	tri_file_max_montant_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Reference+",ch )==0)
+	{
+	tri_file_min_reference_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Reference-",ch )==0)
+	{
+	tri_file_max_reference_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Payement",ch )==0)
+	{
+	tri_file_min_payement_entr();
+	afficher_tri_entretien(treeview);
+	}
+if (strcmp("Type de payement",ch )==0)
+	{
+	tri_file_min_type_payement_entr();
+	afficher_tri_entretien(treeview);
+	}
+}
+
+/*//////////////////////////////////////////////////////
+//////////// HISTORIQUE ///////////////////////*/
+int h;
+void
+on_radiobutton_eq_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *scrolledwindow14; 
+ GtkWidget *scrolledwindow13; 
+GtkWidget *treeview_historique_eq;
+h=0;
+treeview_historique_eq = lookup_widget(button,"treeview_historique_eq");
+scrolledwindow14 = lookup_widget(button,"scrolledwindow14");
+scrolledwindow13 = lookup_widget(button,"scrolledwindow13");
+gtk_widget_show_all(scrolledwindow13);
+gtk_widget_hide_all(scrolledwindow14);
+afficher_histo_eq(treeview_historique_eq);
+
+}
+
+
+void
+on_radiobutton_entr_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+ GtkWidget *scrolledwindow14; 
+ GtkWidget *scrolledwindow13; 
+GtkWidget *treeview_historique_entr;
+h=1;
+treeview_historique_entr = lookup_widget(button,"treeview_historique_entr");
+scrolledwindow14 = lookup_widget(button,"scrolledwindow14");
+scrolledwindow13 = lookup_widget(button,"scrolledwindow13");
+gtk_widget_hide_all(scrolledwindow13);
+gtk_widget_show_all(scrolledwindow14);
+afficher_histo_entr(treeview_historique_entr);
+
+}
+
+
+void
+on_treeview_historique_entr_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=create_choix_historique();
+
+	GtkTreeIter iter;
+	gchar* id_eq;
+	gchar* id_entr;
+	gchar* date;
+	gchar* entreteneur ;
+	gchar* montant;
+	gchar* payement;
+	gchar* type_payement;
+	gchar* reference;
+	
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+		gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &id_eq,1, &date,2, &entreteneur,3, &montant,4, &payement,5,&type_payement,6,&reference, -1);
+		strcpy(entr2.id_eq,id_eq);
+		strcpy(entr2.date,date);
+		strcpy(entr2.entreteneur,entreteneur);
+		strcpy(entr2.montant,montant);
+		strcpy(entr2.payement,payement);
+		strcpy(entr2.type_payement,type_payement);
+		strcpy(entr2.reference,reference);
+
+strcpy(entr2.id_entr,entr2.date);
+strcat(entr2.id_entr,entr2.id_eq);
+
+
+		gtk_widget_show(window_choix);
+}
+}
+
+void
+on_treeview_historique_eq_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=create_choix_historique();
+
+	GtkTreeIter iter;
+	gchar* id;
+	gchar* type;
+	gchar* marque;
+	gchar* date;
+	gchar* prix;
+	gchar* association;
+
+	
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+		gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &id,1, &type,2, &marque,3, &date,4, &prix,5, &association, -1);
+		strcpy(eq2.id,id);
+		strcpy(eq2.type,type);
+		strcpy(eq2.marque,marque);
+		strcpy(eq2.date,date);
+		strcpy(eq2.prix,prix);
+		strcpy(eq2.association,association);
+
+		gtk_widget_show(window_choix);
+}
+
+}
+void
+on_reset_histo_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+window_choix=lookup_widget(button,"choix_historique");
+
+if (h==0)
+	{
+	rest_eq(eq2);
+	supp_histo_eq(eq2.id);
+	}
+else
+	{
+	rest_entr(entr2);
+	supp_histo_entr(entr2.id_entr);
+	}
+gtk_widget_destroy(window_choix);	
+}
+
+
+void
+on_supp_histo_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+window_choix=lookup_widget(button,"choix_historique");
+GtkWidget* dialog_confirmer_supp_eq;
+GtkWidget* dialog_confirmer_supp_entr;
+dialog_confirmer_supp_eq=create_dialog_confirmer_supp_eq();
+dialog_confirmer_supp_entr=create_dialog_confirmer_supp_entr();
+if (h==0)
+gtk_widget_show(dialog_confirmer_supp_eq);
+else
+	gtk_widget_show(dialog_confirmer_supp_entr);
+gtk_widget_destroy(window_choix);
+}
+
+void
+on_cancel_confirm_supp_eq_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_confirm;
+dialog_confirm=lookup_widget(button,"dialog_confirmer_supp_eq");
+gtk_widget_destroy(dialog_confirm);
+}
+
+void
+on_ok_confirm_supp_eq_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_confirm;
+dialog_confirm=lookup_widget(button,"dialog_confirmer_supp_eq");
+supp_histo_eq(eq2.id);
+gtk_widget_destroy(dialog_confirm);
+}
+
+void
+on_cancel_confirm_supp_entr_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_confirm;
+dialog_confirm=lookup_widget(button,"dialog_confirmer_supp_entr");
+gtk_widget_destroy(dialog_confirm);
+}
+
+
+void
+on_ok_confirm_supp_entr_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_confirm;
+dialog_confirm=lookup_widget(button,"dialog_confirmer_supp_entr");
+supp_histo_entr(entr2.id_entr);
+gtk_widget_destroy(dialog_confirm);
+}
+
+
+equipements eqp;
+
+void
+on_treeview_declar_eq_row_activated    (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_choix;
+	window_choix=create_choix_declar_eq();
+
+	GtkTreeIter iter;
+	gchar* id;
+	gchar* type;
+	gchar* marque;
+	gchar* date;
+	gchar* prix;
+	gchar* association;
+	
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+		gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &id,1, &type,2, &marque,3, &date,4, &prix,5, &association, -1);
+		strcpy(eqp.id,id);
+		strcpy(eqp.type,type);
+		strcpy(eqp.marque,marque);
+		strcpy(eqp.date,date);
+		sscanf (eqp.date,"%2d/%2d/%4d",&eqp.jour,&eqp.mois,&eqp.annee);
+		strcpy(eqp.prix,prix);
+		strcpy(eqp.association,association);
+		
+		gtk_widget_show(window_choix);
+		
+}
+}
+
+
+void
+on_recherche_declar_eq_clicked         (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkTreeView *treeview;
+treeview = lookup_widget(objet,"treeview_declar_eq");
+GtkWidget  *input_1;
+input_1 = lookup_widget (objet, "entry_declar_eq");
+rech_declar_eq(gtk_entry_get_text(GTK_ENTRY(input_1)),treeview);
+}
+
+
+void
+on_supp_declar_eq_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+GtkWidget* dialog_ajouter_entretien;
+GtkComboBox *combobox;
+dialog_ajouter_entretien=create_dialog_ajouter_entretien();
+combobox = lookup_widget(dialog_ajouter_entretien,"combobox_id");
+window_choix=lookup_widget(button,"choix_declar_eq");
+supp_declar_eq(eqp.id);
+gtk_widget_destroy(window_choix);
+set_combo_entretien(combobox);
+gtk_widget_show(dialog_ajouter_entretien);
+}
+
+
+void
+on_mettre_en_top_eq_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+window_choix=lookup_widget(button,"choix_declar_eq");
+mettre_top(eqp);
+gtk_widget_destroy(window_choix);
+}
+
+
+void
+on_actualiser_declar_eq_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview;
+treeview = lookup_widget(button,"treeview_declar_eq");
+afficher_declar_eq(treeview);
+}
+
+
+void
+on_alerte_declar_eq_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_choix;
+window_choix=lookup_widget(button,"choix_declar_eq");
+GtkWidget* dialog_dest_declar_eq;
+dialog_dest_declar_eq = create_dialog_dest_declar_eq();
+gtk_widget_destroy(window_choix);
+gtk_widget_show(dialog_dest_declar_eq);
+}
+
+
+void
+on_ok_dest_declar_eq_clicked           (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget  *input ;
+GtkWidget* window_dest;
+window_dest=lookup_widget(objet,"dialog_dest_declar_eq");
+input=lookup_widget(objet,"dest_declar_eq");
+char TO[200];
+strcpy(TO,gtk_entry_get_text(GTK_ENTRY(input)));
+mail_declar_eq(TO, eqp);
+system ("./email.sh \n");
+gtk_widget_destroy(window_dest);
+}
+
+/******************************************************************
+************************ DASHBORD *********************************
+******************************************************************/
+
+void
+on_button_stat_equip_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* window_stat;
+window_stat = create_window_affiche_equip();
+gtk_widget_show(window_stat);
+}
+
+
+void
+on_radiobutton_entr_npaye_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview_stat_entr;
+treeview_stat_entr = lookup_widget(button,"treeview_stat_entr");
+afficher_entr_payement(treeview_stat_entr,"Non Payé");
+}
+
+
+void
+on_radiobutton_entr_paye_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview_stat_entr;
+treeview_stat_entr = lookup_widget(button,"treeview_stat_entr");
+afficher_entr_payement(treeview_stat_entr,"Payé");
+}
+
+
+void
+on_button_show_eq_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview_stat_eq;
+treeview_stat_eq = lookup_widget(button,"treeview_stat_eq");
+GtkWidget *output1,*output2, *output3;
+output1 = lookup_widget(button,"nbr_eq");
+output2 = lookup_widget(button,"prix_tot");
+output3 = lookup_widget(button,"nbr_declar");
+int ne,nd,pt;
+ne= nbre_eq();
+nd= nbre_declar_eq();
+pt= prix_eq();
+char *n1 = g_strdup_printf ("%d", ne);
+char *n2 = g_strdup_printf ("%d", pt);
+strcat(n2," DT");
+char *n3 = g_strdup_printf ("%d", nd);
+gtk_entry_set_text(GTK_ENTRY(output1),n1);
+gtk_entry_set_text(GTK_ENTRY(output2),n2);
+gtk_entry_set_text(GTK_ENTRY(output3),n3);
+afficher_declar_eq(treeview_stat_eq);
+}
+
+
+void
+on_button_show_entr_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *output1,*output2, *output3;
+output1 = lookup_widget(button,"cout_tot");
+output2 = lookup_widget(button,"mont_paye");
+output3 = lookup_widget(button,"mont_npaye");
+int ct,mp,mn;
+mp= prix_entr_paye();
+mn= prix_entr_non_paye();
+ct= mn+mp;
+char *n1 = g_strdup_printf ("%d", ct);
+strcat(n1," DT");
+char *n2 = g_strdup_printf ("%d", mp);
+strcat(n2," DT");
+char *n3 = g_strdup_printf ("%d", mn);
+strcat(n3," DT");
+gtk_entry_set_text(GTK_ENTRY(output1),n1);
+gtk_entry_set_text(GTK_ENTRY(output2),n2);
+gtk_entry_set_text(GTK_ENTRY(output3),n3);
+}
+
+
 

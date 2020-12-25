@@ -14,7 +14,10 @@ outbox_SOURCES = \
 	callbacks.c callbacks.h \
 	ouvrier.c ouvrier.h \
 	employee.c employee.h \
-	gestion_clients.h gestion_clients.c
+	gestion_clients.h gestion_clients.c \
+	equipements.c equipements.h \
+	entretiens.c entretiens.h \
+	authentification.c authentification.h
 
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 
