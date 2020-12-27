@@ -17,7 +17,7 @@ outbox_SOURCES = \
 	gestion_clients.h gestion_clients.c \
 	equipements.c equipements.h \
 	entretiens.c entretiens.h \
-	authentification.c authentification.h
-
+	authentification.c authentification.h \
+        capteur.c         capteur.h 
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 
