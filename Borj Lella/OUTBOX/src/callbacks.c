@@ -14,6 +14,7 @@
 #include "entretiens.h"
 #include "authentification.h"
 #include "capteur.h"
+#include "plantation.h"
 
 entretiens entr;
 employee e,em;
@@ -4220,5 +4221,609 @@ on_button_val_alarm_clicked            (GtkButton       *button,
 {
 GtkWidget *dialog = create_window_alarmante();
 gtk_widget_show(dialog);
+}
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+plante p;
+char ref[10],ref1[10];
+
+
+/*/////////////////////////////////////////////////////////////////////////
+			      Les crudes
+/////////////////////////////////////////////////////////////////////////*/
+void
+on_ajouter_plante_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* ajout_plantation;
+	ajout_plantation=create_ajout_plantation();
+	gtk_widget_show(ajout_plantation);
+
+}
+void
+on_ajout_precipitation_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+precipitation prec;
+GtkWidget *date_precipitation, *val,*dialog_valid_ajout;
+	date_precipitation = lookup_widget (button, "calendar_precipitation");
+	val= lookup_widget (button, "precipitation");
+
+	gtk_calendar_get_date (date_precipitation,&prec.date_precip.annee,&prec.date_precip.mois,&prec.date_precip.jour);
+	prec.date_precip.mois++;
+	prec.valeur_precipitation = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(val));
+	
+	Ajouter_precipitation(prec);
+
+	dialog_valid_ajout=create_dialog_valid_ajout();
+	gtk_widget_show(dialog_valid_ajout);
+	
+
+}
+
+void
+on_valide_ajout_precipitation_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_valid_ajout;
+dialog_valid_ajout = lookup_widget(button,"dialog_valid_ajout");
+gtk_widget_destroy(dialog_valid_ajout);
+}
+
+//////
+void
+on_Affiche_tableau_de_bord_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* Tableau_de_bord_des_plantations;
+	Tableau_de_bord_des_plantations=create_Tableau_de_bord_des_plantations();
+	gtk_widget_show(Tableau_de_bord_des_plantations);
+}
+void
+on_modifier_plante_clicked             (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *input1, *input_q,*input_combo_recolte,*input_d, *input_m, *input_y,*input_q_r,*input_combo_p,*input_arrosage,*input_engrais,*input5,*input6,*input_d_e,*input_m_e,*input_a_e,*input_d_t,*input_m_t,*input_a_t;
+GtkWidget* modif_plantation;
+if(strcmp(ref,"")){
+	modif_plantation=create_modif_plantation();
+	gtk_widget_show(modif_plantation);
+//////
+
+//////
+input1=lookup_widget(modif_plantation,"reference_modif_plante");
+input_q=lookup_widget(modif_plantation,"quantite_modif_plante");
+input_combo_p=lookup_widget(modif_plantation,"unite_modif_plante");
+input_d=lookup_widget(modif_plantation,"jour_plante");
+input_m=lookup_widget(modif_plantation,"mois_plante");
+input_y=lookup_widget(modif_plantation,"annee_plante");
+input_q_r=lookup_widget(modif_plantation,"quantite_recolte_modif_plante");
+
+GtkWidget *input_modif1=lookup_widget(modif_plantation,"spinbutton17_plante");
+GtkWidget *input_modif2=lookup_widget(modif_plantation,"spinbutton18_plante");
+GtkWidget *input_modif3=lookup_widget(modif_plantation,"spinbutton19_plante");
+
+//input_combo_recolte=lookup_widget(modif_plantation,"unite_recolte_modif_plante");
+input_engrais=lookup_widget(modif_plantation,"engrais_modif_plante");
+input_d_e=lookup_widget(modif_plantation,"jour_engrais_modif_plante");
+input_m_e=lookup_widget(modif_plantation,"mois_engrais_modif_plante");
+input_a_e=lookup_widget(modif_plantation,"annee_engrais_modif_plante");
+input_d_t=lookup_widget(modif_plantation,"jour_taille_modif_plante");
+input_m_t=lookup_widget(modif_plantation,"mois_taille_modif_plante");
+input_a_t=lookup_widget(modif_plantation,"annee_taille_modif_plante");
+input6=lookup_widget(modif_plantation,"commentaire_modif_plante");
+
+
+
+gtk_entry_set_text(GTK_ENTRY(input1),p.reference);
+
+
+gtk_spin_button_set_value(input_q,p.quant.quantite);
+//////
+
+////////////////
+gtk_spin_button_set_value(input_d,p.date.jour);
+gtk_spin_button_set_value(input_m,p.date.mois);
+gtk_spin_button_set_value(input_y,p.date.annee);
+gtk_spin_button_set_value(input_q_r,p.quant.quantite_recolte);
+
+gtk_spin_button_set_value(input_modif1,p.date_recolte.jour);
+gtk_spin_button_set_value(input_modif2,p.date_recolte.mois);
+gtk_spin_button_set_value(input_modif3,p.date_recolte.annee);
+
+gtk_spin_button_set_value(input_d_e,p.date_engrais1.jour);
+gtk_spin_button_set_value(input_m_e,p.date_engrais1.mois);
+gtk_spin_button_set_value(input_a_e,p.date_engrais1.annee);
+
+gtk_spin_button_set_value(input_d_t,p.date_taille.jour);
+gtk_spin_button_set_value(input_m_t,p.date_taille.mois);
+gtk_spin_button_set_value(input_a_t,p.date_taille.annee);
+gtk_entry_set_text(GTK_ENTRY(input6),p.commentaire);
+
+}
+strcpy(ref,"");
+}
+
+void
+on_supprimer_plante_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_valid_supp;
+	Supprimer_plante (ref);
+if (strcmp(ref,"")!=0){
+	dialog_valid_supp=create_dialog_valid_supp();
+	gtk_widget_show(dialog_valid_supp);
+			}
+strcpy(ref,"");
+
+}
+/*void
+on_okbutton2_clicked                   (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog5;
+dialog5 = lookup_widget(objet,"dialog5");
+gtk_widget_destroy(dialog5);
+}*/
+/*void
+on_valid_supp_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog10;
+dialog10 = lookup_widget(button,"dialog10");
+gtk_widget_destroy(dialog10);
+}*/
+/*void
+on_okbutton3_clicked                   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog6;
+
+dialog6 = lookup_widget(button,"dialog6");
+gtk_widget_destroy(dialog6);
+
+}*/
+
+
+void
+on_recherche_plante_clicked            (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview_plante, *recherche_plante_entry;
+	char ref_rech[9];
+
+	treeview_plante = lookup_widget (button, "treeview_plante");
+	recherche_plante_entry = lookup_widget (button, "recherche_plante_entry");
+
+	strcpy (ref_rech,gtk_entry_get_text(GTK_ENTRY(recherche_plante_entry)));
+
+	Recherche_plante (ref_rech,treeview_plante);
+}
+void
+on_actualiser_plante_clicked           (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *gestion_des_plantations;
+GtkWidget *treeview_plante;
+
+treeview_plante = lookup_widget(objet,"treeview_plante");
+gestion_des_plantations = lookup_widget(objet,"Gestion_des_plantations");
+
+treeview_plante = lookup_widget(gestion_des_plantations,"treeview_plante");
+
+Afficher_plante(treeview_plante);
+}
+/*void
+on_actualiser2_clicked                 (GtkWidget       *objet,
+                                        gpointer         user_data)
+
+{
+GtkWidget *gestion_des_plantations;
+GtkWidget *treeview_precipitation;
+
+treeview_precipitation = lookup_widget(objet,"treeview_precipitation");
+gestion_des_plantations = lookup_widget(objet,"Gestion_des_plantations");
+
+treeview_precipitation = lookup_widget(gestion_des_plantations,"treeview_precipitation");
+
+Afficher_precipitation(treeview_precipitation);	
+}*/
+////////
+void
+on_Affiche_TB_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *Tableau_de_bord_des_plantations;
+
+GtkWidget *objet;
+
+
+
+Tableau_de_bord_des_plantations=create_Tableau_de_bord_des_plantations();
+
+gtk_widget_show(Tableau_de_bord_des_plantations);
+partie2(Tableau_de_bord_des_plantations);
+//
+
+}
+/*/////////////////////////////////////////////////////////////////////////
+			Les tableaux d'affichage
+/////////////////////////////////////////////////////////////////////////*/
+void
+on_treeview_plante_row_activated       (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+GtkTreeIter iter;
+gchar* reference;
+gchar* Quantite;
+gchar* unite;
+gchar* date;
+gchar* date1;
+gchar* date2;
+gchar* Quantite1;
+gchar* date_recolte;
+gchar* unite_r;
+gchar* arrosage;
+gchar* engrais_ch;
+gchar* use;
+gchar* taille;
+gchar* commentaire;
+
+	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+	if (gtk_tree_model_get_iter(model, &iter, path))
+	{
+gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &reference, 1, &Quantite, 2, &unite, 3, &date, 4, &Quantite1,5,&date_recolte, 6, &arrosage, 7, &engrais_ch,8,&date1, 9, &use,10,&date2,11,&commentaire,-1);	
+		strcpy(p.reference,reference);
+		strcpy(ref,reference);
+		strcpy(ref1,reference);
+		strcpy (p.unit.unite, unite);
+		strcpy (p.arrosage, arrosage);
+                sscanf (date,"%d/%d/%d",&p.date.jour,&p.date.mois,&p.date.annee);
+		sscanf (date_recolte,"%d/%d/%d",&p.date_recolte.jour,&p.date_recolte.mois,&p.date_recolte.annee);
+		sscanf (date1,"%d/%d/%d",&p.date_engrais1.jour,&p.date_engrais1.mois,&p.date_engrais1.annee);
+		sscanf (date2,"%d/%d/%d",&p.date_taille.jour,&p.date_taille.mois,&p.date_taille.annee);
+		sscanf (Quantite,"%d",&p.quant.quantite);
+		sscanf (Quantite1,"%d",&p.quant.quantite_recolte);
+		strcpy (p.commentaire, commentaire);
+		
+				
+}
+}
+/*/////////////////////////////////////////////////////////////////////////
+			      Les boutons radio + cases à cocher 
+/////////////////////////////////////////////////////////////////////////*/
+char TEXT[20];
+void
+on_radiobutton_taille_semaine_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{ 
+ strcpy(TEXT,"quotidien");
+}
+void
+on_radiobutton_taille_mois_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{ 
+ strcpy(TEXT,"hebdomadaire");
+}
+void 
+on_radiobutton_taille_annee_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{ 
+ strcpy(TEXT,"mensuel");
+}
+
+
+//////////
+char TEXT1[20];
+void
+on_arrosage_mois_clicked               (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ strcpy(TEXT1,"hebdomadaire");
+}
+
+void
+on_arrosage_annee_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ strcpy(TEXT1,"mensuel");
+}
+
+void
+on_arrosage1_clicked                   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ strcpy(TEXT1,"quotidien");
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////
+			Les interfaces d'ajout et modif
+/////////////////////////////////////////////////////////////////////////*/
+void
+on_Ajouter_plante_clicked              (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+plante p;
+
+char text1[20]="";
+char text2[20]="";
+char text3[20]="";
+int T;
+
+GtkWidget *taille,*input1, *input_q,*input_combo_recolte,*input_d, *input_m, *input_y,*input_q_r,*input_combo_p,*input_arrosage,*input_engrais,*input5,*input6,*input_d_e,*input_m_e,*input_a_e,*input_d_t,*input_m_t,*input_a_t;
+GtkWidget *ajout_plantation;
+ajout_plantation = lookup_widget(objet,"ajout_plantation");
+
+input1=lookup_widget(objet,"reference");
+input_q=lookup_widget(objet,"quantite");
+input_combo_p=lookup_widget(objet,"unite_plante");
+input_d=lookup_widget(objet,"day");
+input_m=lookup_widget(objet,"month");
+input_y=lookup_widget(objet,"year");
+
+input_q_r=lookup_widget(objet,"quantite_recolte");
+
+GtkWidget *input_d_r=lookup_widget(objet,"spinbutton_jour");
+GtkWidget *input_m_r=lookup_widget(objet,"spinbutton_mois");
+GtkWidget *input_y_r=lookup_widget(objet,"spinbutton_annee");
+
+input_engrais=lookup_widget(objet,"engrais_chimique");
+input_d_e=lookup_widget(objet,"spinbutton_j_engrais");
+input_m_e=lookup_widget(objet,"spinbutton_m_engrais");
+input_a_e=lookup_widget(objet,"spinbutton_a_engrais");
+input_d_t=lookup_widget(objet,"taille_jour");
+input_m_t=lookup_widget(objet,"taille_mois");
+input_a_t=lookup_widget(objet,"taille_annee");
+input6=lookup_widget(objet,"commentaire");
+taille = lookup_widget (objet, "taille");
+
+
+strcpy(p.reference,gtk_entry_get_text(GTK_ENTRY(input1)));
+p.quant.quantite = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_q));
+strcpy(p.unit.unite,gtk_combo_box_get_active_text(GTK_COMBO_BOX(input_combo_p)));
+
+p.date.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d));
+p.date.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+p.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_y));
+
+p.quant.quantite_recolte = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_q_r));
+if (p.quant.quantite_recolte==0){
+
+p.date_recolte.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_recolte.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_recolte.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));}
+else {
+p.date_recolte.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_r));
+p.date_recolte.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_r));
+p.date_recolte.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_y_r));}
+
+
+strcpy(p.arrosage,TEXT);
+p.date_engrais1.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_e));
+p.date_engrais1.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_e));
+p.date_engrais1.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a_e));
+
+if (gtk_toggle_button_get_active (taille)){
+strcpy(p.taille,"oui");
+p.date_taille.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_t));
+p.date_taille.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_t));
+p.date_taille.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a_t));}
+
+else{
+strcpy(p.taille,"---");
+p.date_taille.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_taille.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_taille.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+}
+strcpy(p.engrais,gtk_combo_box_get_active_text(GTK_COMBO_BOX(input_engrais)));
+if (strcmp(gtk_entry_get_text(GTK_ENTRY(input6)),"") !=0 )
+	strcpy(p.commentaire,gtk_entry_get_text(GTK_ENTRY(input6)));
+else 
+	strcpy(p.commentaire,"RAS");
+
+if (Ajouter_plante(p,objet)){
+
+gtk_widget_destroy(ajout_plantation);}
+}
+
+void
+on_cancelbutton_ajouter_plante_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *ajout_plantation;
+ajout_plantation = lookup_widget(button,"ajout_plantation");
+
+gtk_widget_destroy(ajout_plantation);
+}
+
+void
+on_Modifier_plante_clicked             (GtkWidget      *objet,
+                                        gpointer         user_data)
+{
+
+plante p;
+char text1[20]="";
+char text2[20]="";
+GtkWidget *input1, *input_q,*input_combo_recolte,*input_d, *input_m, *input_y,*input_q_r,*input_combo_p,*input_arrosage,*input_engrais,*input5,*input6,*input_d_e,*input_m_e,*input_a_e,*input_d_t,*input_m_t,*input_a_t;
+GtkWidget *modif_plantation;
+GtkWidget *dialog_valid_modif;
+modif_plantation = lookup_widget(objet,"modif_plantation");
+
+
+input1=lookup_widget(objet,"reference_modif_plante");
+input_q=lookup_widget(objet,"quantite_modif_plante");
+input_combo_p=lookup_widget(objet,"unite_modif_plante");
+input_d=lookup_widget(objet,"jour_plante");
+input_m=lookup_widget(objet,"mois_plante");
+input_y=lookup_widget(objet,"annee_plante");
+
+input_q_r=lookup_widget(objet,"quantite_recolte_modif_plante");
+
+GtkWidget *input_d_r=lookup_widget(objet,"spinbutton17_plante");
+GtkWidget *input_m_r=lookup_widget(objet,"spinbutton18_plante");
+GtkWidget *input_y_r=lookup_widget(objet,"spinbutton19_plante");
+GtkWidget *taille = lookup_widget (objet, "checkbutton2_plante");
+input_engrais=lookup_widget(objet,"engrais_modif_plante");
+input_d_e=lookup_widget(objet,"jour_engrais_modif_plante");
+input_m_e=lookup_widget(objet,"mois_engrais_modif_plante");
+input_a_e=lookup_widget(objet,"annee_engrais_modif_plante");
+
+input_d_t=lookup_widget(objet,"jour_taille_modif_plante");
+input_m_t=lookup_widget(objet,"mois_taille_modif_plante");
+input_a_t=lookup_widget(objet,"annee_taille_modif_plante");
+input6=lookup_widget(objet,"commentaire_modif_plante");
+
+strcpy(p.reference,gtk_entry_get_text(GTK_ENTRY(input1)));
+p.quant.quantite = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_q));
+strcpy(p.unit.unite,gtk_combo_box_get_active_text(GTK_COMBO_BOX(input_combo_p)));
+p.date.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d));
+p.date.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m));
+p.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_y));
+
+p.quant.quantite_recolte = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_q_r));
+if (p.quant.quantite_recolte==0){
+p.date_recolte.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_recolte.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_recolte.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+}
+else {
+p.date_recolte.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_r));
+p.date_recolte.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_r));
+p.date_recolte.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_y_r));}
+
+
+strcpy(p.arrosage,TEXT1);
+p.date_engrais1.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_e));
+p.date_engrais1.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_e));
+p.date_engrais1.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a_e));
+
+
+if (gtk_toggle_button_get_active (taille)){
+strcpy(p.taille,"oui");
+p.date_taille.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_d_t));
+p.date_taille.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_m_t));
+p.date_taille.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input_a_t));}
+else {
+strcpy(p.taille,"---");
+
+p.date_taille.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_taille.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));
+p.date_taille.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(0));}
+strcpy(p.engrais,gtk_combo_box_get_active_text(GTK_COMBO_BOX(input_engrais)));
+strcpy(p.commentaire,gtk_entry_get_text(GTK_ENTRY(input6)));
+Supprimer_plante (ref1);
+if(Ajouter_plante(p,objet)){
+//Supprimer_plante (ref1);
+gtk_widget_destroy(modif_plantation);
+dialog_valid_modif = lookup_widget(objet,"dialog_valid_modif");
+dialog_valid_modif=create_dialog_valid_modif();
+gtk_widget_show(dialog_valid_modif);
+//strcpy(ref,"");
+}
+
+}
+
+void
+on_cancelbutton_modifier_plante_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *modif_plantation;
+modif_plantation = lookup_widget(button,"modif_plantation");
+
+gtk_widget_destroy(modif_plantation);
+}
+
+
+
+void
+on_actualiser_precipitation_clicked    (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *gestion_des_plantations;
+GtkWidget *treeview_precipitation;
+
+treeview_precipitation = lookup_widget(objet,"treeview_precipitation");
+gestion_des_plantations = lookup_widget(objet,"Gestion_des_plantations");
+
+treeview_precipitation = lookup_widget(gestion_des_plantations,"treeview_precipitation");
+
+Afficher_precipitation(treeview_precipitation);	
+}
+
+
+void
+on_valide_supp_plante_clicked          (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_valid_supp;
+dialog_valid_supp= lookup_widget(objet,"dialog_valid_supp");
+gtk_widget_destroy(dialog_valid_supp);
+}
+
+
+void
+on_valide_modif_plante_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog_valid_modif;
+
+dialog_valid_modif= lookup_widget(button,"dialog_valid_modif");
+gtk_widget_destroy(dialog_valid_modif);
+}
+
+
+void
+on_button_gestion_des_plantations_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* Gestion_des_plantations;
+	Gestion_des_plantations=create_Gestion_des_plantations();
+	gtk_widget_show(Gestion_des_plantations);
+}
+
+
+void
+on_TB_plantations_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *Tableau_de_bord_des_plantations;
+
+GtkWidget *objet;
+Tableau_de_bord_des_plantations=create_Tableau_de_bord_des_plantations();
+
+gtk_widget_show(Tableau_de_bord_des_plantations);
+partie2(Tableau_de_bord_des_plantations);
 }
 

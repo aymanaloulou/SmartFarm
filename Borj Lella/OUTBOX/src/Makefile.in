@@ -103,7 +103,8 @@ am_outbox_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) ouvrier.$(OBJEXT) \
 	employee.$(OBJEXT) gestion_clients.$(OBJEXT) \
 	equipements.$(OBJEXT) entretiens.$(OBJEXT) \
-	authentification.$(OBJEXT) capteur.$(OBJEXT)
+	authentification.$(OBJEXT) capteur.$(OBJEXT) \
+	plantation.$(OBJEXT)
 outbox_OBJECTS = $(am_outbox_OBJECTS)
 am__DEPENDENCIES_1 =
 outbox_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -291,7 +292,8 @@ outbox_SOURCES = \
 	equipements.c equipements.h \
 	entretiens.c entretiens.h \
 	authentification.c authentification.h \
-        capteur.c         capteur.h 
+        capteur.c         capteur.h \
+	plantation.c plantation.h
 
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 all: all-am
@@ -390,6 +392,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ouvrier.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plantation.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/support.Po@am__quote@
 
 .c.o:

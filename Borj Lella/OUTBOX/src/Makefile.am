@@ -18,6 +18,7 @@ outbox_SOURCES = \
 	equipements.c equipements.h \
 	entretiens.c entretiens.h \
 	authentification.c authentification.h \
-        capteur.c         capteur.h 
+        capteur.c         capteur.h \
+	plantation.c plantation.h
 outbox_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 
