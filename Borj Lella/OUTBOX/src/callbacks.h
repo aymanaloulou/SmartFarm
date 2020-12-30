@@ -1279,3 +1279,11 @@ on_button_gestion_des_plantations_clicked
 void
 on_TB_plantations_clicked              (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_radiobutton3_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton4_clicked                (GtkButton       *button,
+                                        gpointer         user_data);

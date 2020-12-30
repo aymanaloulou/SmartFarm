@@ -8697,18 +8697,17 @@ create_Ajouter_capteur (void)
   GtkWidget *entry_marque;
   GtkWidget *entry_valeur;
   GtkWidget *calendar_capteur;
-  GtkWidget *label369;
-  GtkWidget *label370;
-  GtkWidget *label371;
   GtkWidget *label52;
-  GtkWidget *radiobutton3;
-  GSList *radiobutton3_group = NULL;
-  GtkWidget *radiobutton4;
-  GSList *radiobutton4_group = NULL;
   GtkWidget *label30;
   GtkWidget *label31;
   GtkWidget *label32;
   GtkWidget *valeur;
+  GtkWidget *radiobutton3;
+  GSList *radiobutton3_group = NULL;
+  GtkWidget *radiobutton4;
+  GtkWidget *label_id;
+  GtkWidget *label_marque;
+  GtkWidget *label_valeur;
   GtkWidget *hbuttonbox16;
   GtkWidget *okbutton_aj_capteur;
 
@@ -8750,39 +8749,10 @@ create_Ajouter_capteur (void)
                                 GTK_CALENDAR_SHOW_HEADING
                                 | GTK_CALENDAR_SHOW_DAY_NAMES);
 
-  label369 = gtk_label_new ("");
-  gtk_widget_show (label369);
-  gtk_fixed_put (GTK_FIXED (fixed49), label369, 344, 56);
-  gtk_widget_set_size_request (label369, 49, 17);
-
-  label370 = gtk_label_new ("");
-  gtk_widget_show (label370);
-  gtk_fixed_put (GTK_FIXED (fixed49), label370, 344, 96);
-  gtk_widget_set_size_request (label370, 32, 24);
-
-  label371 = gtk_label_new ("");
-  gtk_widget_show (label371);
-  gtk_fixed_put (GTK_FIXED (fixed49), label371, 312, 328);
-  gtk_widget_set_size_request (label371, 40, 24);
-
   label52 = gtk_label_new (_("selectionner type :"));
   gtk_widget_show (label52);
   gtk_fixed_put (GTK_FIXED (fixed49), label52, 0, 8);
   gtk_widget_set_size_request (label52, 152, 24);
-
-  radiobutton3 = gtk_radio_button_new_with_mnemonic (NULL, _("temp\303\251rature"));
-  gtk_widget_show (radiobutton3);
-  gtk_fixed_put (GTK_FIXED (fixed49), radiobutton3, 176, 8);
-  gtk_widget_set_size_request (radiobutton3, 124, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton3), radiobutton3_group);
-  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton3));
-
-  radiobutton4 = gtk_radio_button_new_with_mnemonic (NULL, _("humidit\303\251"));
-  gtk_widget_show (radiobutton4);
-  gtk_fixed_put (GTK_FIXED (fixed49), radiobutton4, 336, 8);
-  gtk_widget_set_size_request (radiobutton4, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton4_group);
-  radiobutton4_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
   label30 = gtk_label_new (_("id :"));
   gtk_widget_show (label30);
@@ -8803,6 +8773,35 @@ create_Ajouter_capteur (void)
   gtk_widget_show (valeur);
   gtk_fixed_put (GTK_FIXED (fixed49), valeur, 32, 328);
   gtk_widget_set_size_request (valeur, 72, 24);
+
+  radiobutton3 = gtk_radio_button_new_with_mnemonic (NULL, _("temp\303\251rature"));
+  gtk_widget_show (radiobutton3);
+  gtk_fixed_put (GTK_FIXED (fixed49), radiobutton3, 184, 8);
+  gtk_widget_set_size_request (radiobutton3, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton3), radiobutton3_group);
+  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton3));
+
+  radiobutton4 = gtk_radio_button_new_with_mnemonic (NULL, _("humidit\303\251"));
+  gtk_widget_show (radiobutton4);
+  gtk_fixed_put (GTK_FIXED (fixed49), radiobutton4, 320, 8);
+  gtk_widget_set_size_request (radiobutton4, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
+  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
+
+  label_id = gtk_label_new ("");
+  gtk_widget_show (label_id);
+  gtk_fixed_put (GTK_FIXED (fixed49), label_id, 344, 56);
+  gtk_widget_set_size_request (label_id, 49, 17);
+
+  label_marque = gtk_label_new ("");
+  gtk_widget_show (label_marque);
+  gtk_fixed_put (GTK_FIXED (fixed49), label_marque, 344, 96);
+  gtk_widget_set_size_request (label_marque, 32, 24);
+
+  label_valeur = gtk_label_new ("");
+  gtk_widget_show (label_valeur);
+  gtk_fixed_put (GTK_FIXED (fixed49), label_valeur, 312, 328);
+  gtk_widget_set_size_request (label_valeur, 40, 24);
 
   hbuttonbox16 = GTK_DIALOG (Ajouter_capteur)->action_area;
   gtk_widget_show (hbuttonbox16);
@@ -8831,16 +8830,16 @@ create_Ajouter_capteur (void)
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, entry_marque, "entry_marque");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, entry_valeur, "entry_valeur");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, calendar_capteur, "calendar_capteur");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label369, "label369");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label370, "label370");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label371, "label371");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label52, "label52");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton3, "radiobutton3");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton4, "radiobutton4");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label30, "label30");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label31, "label31");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label32, "label32");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, valeur, "valeur");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton3, "radiobutton3");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton4, "radiobutton4");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_id, "label_id");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_marque, "label_marque");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_valeur, "label_valeur");
   GLADE_HOOKUP_OBJECT_NO_REF (Ajouter_capteur, hbuttonbox16, "hbuttonbox16");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, okbutton_aj_capteur, "okbutton_aj_capteur");
 
@@ -8862,18 +8861,17 @@ create_modifier_capteur (void)
   GtkObject *annee_adj;
   GtkWidget *annee;
   GtkWidget *entry_valeur;
-  GtkWidget *label372;
-  GtkWidget *label373;
-  GtkWidget *label374;
   GtkWidget *label57;
-  GtkWidget *radiobutton3;
-  GSList *radiobutton3_group = NULL;
-  GtkWidget *radiobutton4;
-  GSList *radiobutton4_group = NULL;
   GtkWidget *label56;
   GtkWidget *label55;
   GtkWidget *label53;
   GtkWidget *label91;
+  GtkWidget *radiobutton3;
+  GSList *radiobutton3_group = NULL;
+  GtkWidget *radiobutton4;
+  GtkWidget *label_id;
+  GtkWidget *label_marque;
+  GtkWidget *label_valeur;
   GtkWidget *hbuttonbox17;
   GtkWidget *okbutton_modif;
 
@@ -8925,39 +8923,10 @@ create_modifier_capteur (void)
   gtk_widget_set_size_request (entry_valeur, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_valeur), 8226);
 
-  label372 = gtk_label_new ("");
-  gtk_widget_show (label372);
-  gtk_fixed_put (GTK_FIXED (fixed50), label372, 400, 64);
-  gtk_widget_set_size_request (label372, 49, 17);
-
-  label373 = gtk_label_new ("");
-  gtk_widget_show (label373);
-  gtk_fixed_put (GTK_FIXED (fixed50), label373, 400, 104);
-  gtk_widget_set_size_request (label373, 49, 17);
-
-  label374 = gtk_label_new ("");
-  gtk_widget_show (label374);
-  gtk_fixed_put (GTK_FIXED (fixed50), label374, 400, 200);
-  gtk_widget_set_size_request (label374, 49, 17);
-
   label57 = gtk_label_new (_("selectionner type :"));
   gtk_widget_show (label57);
   gtk_fixed_put (GTK_FIXED (fixed50), label57, 0, 8);
   gtk_widget_set_size_request (label57, 152, 24);
-
-  radiobutton3 = gtk_radio_button_new_with_mnemonic (NULL, _("temp\303\251rature"));
-  gtk_widget_show (radiobutton3);
-  gtk_fixed_put (GTK_FIXED (fixed50), radiobutton3, 176, 8);
-  gtk_widget_set_size_request (radiobutton3, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton3), radiobutton3_group);
-  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton3));
-
-  radiobutton4 = gtk_radio_button_new_with_mnemonic (NULL, _("humidit\303\251"));
-  gtk_widget_show (radiobutton4);
-  gtk_fixed_put (GTK_FIXED (fixed50), radiobutton4, 344, 8);
-  gtk_widget_set_size_request (radiobutton4, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton4_group);
-  radiobutton4_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
   label56 = gtk_label_new (_("id :"));
   gtk_widget_show (label56);
@@ -8978,6 +8947,35 @@ create_modifier_capteur (void)
   gtk_widget_show (label91);
   gtk_fixed_put (GTK_FIXED (fixed50), label91, 48, 200);
   gtk_widget_set_size_request (label91, 72, 24);
+
+  radiobutton3 = gtk_radio_button_new_with_mnemonic (NULL, _("temp\303\251rature"));
+  gtk_widget_show (radiobutton3);
+  gtk_fixed_put (GTK_FIXED (fixed50), radiobutton3, 176, 8);
+  gtk_widget_set_size_request (radiobutton3, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton3), radiobutton3_group);
+  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton3));
+
+  radiobutton4 = gtk_radio_button_new_with_mnemonic (NULL, _("humidit\303\251"));
+  gtk_widget_show (radiobutton4);
+  gtk_fixed_put (GTK_FIXED (fixed50), radiobutton4, 320, 8);
+  gtk_widget_set_size_request (radiobutton4, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
+  radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
+
+  label_id = gtk_label_new ("");
+  gtk_widget_show (label_id);
+  gtk_fixed_put (GTK_FIXED (fixed50), label_id, 400, 64);
+  gtk_widget_set_size_request (label_id, 49, 17);
+
+  label_marque = gtk_label_new ("");
+  gtk_widget_show (label_marque);
+  gtk_fixed_put (GTK_FIXED (fixed50), label_marque, 400, 104);
+  gtk_widget_set_size_request (label_marque, 49, 17);
+
+  label_valeur = gtk_label_new ("");
+  gtk_widget_show (label_valeur);
+  gtk_fixed_put (GTK_FIXED (fixed50), label_valeur, 400, 200);
+  gtk_widget_set_size_request (label_valeur, 49, 17);
 
   hbuttonbox17 = GTK_DIALOG (modifier_capteur)->action_area;
   gtk_widget_show (hbuttonbox17);
@@ -9008,16 +9006,16 @@ create_modifier_capteur (void)
   GLADE_HOOKUP_OBJECT (modifier_capteur, mois, "mois");
   GLADE_HOOKUP_OBJECT (modifier_capteur, annee, "annee");
   GLADE_HOOKUP_OBJECT (modifier_capteur, entry_valeur, "entry_valeur");
-  GLADE_HOOKUP_OBJECT (modifier_capteur, label372, "label372");
-  GLADE_HOOKUP_OBJECT (modifier_capteur, label373, "label373");
-  GLADE_HOOKUP_OBJECT (modifier_capteur, label374, "label374");
   GLADE_HOOKUP_OBJECT (modifier_capteur, label57, "label57");
-  GLADE_HOOKUP_OBJECT (modifier_capteur, radiobutton3, "radiobutton3");
-  GLADE_HOOKUP_OBJECT (modifier_capteur, radiobutton4, "radiobutton4");
   GLADE_HOOKUP_OBJECT (modifier_capteur, label56, "label56");
   GLADE_HOOKUP_OBJECT (modifier_capteur, label55, "label55");
   GLADE_HOOKUP_OBJECT (modifier_capteur, label53, "label53");
   GLADE_HOOKUP_OBJECT (modifier_capteur, label91, "label91");
+  GLADE_HOOKUP_OBJECT (modifier_capteur, radiobutton3, "radiobutton3");
+  GLADE_HOOKUP_OBJECT (modifier_capteur, radiobutton4, "radiobutton4");
+  GLADE_HOOKUP_OBJECT (modifier_capteur, label_id, "label_id");
+  GLADE_HOOKUP_OBJECT (modifier_capteur, label_marque, "label_marque");
+  GLADE_HOOKUP_OBJECT (modifier_capteur, label_valeur, "label_valeur");
   GLADE_HOOKUP_OBJECT_NO_REF (modifier_capteur, hbuttonbox17, "hbuttonbox17");
   GLADE_HOOKUP_OBJECT (modifier_capteur, okbutton_modif, "okbutton_modif");
 

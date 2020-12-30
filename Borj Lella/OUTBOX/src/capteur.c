@@ -34,7 +34,7 @@ int identifiantExiste (char ch[])
 
 }
 int val_valide_cap (char ch[]){
-	int i=0,ok = 1;
+	int i=1,ok = 1;
 	while (ok == 1 && i<strlen (ch)){
 		if (ch[i]<'0' || ch[i] >'9')
 			ok = 0;
@@ -424,7 +424,7 @@ renderer = gtk_cell_renderer_text_new ();
 	{
 		while(fread(&c,sizeof(capteur),1,f)!=0)
 		if (strcmp(c.type,"température")==0)
-			{if (strcmp(c.valeur,"0")<0 || strcmp(c.valeur,"45")>0)
+			{if (strcmp(c.valeur,"0")<=0 || strcmp(c.valeur,"45")>=0)
 		
 		{
 			gtk_list_store_append(store, &iter);
@@ -433,7 +433,7 @@ renderer = gtk_cell_renderer_text_new ();
 		}}
 		//if (strcmp(c.type,"humidité")==0)
 		else
-			{if (strcmp(c.valeur,"40")<0 || strcmp(c.valeur,"76")>0)
+			{if (strcmp(c.valeur,"40")<=0 || strcmp(c.valeur,"80")>0)
 		
 		{
 			gtk_list_store_append(store, &iter);

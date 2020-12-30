@@ -4827,3 +4827,6 @@ gtk_widget_show(Tableau_de_bord_des_plantations);
 partie2(Tableau_de_bord_des_plantations);
 }
 
+
+
+
