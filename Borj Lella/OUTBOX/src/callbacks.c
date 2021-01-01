@@ -6036,3 +6036,50 @@ GtkWidget *dialog = lookup_widget(button,"dialog_supprimer_doublecheck");
 	gtk_widget_destroy(dialog);
 }
 
+
+void
+on_button_top_client_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{GtkWidget *p;
+p=lookup_widget(button,"treeview_client");
+TOP(A);
+afficher_list_client(p);
+
+}
+
+
+
+
+
+void
+on_combo_client_tris_date_changed      (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+
+
+GtkWidget *treeview, *combotri, *combo_entry_tri ;
+char ch[20];
+combotri = lookup_widget(editable,"comboclient");
+combo_entry_tri = GTK_COMBO(combotri)->entry;
+strcpy(ch,gtk_entry_get_text(GTK_ENTRY(combo_entry_tri)));
+treeview = lookup_widget(editable,"treeview_reservation");
+
+
+
+
+
+
+
+if (strcmp("dateUp",ch )==0)
+	{
+	tri_min();
+	tri_aff(treeview);
+	}
+if (strcmp("dateDown",ch )==0)
+	{
+	tri_max();
+	tri_aff(treeview);
+	}
+}
+
+

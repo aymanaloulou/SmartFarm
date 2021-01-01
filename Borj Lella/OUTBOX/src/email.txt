@@ -1,9 +1,7 @@
-From: borjlela@gmail.com   
-To:ahmed.benamor1@esprit.tn   
-Subject: Alerte équipement en panne ! 
+From: aeqfks   
+To:aymen.zeidi@esprit.tn   
+Subject: fjnv, 
  
  
  
-L'équipement d'identifiant 1000 , associé à l'ouvrier flen13 , de type tracteur et de marque toyota est déclaré en panne ! 
- Cette déclaration est urgente, veuillez prendre les mesures convenables. 
- 
+JFC 

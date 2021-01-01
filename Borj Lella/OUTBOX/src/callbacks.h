@@ -1585,3 +1585,11 @@ on_button_cancel_dash_trp_clicked      (GtkButton       *button,
 void
 on_button_non_def_trp_clicked          (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_button_top_client_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_combo_client_tris_date_changed      (GtkEditable     *editable,
+                                        gpointer         user_data);

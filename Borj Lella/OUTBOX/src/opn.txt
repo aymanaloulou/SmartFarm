@@ -1,14 +1,18 @@
----------- Entretien de l'équipement d'identifiant : 1234 ---------- 
+---------- Reservation sous reference :  a ---------- 
 
 
-     Entretenu par : foulen21  
+     nom :     
  
-     Montant d'entretien : 1250  
+     Prenom :     
  
-     Payement : Payé  
+     Numero: 12345678  
  
-     Type de règlement : NON Espèce  
+     nombre de personne :  3  
  
-     Référence de payement : AMEN_BANK-000014528521  
+     Option:  petit-dejeuner  autre   
  
-           Date : 24  / 11 / 2020       ------------------------------------------------------- 
+     Periode: Weekend  
+ 
+     Commentaire : TEST 
+ 
+     Date : 1  / 1 / 1        heure : 2 ------------------------------------------------------- 
