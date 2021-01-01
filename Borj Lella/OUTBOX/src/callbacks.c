@@ -4246,35 +4246,11 @@ gtk_widget_show(dialog);
 ////////////////////////////////////////////////
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//////////////////////////////////////////////////////////////////
+////////////Gestion des plantations///////////////
+//////////////////////////////////////////////////////////////////
 plante p;
 char ref[10],ref1[10];
-
-
 /*/////////////////////////////////////////////////////////////////////////
 			      Les crudes
 /////////////////////////////////////////////////////////////////////////*/
@@ -4336,7 +4312,27 @@ if(strcmp(ref,"")){
 	modif_plantation=create_modif_plantation();
 	gtk_widget_show(modif_plantation);
 //////
-
+GtkWidget *quotidien= lookup_widget(modif_plantation,"radiobutton_quotidien_modif");
+GtkWidget *hebdo= lookup_widget(modif_plantation,"radiobutton_hebdo_modif");
+GtkWidget *mensuel= lookup_widget(modif_plantation,"radiobutton_mensuel_modif");
+if ((strcmp(p.arrosage, "quotidien") == 0))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(quotidien), 1);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(hebdo), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mensuel), 0);
+    }
+    else if ((strcmp(p.arrosage, "hebdomadaire") == 0))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(quotidien), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(hebdo), 1);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mensuel), 0);
+    }
+    else if ((strcmp(p.arrosage, "mensuel") == 0))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(quotidien), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(hebdo), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mensuel), 1);
+    }
 //////
 input1=lookup_widget(modif_plantation,"reference_modif_plante");
 input_q=lookup_widget(modif_plantation,"quantite_modif_plante");
@@ -4350,7 +4346,7 @@ GtkWidget *input_modif1=lookup_widget(modif_plantation,"spinbutton17_plante");
 GtkWidget *input_modif2=lookup_widget(modif_plantation,"spinbutton18_plante");
 GtkWidget *input_modif3=lookup_widget(modif_plantation,"spinbutton19_plante");
 
-//input_combo_recolte=lookup_widget(modif_plantation,"unite_recolte_modif_plante");
+
 input_engrais=lookup_widget(modif_plantation,"engrais_modif_plante");
 input_d_e=lookup_widget(modif_plantation,"jour_engrais_modif_plante");
 input_m_e=lookup_widget(modif_plantation,"mois_engrais_modif_plante");
@@ -4763,12 +4759,12 @@ strcpy(p.engrais,gtk_combo_box_get_active_text(GTK_COMBO_BOX(input_engrais)));
 strcpy(p.commentaire,gtk_entry_get_text(GTK_ENTRY(input6)));
 Supprimer_plante (ref1);
 if(Ajouter_plante(p,objet)){
-//Supprimer_plante (ref1);
+
 gtk_widget_destroy(modif_plantation);
 dialog_valid_modif = lookup_widget(objet,"dialog_valid_modif");
 dialog_valid_modif=create_dialog_valid_modif();
 gtk_widget_show(dialog_valid_modif);
-//strcpy(ref,"");
+
 }
 
 }
@@ -4847,7 +4843,9 @@ gtk_widget_show(Tableau_de_bord_des_plantations);
 partie2(Tableau_de_bord_des_plantations);
 }
 
-
+//////////////////////////////////////////////////////////
+/////////////////// fin partie plantation ////////////////
+//////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 /*..........................................................
