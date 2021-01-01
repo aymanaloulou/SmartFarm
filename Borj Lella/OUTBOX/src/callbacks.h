@@ -1287,3 +1287,301 @@ on_radiobutton3_clicked                (GtkButton       *button,
 void
 on_radiobutton4_clicked                (GtkButton       *button,
                                         gpointer         user_data);
+/**************************************************************************
+
+			GESTION DES TROUPEAUX
+
+***************************************************************************/
+
+void
+on_button_ajoutanimal_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_ajout_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_modif_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_supp_voeux_clicked                  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_afficher_clicked                    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_ajout_brebis_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_modif_brebis_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_supp_brebis_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_ajout_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_modif_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_ajoutanimal_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_buttonok_ajoutanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_male_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_female_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_afficher_clicked                    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_buttonpk_modifanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_female_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_male_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_female_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_male_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_buttonok_modifanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_male_clicked10          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_female_clicked10       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_okbutton_deleteanimal_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_supp_animal_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_male1_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_female1_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_rech_animal_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_male_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_male1_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_female1_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_female_clicked0         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_male_clicked0           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview_animal_row_activated       (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+
+void
+on_button_pdf_clicked                  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_ok__affiche__animal_clicked  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_fiche_animal_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview_hiss_troup_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_reccuperer_troup_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_confirmer_supp_troup_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_recherche_historique_trp_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_afficher_hiss_clicked               (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_affichage_voeux_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_affichage_brebis_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_declaration_maladie_clicked  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_lait_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_confirmer_maladie_clicked    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton_autres_toggled          (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_treeview_maladie_row_activated      (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_supp_sante_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_afficher_malade_clicked             (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_confirm_lait_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_effacer_tout_alim_clicked    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_imprimer_alim_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_ajouter_alim_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_actualiser_alim_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_actualiser_aff_troup_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_checkbutton_mamelle_toggled         (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbutton_meta_toggled            (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_button_supp_check_trp_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_supp_doublecheck_trp_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_female1_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_male1_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_buttonok_modifanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_gestion_troup_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_dash_trp_clicked             (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_retour_maladie_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_non_supp_trp_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_retour_maladie_trp_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_cancel_dash_trp_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_non_def_trp_clicked          (GtkButton       *button,
+                                        gpointer         user_data);

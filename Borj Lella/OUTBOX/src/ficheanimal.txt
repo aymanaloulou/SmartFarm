@@ -1,0 +1,25 @@
+---------- Fiche Animal : fgfg ---------- 
+
+
+     Reférence mére :  1  
+ 
+     Date de naissance :  1/ 1/   1    
+ 
+     Age : 2020 année(s) ,  0 mois et  1 jour(s)   
+ 
+     Sexe:  femelle  
+ 
+     Poids :  d  
+ 
+     Robe:  d  
+ 
+     Lot:  d  
+ 
+     Lait produit :  45.30 
+ 
+     Santé:  sein(e) 
+ 
+     Type: brebis 
+ 
+ 
+----------------------------------------- 

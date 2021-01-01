@@ -1,0 +1,53 @@
+---------- Rapport Alimentation :  ---------- 
+
+ 
+ Ingestion
+ 
+MS:   0 % 
+ 
+UEM:   h % 
+ 
+UEL:  hh % 
+ 
+UEB:  hh %
+ 
+ Fibrosité
+ 
+NDF:   h g/KgMS  
+ 
+ADF:   h g/KgMS  
+ 
+ADL:   h g/KgMS  
+ 
+CB:   h g/KgMS
+ 
+ Protéines
+ 
+PDIN:   h g/KgMS  
+ 
+PDIE:   h g/KgMS  
+ 
+PDIA:   h g/KgMS  
+ 
+MAT:  hh g/KgMS  
+ 
+LYSDI:   h% 
+ 
+METDI:   h%
+ 
+ Energie
+ 
+UFL:   h /KgMS 
+ 
+UEV:  hh /KgMS 
+ 
+MO:   h g/KgMS
+ 
+dMO:   h % 
+ 
+amidon:   h g/KgMS  
+ 
+sucre:  hh g/KgMS  
+ 
+EE/MG:   h g/KgMS  
+----------------------------------------- 

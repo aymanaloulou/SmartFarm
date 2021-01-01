@@ -3,7 +3,9 @@
 #endif
 
 #include <gtk/gtk.h>
-
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
@@ -15,6 +17,15 @@
 #include "authentification.h"
 #include "capteur.h"
 #include "plantation.h"
+#include "troupeaux.h"
+
+
+
+
+
+
+
+
 
 entretiens entr;
 employee e,em;
@@ -26,7 +37,16 @@ ouvrier ouv_m;
 pointage pa,pm;
 char cin_supp[9];
 
-
+animal a_s,ah,a,a_m,a_l,a_f;
+alim b1 ;
+fiche af ; 
+int choixt[]={0,0} ; 
+char text[20]="" ;
+char ref_supp[20];
+char ref_supp_hisst[20];
+char laitp[20];
+char aux[100]="" ;
+char age[20];
 ////////////////////////////////////////////////
 void
 on_button_change_admin_clicked         (GtkButton       *button,
@@ -4829,4 +4849,1192 @@ partie2(Tableau_de_bord_des_plantations);
 
 
 
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                    GESTION DES TROUPEAUX
+
+............................................................*/
+////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         CRUDE
+
+............................................................*/
+////////////////////////////////////////////////////////////
+
+
+////////////////////////AJOUT///////////////////////////////
+void
+on_buttonok_ajoutanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+animal a;
+char text[100]="";
+GtkWidget *input1, *input2, *input3, *input4, *input5,*combobox, /* *input7,*input8,*input9*/*input6;
+GtkWidget *add ;
+add=lookup_widget(button,"dialog_add_troup");
+input1=lookup_widget(button,"entry_ref");
+input2=lookup_widget(button,"entry_ref_mere");
+input3=lookup_widget(button,"entry_poids");
+input4=lookup_widget(button,"entry_robe");
+input5=lookup_widget(button,"entry_lot");
+combobox=lookup_widget(button,"combo_animal");
+input6=lookup_widget(button,"calendar_troup");
+//input7=lookup_widget(button,"spinbutton_jour"); 
+//input8=lookup_widget(button,"spinbutton_mois");
+//input9=lookup_widget(button,"spinbutton_annee");
+
+
+
+
+genre(choixt,text);
+strcpy(a.gender,text);
+
+strcpy(a.ref,gtk_entry_get_text(GTK_ENTRY(input1)));
+strcpy(a.refm,gtk_entry_get_text(GTK_ENTRY(input2)));
+strcpy(a.poids,gtk_entry_get_text(GTK_ENTRY(input3)));
+strcpy(a.robe,gtk_entry_get_text(GTK_ENTRY(input4)));
+strcpy(a.lot,gtk_entry_get_text(GTK_ENTRY(input5)));
+strcpy(a.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)));
+strcpy(a.etat,"sein(e)");
+strcpy(a.maladie,"--");
+a.laittotale= 0 ;
+
+gtk_calendar_get_date (input6,&a.date1.annee,&a.date1.mois,&a.date1.jour);
+a.date1.mois ++ ; 
+	//a.date.jour  = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input7));
+	//a.date.mois  = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input8));
+	//a.date.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(input9)); 
+
+
+
+if(AjoutAnimal(a,button))
+gtk_widget_destroy(add);
+
+
+
+}
+
+
+
+
+////////////////////////MODIF///////////////////////////////
+void
+on_modif_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = create_dialog_edit_troup();
+GtkWidget *label1 = lookup_widget (button,"labeldouble");
+GtkWidget *inp2, *inp3,*inp7, *inp8, *inp9, *inp10;
+GtkSpinButton *inp4, *inp5, *inp6;
+char text[20]="" ; 
+if (strlen (a_m.ref) != 0){
+gtk_widget_show(dialog);
+inp2=lookup_widget(dialog,"entry_edit_ref");
+inp3=lookup_widget(dialog,"entry_edit_refm");
+inp4=lookup_widget(dialog,"spinbutton_edit_jour");
+inp5=lookup_widget(dialog,"spinbutton_edit_mois");
+inp6=lookup_widget(dialog,"spinbutton_edit_annee");
+inp7=lookup_widget(dialog,"entry_edit_poids");
+inp8=lookup_widget(dialog,"entry_edit_robe");
+inp9=lookup_widget(dialog,"entry_edit_lot");
+inp10=lookup_widget(dialog,"entry_edit_lait");
+
+gtk_entry_set_text(GTK_ENTRY(inp2),a_m.ref);
+gtk_entry_set_text(GTK_ENTRY(inp3),a_m.refm);
+gtk_entry_set_text(GTK_LABEL(inp7),a_m.poids);
+gtk_entry_set_text(GTK_ENTRY(inp8),a_m.robe);
+gtk_entry_set_text(GTK_ENTRY(inp9),a_m.lot);
+
+gtk_spin_button_set_value(inp4,a_m.date1.jour);
+gtk_spin_button_set_value(inp5,a_m.date1.mois);
+gtk_spin_button_set_value(inp6,a_m.date1.annee);
+
+char *lait = g_strdup_printf ("%1.3f", a_m.laittotale);
+gtk_entry_set_text(GTK_ENTRY(inp10),lait);
+
+genre( choixt, text ) ;
+choixt[0]=0 ;
+choixt[1]=0 ;
+strcpy(a_m.gender,text) ;
+
+gtk_label_set_text(GTK_LABEL(label1),"");
+}
+
+else{
+gtk_label_set_text(GTK_LABEL(label1),"Double click sur un animal"); 
+}
+}
+
+
+
+///////////////////////////////////////////
+void
+on_buttonok_modifanimal_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+animal a ;
+char text[20]="" ; 
+float i;
+char charlait[20]; 
+ 
+GtkWidget *inp2,*inp3,*inp4,*inp5,*inp6,*inp7,*inp8,*inp9,*comboboxm;
+
+GtkWidget *modifier_animal;
+modifier_animal=lookup_widget(button,"dialog_edit_troup");
+GtkWidget * input_lait=lookup_widget(button,"entry_edit_lait");
+/*if(CsModifAnimal(a_m,button))
+SuppAnimal(a_m.ref) ;*/
+
+g_print ("%s",aux);
+inp2=lookup_widget(button,"entry_edit_ref");
+inp3=lookup_widget(button,"entry_edit_refm");
+inp4=lookup_widget(button,"spinbutton_edit_jour");
+inp5=lookup_widget(button,"spinbutton_edit_mois");
+inp6=lookup_widget(button,"spinbutton_edit_annee");
+inp7=lookup_widget(button,"entry_edit_poids");
+inp8=lookup_widget(button,"entry_edit_robe");
+inp9=lookup_widget(button,"entry_edit_lot");
+comboboxm=lookup_widget(button,"combo_edit_spec"); 
+
+strcpy(a_m.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(comboboxm)));
+strcpy(a_m.ref,gtk_entry_get_text(GTK_ENTRY(inp2)));
+strcpy(a_m.refm,gtk_entry_get_text(GTK_ENTRY(inp3)));
+strcpy(a_m.poids,gtk_entry_get_text(GTK_ENTRY(inp7)));
+strcpy(a_m.robe,gtk_entry_get_text(GTK_ENTRY(inp8)));
+strcpy(a_m.lot,gtk_entry_get_text(GTK_ENTRY(inp9)));
+
+genre( choixt, text ) ;
+choixt[0]=0 ;
+choixt[1]=0 ; 
+strcpy(a_m.gender,text) ;
+
+a_m.date1.jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(inp4));
+a_m.date1.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(inp5));
+a_m.date1.annee=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(inp6));
+g_print ("\n %s",a_m.ref);
+
+strcpy(charlait,gtk_entry_get_text(GTK_ENTRY(input_lait)));
+sscanf (charlait,"%f",&i);
+a_m.laittotale=i;
+strcpy(a_m.lait,gtk_entry_get_text(GTK_ENTRY(input_lait)));
+if((CsModifAnimal(a_m,button))||(strcmp(aux,a_m.ref)==0))
+{
+SuppAnimal(aux);
+AjoutAnimal(a_m,button);
+
+gtk_widget_destroy(modifier_animal);
+}
+}
+///
+
+	
+	
+	
+	
+//
+/////////////////////SUPPRESSION////////////////////////////
+void
+on_supp_animal_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{	FILE *hist;
+	GtkWidget *label = lookup_widget (button,"labeldouble");
+	if (strlen (ref_supp) != 0){
+		GtkWidget*  dialog_check=create_dialog_supprimer_check();
+		gtk_widget_show(dialog_check);
+		
+		gtk_label_set_text(GTK_LABEL(label),"");
+		
+		
+	}
+	else{
+		gtk_label_set_text(GTK_LABEL(label),"Double click sur un animal");
+	}
+}
+////////////////////////////////
+void
+on_button_supp_check_trp_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+FILE *hist;
+	
+		GtkWidget* dialog_check=lookup_widget(button,"dialog_supprimer_check");
+		hist=fopen("histanimal.bin","ab");
+		fwrite (&a_m,sizeof(animal),1,hist);
+		fclose(hist);
+		SuppAnimal(ref_supp);
+		strcpy (ref_supp,"");
+		gtk_widget_destroy(dialog_check);
+		
+}
+//////////////////////AFFICHAGE/////////////////////////////
+//Actualiser////////////////////////////
+void
+on_afficher_clicked                    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview12;
+treeview12 = lookup_widget(button,"treeview_animal");
+AffichListeAnimal(treeview12);
+}
+
+//row-activated//////////////////////////
+void
+on_treeview_animal_row_activated       (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+	GtkTreeIter iter;
+	char* ref;
+	char* refm;
+	char* date;
+	char* gender;
+	char* poids;
+	char* robe;
+	char* lot;
+	char* type;
+	char* etat;
+	char* maladie;
+	char* lait;
+	
+
+	GtkTreeModel *model = gtk_tree_view_get_model (treeview);
+
+	if (gtk_tree_model_get_iter (model, &iter, path)){
+		gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &ref, 1, &refm, 2, &date, 3, &poids, 4, &robe, 5, &lot, 6, &gender,7,&type,8,&etat,9,&maladie,10,&lait, -1);
+		strcpy (a_m.ref, ref);
+		strcpy (a_m.refm, refm);
+		strcpy (a_m.gender, gender);
+		strcpy (a_m.poids, poids);
+		strcpy (a_m.robe, robe);
+		strcpy (a_m.lot, lot);
+		strcpy (a_m.type, type);
+		strcpy (ref_supp, a_m.ref);
+		sscanf (date,"%d/%d/%d",&a_m.date1.jour,&a_m.date1.mois,&a_m.date1.annee);
+		strcpy (a_m.etat, etat);
+		strcpy(a_m.maladie,maladie);
+		sscanf(lait,"%f",&a_m.laittotale);
+		strcpy(aux,a_m.ref);
+	}
+}
+/////////////////////////////////////
+void
+on_treeview_hiss_troup_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+GtkTreeIter iter;
+	char* ref;
+	char* refm;
+	char* date;
+	char* gender;
+	char* poids;
+	char* robe;
+	char* lot;
+	char* type;
+	char* etat;
+	char* maladie;
+	char* lait;
+	
+
+	GtkTreeModel *model = gtk_tree_view_get_model (treeview);
+
+	if (gtk_tree_model_get_iter (model, &iter, path)){
+		gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &ref, 1, &refm, 2, &date, 3, &poids, 4, &robe, 5, &lot, 6, &gender,7,&type,8,&etat,9,&maladie,10,&lait, -1);
+		strcpy (ah.ref, ref);
+		strcpy (ah.refm, refm);
+		strcpy (ah.gender, gender);
+		strcpy (ah.poids, poids);
+		strcpy (ah.robe, robe);
+		strcpy (ah.lot, lot);
+		strcpy (ah.type, type);
+		//strcpy (ref_supp_hisst, ah.ref);
+		sscanf (date,"%d/%d/%d",&ah.date1.jour,&ah.date1.mois,&ah.date1.annee);
+		strcpy (ah.etat, etat);
+	        strcpy(ah.maladie,maladie);
+		sscanf(lait,"%f",&ah.laittotale);
+}
+}
+/////////////////////////
+void
+on_treeview_maladie_row_activated      (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+GtkTreeIter iter;
+	
+	char* ref;
+	char* refm;
+	char* date;
+	char* gender;
+	char* poids;
+	char* robe;
+	char* lot;
+	char* type;
+	char* etat;
+	char* maladie;
+	char* lait;
+	
+
+	GtkTreeModel *model = gtk_tree_view_get_model (treeview);
+
+	if (gtk_tree_model_get_iter (model, &iter, path)){
+		gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &ref, 1, &refm, 2, &date, 3, &poids, 4, &robe, 5, &lot, 6, &gender,7,&type,8,&etat,9,&maladie,10,&lait, -1);
+		strcpy (a_s.ref, ref);
+		strcpy (a_s.refm, refm);
+		strcpy (a_s.gender, gender);
+		strcpy (a_s.poids, poids);
+		strcpy (a_s.robe, robe);
+		strcpy (a_s.lot, lot);
+		strcpy (a_s.type, type);
+		
+		sscanf (date,"%2d/%2d/%4d",&a_s.date1.jour,&a_s.date1.mois,&a_s.date1.annee);
+		strcpy (a_s.etat, etat);
+		strcpy(a_s.maladie,maladie);
+		sscanf (lait,"%1.2f",&a_s.laittotale);
+		strcpy(laitp,lait);
+		
+	
+	}
+}
+
+//////////////////////RECHERCHE/////////////////////////////
+void
+on_button_rech_animal_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *treeview_liste_animal, *ref_input;
+	char ref_rech[20];
+
+	treeview_liste_animal = lookup_widget (button, "treeview_animal");
+	ref_input = lookup_widget (button, "entry_recherche_animal");
+
+	strcpy (ref_rech,gtk_entry_get_text(GTK_ENTRY(ref_input)));
+
+	RechercheAnimal(ref_rech,treeview_liste_animal);
+}
+
+
+///////////////////////
+
+
+
+
+
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                        HISTORIQUE
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_button_reccuperer_troup_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+animal h;
+FILE *j;
+
+int test = 0;int comp = 0;
+j=fopen("histanimal.bin","r+b");
+
+	while (fread (&h,sizeof (animal),1,j) != 0 && test == 0){
+		if (strcmp (h.ref,ah.ref) == 0)
+			test = 1;
+		else 
+			comp++;
+	}
+
+	if (test)
+		{
+			AjoutAnimal(ah,button);
+			SuppHistAnimal(h);
+		 }
+}
+
+
+//////////////////
+void
+on_button_confirmer_supp_troup_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget*  dialog_doublecheck=create_dialog_supprimer_doublecheck();
+		gtk_widget_show(dialog_doublecheck);
+//SuppHistAnimal(ah);
+}
+
+
+
+	
+
+
+void
+on_button_recherche_historique_trp_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview_liste_animal, *ref_input;
+	char ref_rech[20];
+
+	treeview_liste_animal = lookup_widget (button, "treeview_hiss_troup");
+	ref_input = lookup_widget (button, "entry_rech_historique_troup");
+
+	strcpy (ref_rech,gtk_entry_get_text(GTK_ENTRY(ref_input)));
+
+	RechercheHistAnimal(ref_rech,treeview_liste_animal);
+}
+
+////////////
+void
+on_afficher_hiss_clicked               (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeviewhis;
+treeviewhis = lookup_widget(button,"treeview_hiss_troup");
+AffichListeAnimalHist(treeviewhis);
+}
+
+//////////////////
+void
+on_button_supp_doublecheck_trp_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{	GtkWidget* dialog_doublecheck=lookup_widget(button,"dialog_supprimer_doublecheck");
+	SuppHistAnimal(ah);		
+	gtk_widget_destroy(dialog_doublecheck);
+		
+}
+
+
+
+
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         SANTE
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_button_confirmer_maladie_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{GtkWidget *i1,*i2,*i3,*i4,*i5,*i6,*i7,*maladie_animal;
+int i ; 
+SuppAnimal(a_m.ref) ;
+maladie_animal=lookup_widget(button,"dialog_maladie");
+i1=lookup_widget(button,"radiobutton_sub");
+i2=lookup_widget(button,"radiobutton_severe");
+i3=lookup_widget(button,"radiobutton_caillette");
+i4=lookup_widget(button,"radiobutton_acidoses");
+i5=lookup_widget(button,"radiobutton_acetonomie");
+i6=lookup_widget(button,"radiobutton_autres");
+i7=lookup_widget(button,"entry_autres_maladies");
+GSList *List;
+        List= gtk_radio_button_get_group (GTK_RADIO_BUTTON (i1));
+	for (i=0;i<6;i++)
+{
+        if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(List->data)))
+{
+            strcpy(a_m.maladie,gtk_button_get_label(GTK_BUTTON(List->data)));
+	    	
+}
+       else 
+		if (i!=5)
+            	List = g_slist_next(List);
+            
+
+}
+if (gtk_toggle_button_get_active(i6))
+strcpy(a_m.maladie,gtk_entry_get_text(GTK_ENTRY(i7)));
+//strcpy(a.maladie,ah.maladie);
+strcpy(a_m.etat,"malade");
+AjoutAnimal(a_m,button);
+gtk_widget_destroy(maladie_animal);
+}
+///////////////////////////////////////////////
+void
+on_checkbutton_meta_toggled            (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{GtkWidget *i1,*i2,*i3;
+i1=lookup_widget(togglebutton,"radiobutton_caillette");
+i2=lookup_widget(togglebutton,"radiobutton_acidoses");
+i3=lookup_widget(togglebutton,"radiobutton_acetonomie");
+
+
+if(gtk_toggle_button_get_active(togglebutton))
+{
+gtk_widget_show(i1);
+gtk_widget_show(i2);
+gtk_widget_show(i3);
+
+}
+else
+{
+gtk_widget_hide(i1);
+gtk_widget_hide(i2);
+gtk_widget_hide(i3);
+
+}
+}
+//////////////////////////////////
+void
+on_checkbutton_mamelle_toggled         (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{GtkWidget *i1,*i2;
+i1=lookup_widget(togglebutton,"radiobutton_sub");
+i2=lookup_widget(togglebutton,"radiobutton_severe");
+
+if(gtk_toggle_button_get_active(togglebutton))
+{
+gtk_widget_show(i1);
+gtk_widget_show(i2);
+}
+else
+{
+gtk_widget_hide(i1);
+gtk_widget_hide(i2);
+
+}
+}
+
+///////////////////////////////
+void
+on_button_supp_sante_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+float i ;
+char charlait[20];
+
+SuppAnimal(a_s.ref);
+strcpy(a_s.etat,"sein(e)");
+strcpy(a_s.maladie,"--");
+
+strcpy(charlait,laitp);
+sscanf (charlait,"%f",&i);
+a_s.laittotale=i;
+
+AjoutAnimal(a_s,button);
+}
+
+///////////////////////////////
+void
+on_afficher_malade_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget *treeviewmal;
+	treeviewmal = lookup_widget(button,"treeview_maladie");
+	AffichAnimalmalade(treeviewmal);
+}
+
+
+
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         LAIT
+
+............................................................*/
+////////////////////////////////////////////////////////////
+
+void
+on_button_confirm_lait_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{float i;
+char charlait[20];
+	GtkWidget *input_lait , *lait_animal;
+	lait_animal=lookup_widget(button,"dialog_lait");
+	SuppAnimal(a_m.ref);
+	input_lait=lookup_widget(button,"entry_lait_produit");
+	strcpy(charlait,gtk_entry_get_text(GTK_ENTRY(input_lait)));
+	sscanf (charlait,"%f",&i);
+	a_m.laittotale=a_m.laittotale+i;
+	AjoutAnimal(a_m,button);
+gtk_widget_destroy(lait_animal);
+}
+
+
+
+
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         ALIMENTATION
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_button_effacer_tout_alim_clicked    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *window = create_window_troup();
+GtkWidget *inp1, *inp2,*inp3, *inp4, *inp5, *inp6,*inp7, *inp8, *inp9;
+GtkWidget *inp10,*inp11, *inp12, *inp13, *inp14,*inp15, *inp16, *inp17, *inp18,*inp19, *inp20, *inp21;
+
+
+inp1=lookup_widget(button,"entry_ms");
+inp2=lookup_widget(button,"entry_uem");
+inp3=lookup_widget(button,"entry_uel");
+inp4=lookup_widget(button,"entry_ueb");
+
+inp5=lookup_widget(button,"entry_ufl");
+inp6=lookup_widget(button,"entry_uev");
+inp7=lookup_widget(button,"entry_mo");
+inp8=lookup_widget(button,"entry_dmo");
+inp9=lookup_widget(button,"entry_amidon");
+inp10=lookup_widget(button,"entry_sucre");
+inp11=lookup_widget(button,"entry_eemg");
+
+inp12=lookup_widget(button,"entry_ndf");
+inp13=lookup_widget(button,"entry_adf");
+inp14=lookup_widget(button,"entry_adl");
+inp15=lookup_widget(button,"entry_cb");
+
+inp16=lookup_widget(button,"entry_pdin");
+inp17=lookup_widget(button,"entry_pdie");
+inp18=lookup_widget(button,"entry_pdia");
+inp19=lookup_widget(button,"entry_mat");
+inp20=lookup_widget(button,"entry_lysdi");
+inp21=lookup_widget(button,"entry_metdi");
+
+
+
+gtk_entry_set_text(GTK_ENTRY(inp1),"0");
+gtk_entry_set_text(GTK_ENTRY(inp2),"0");
+gtk_entry_set_text(GTK_LABEL(inp3),"0");
+gtk_entry_set_text(GTK_ENTRY(inp4),"0");
+gtk_entry_set_text(GTK_ENTRY(inp5),"0");
+gtk_entry_set_text(GTK_ENTRY(inp6),"0");
+gtk_entry_set_text(GTK_ENTRY(inp7),"0");
+gtk_entry_set_text(GTK_ENTRY(inp8),"0");
+gtk_entry_set_text(GTK_LABEL(inp9),"0");
+gtk_entry_set_text(GTK_ENTRY(inp10),"0");
+gtk_entry_set_text(GTK_ENTRY(inp11),"0");
+gtk_entry_set_text(GTK_ENTRY(inp12),"0");
+gtk_entry_set_text(GTK_ENTRY(inp13),"0");
+gtk_entry_set_text(GTK_ENTRY(inp14),"0");
+gtk_entry_set_text(GTK_LABEL(inp15),"0");
+gtk_entry_set_text(GTK_ENTRY(inp16),"0");
+gtk_entry_set_text(GTK_ENTRY(inp17),"0");
+gtk_entry_set_text(GTK_ENTRY(inp18),"0");
+gtk_entry_set_text(GTK_ENTRY(inp19),"0");
+gtk_entry_set_text(GTK_ENTRY(inp20),"0");
+gtk_entry_set_text(GTK_LABEL(inp21),"0");
+
+
+
+
+
+}
+
+
+void
+on_button_imprimer_alim_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+pdfalim (b1);
+system ("./pdf_alim.sh");
+system ("evince alim.pdf \n");
+}
+
+
+void
+on_button_ajouter_alim_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+alim b1;
+GtkWidget *window = create_window_troup();
+GtkWidget *inp1, *inp2,*inp3, *inp4, *inp5, *inp6,*inp7, *inp8, *inp9;
+GtkWidget *inp10,*inp11, *inp12, *inp13, *inp14,*inp15, *inp16, *inp17, *inp18,*inp19, *inp20, *inp21;
+
+//SuppAlim(b.MS) ;
+inp1=lookup_widget(button,"entry_ms");
+inp2=lookup_widget(button,"entry_uem");
+inp3=lookup_widget(button,"entry_uel");
+inp4=lookup_widget(button,"entry_ueb");
+
+inp5=lookup_widget(button,"entry_ufl");
+inp6=lookup_widget(button,"entry_uev");
+inp7=lookup_widget(button,"entry_mo");
+inp8=lookup_widget(button,"entry_dmo");
+inp9=lookup_widget(button,"entry_amidon");
+inp10=lookup_widget(button,"entry_sucre");
+inp11=lookup_widget(button,"entry_eemg");
+
+inp12=lookup_widget(button,"entry_ndf");
+inp13=lookup_widget(button,"entry_adf");
+inp14=lookup_widget(button,"entry_adl");
+inp15=lookup_widget(button,"entry_cb");
+
+inp16=lookup_widget(button,"entry_pdin");
+inp17=lookup_widget(button,"entry_pdie");
+inp18=lookup_widget(button,"entry_pdia");
+inp19=lookup_widget(button,"entry_mat");
+inp20=lookup_widget(button,"entry_lysdi");
+inp21=lookup_widget(button,"entry_metdi");
+
+strcpy(b1.MS,gtk_entry_get_text(GTK_ENTRY(inp1)));
+strcpy(b1.UEM,gtk_entry_get_text(GTK_ENTRY(inp2)));
+strcpy(b1.UEL,gtk_entry_get_text(GTK_ENTRY(inp3)));
+strcpy(b1.UEB,gtk_entry_get_text(GTK_ENTRY(inp4)));
+
+strcpy(b1.UFL,gtk_entry_get_text(GTK_ENTRY(inp5)));
+strcpy(b1.UEV,gtk_entry_get_text(GTK_ENTRY(inp6)));
+strcpy(b1.MO,gtk_entry_get_text(GTK_ENTRY(inp7)));
+strcpy(b1.dMO,gtk_entry_get_text(GTK_ENTRY(inp8)));
+strcpy(b1.amidon,gtk_entry_get_text(GTK_ENTRY(inp9)));
+strcpy(b1.sucre,gtk_entry_get_text(GTK_ENTRY(inp10)));
+strcpy(b1.EEMG,gtk_entry_get_text(GTK_ENTRY(inp11)));
+
+strcpy(b1.NDF,gtk_entry_get_text(GTK_ENTRY(inp12)));
+strcpy(b1.ADF,gtk_entry_get_text(GTK_ENTRY(inp13)));
+strcpy(b1.ADL,gtk_entry_get_text(GTK_ENTRY(inp14)));
+strcpy(b1.CB,gtk_entry_get_text(GTK_ENTRY(inp15)));
+
+strcpy(b1.PDIN,gtk_entry_get_text(GTK_ENTRY(inp16)));
+strcpy(b1.PDIE,gtk_entry_get_text(GTK_ENTRY(inp17)));
+strcpy(b1.PDIA,gtk_entry_get_text(GTK_ENTRY(inp18)));
+strcpy(b1.MAT,gtk_entry_get_text(GTK_ENTRY(inp19)));
+strcpy(b1.LYSDI,gtk_entry_get_text(GTK_ENTRY(inp20)));
+strcpy(b1.METDI,gtk_entry_get_text(GTK_ENTRY(inp21)));
+AjoutAlim(b1);
+}
+
+
+
+
+
+
+
+
+
+void
+on_button_actualiser_alim_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+alim b1;
+GtkWidget *window = create_window_troup();
+GtkWidget *inp1, *inp2,*inp3, *inp4, *inp5, *inp6,*inp7, *inp8, *inp9;
+GtkWidget *inp10,*inp11, *inp12, *inp13, *inp14,*inp15, *inp16, *inp17, *inp18,*inp19, *inp20, *inp21;
+
+FILE* n = fopen ("alim.bin","r");
+fread(&b1,sizeof(alim),1,n);
+
+inp1=lookup_widget(button,"entry_ms");
+inp2=lookup_widget(button,"entry_uem");
+inp3=lookup_widget(button,"entry_uel");
+inp4=lookup_widget(button,"entry_ueb");
+
+inp5=lookup_widget(button,"entry_ufl");
+inp6=lookup_widget(button,"entry_uev");
+inp7=lookup_widget(button,"entry_mo");
+inp8=lookup_widget(button,"entry_dmo");
+inp9=lookup_widget(button,"entry_amidon");
+inp10=lookup_widget(button,"entry_sucre");
+inp11=lookup_widget(button,"entry_eemg");
+
+inp12=lookup_widget(button,"entry_ndf");
+inp13=lookup_widget(button,"entry_adf");
+inp14=lookup_widget(button,"entry_adl");
+inp15=lookup_widget(button,"entry_cb");
+
+inp16=lookup_widget(button,"entry_pdin");
+inp17=lookup_widget(button,"entry_pdie");
+inp18=lookup_widget(button,"entry_pdia");
+inp19=lookup_widget(button,"entry_mat");
+inp20=lookup_widget(button,"entry_lysdi");
+inp21=lookup_widget(button,"entry_metdi");
+
+
+gtk_entry_set_text(GTK_ENTRY(inp1),b1.MS);
+gtk_entry_set_text(GTK_ENTRY(inp2),b1.UEM);
+gtk_entry_set_text(GTK_LABEL(inp3),b1.UEL);
+gtk_entry_set_text(GTK_ENTRY(inp4),b1.UEB);
+
+gtk_entry_set_text(GTK_ENTRY(inp5),b1.UFL);
+gtk_entry_set_text(GTK_ENTRY(inp6),b1.UEV);
+gtk_entry_set_text(GTK_ENTRY(inp7),b1.MO);
+gtk_entry_set_text(GTK_ENTRY(inp8),b1.dMO);
+gtk_entry_set_text(GTK_LABEL(inp9),b1.amidon);
+gtk_entry_set_text(GTK_ENTRY(inp10),b1.sucre);
+gtk_entry_set_text(GTK_ENTRY(inp11),b1.EEMG);
+
+gtk_entry_set_text(GTK_ENTRY(inp12),b1.NDF);
+gtk_entry_set_text(GTK_ENTRY(inp13),b1.ADF);
+gtk_entry_set_text(GTK_ENTRY(inp14),b1.ADL);
+gtk_entry_set_text(GTK_LABEL(inp15),b1.CB);
+
+gtk_entry_set_text(GTK_ENTRY(inp16),b1.PDIN);
+gtk_entry_set_text(GTK_ENTRY(inp17),b1.PDIE);
+gtk_entry_set_text(GTK_ENTRY(inp18),b1.PDIA);
+gtk_entry_set_text(GTK_ENTRY(inp19),b1.MAT);
+gtk_entry_set_text(GTK_ENTRY(inp20),b1.LYSDI);
+gtk_entry_set_text(GTK_ENTRY(inp21),b1.METDI);
+
+fclose(n);
+}
+
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         FICHE ANIMAL
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_fiche_animal_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = create_dialog_fiche_animal();
+GtkWidget *label1 = lookup_widget (button,"labeldouble");
+GtkWidget *inp1, *inp2,*inp3j,*inp3m,*inp3a, *inp4, *inp5,*inp6, *inp7,*inp8, *inp9, *inp10,*inp11,*inp12,*inp13,*inp14;
+char datej[10],datem[10],datea[10],laitt[10];
+char jour[10];
+char mois[10];
+char annee[10];
+if (strlen (a_m.ref) != 0){
+gtk_widget_show(dialog);
+inp1=lookup_widget(dialog,"label_fiche_animal_ref");
+inp2=lookup_widget(dialog,"label_fiche_animal_refm");
+inp3j=lookup_widget(dialog,"label_fiche_animal_jour");
+inp3m=lookup_widget(dialog,"label_fiche_animal_mois");
+inp3a=lookup_widget(dialog,"label_fiche_animal_annee");
+//inp4=lookup_widget(dialog,"label_fiche_animal_age");
+inp5=lookup_widget(dialog,"label_fiche_animal_genre");
+inp6=lookup_widget(dialog,"label_fiche_animal_poids");
+inp7=lookup_widget(dialog,"label_fiche_animal_robe");
+inp8=lookup_widget(dialog,"label_fiche_animal_lot");
+inp9=lookup_widget(dialog,"label_fiche_animal_lait");
+inp10=lookup_widget(dialog,"label_fiche_animal_sante");
+inp11=lookup_widget(dialog,"label_fiche_animal_gender");
+
+inp12=lookup_widget(dialog,"label_fiche_animal_joura");
+inp13=lookup_widget(dialog,"label_fiche_animal_moisa");
+inp14=lookup_widget(dialog,"label_fiche_animal_anneea");
+
+sprintf (datej,"%2d",a_m.date1.jour);
+sprintf (datem,"%2d",a_m.date1.mois);
+sprintf (datea,"%4d",a_m.date1.annee);
+sprintf (laitt,"%1.2f",a_m.laittotale);
+
+
+gtk_label_set_text(GTK_LABEL(inp1),a_m.ref);
+gtk_label_set_text(GTK_LABEL(inp2),a_m.refm);
+gtk_label_set_text(GTK_LABEL(inp3j),datej);
+gtk_label_set_text(GTK_LABEL(inp3m),datem);
+gtk_label_set_text(GTK_LABEL(inp3a),datea);
+
+
+int jourint=get_jour(a_m);
+int moisint=get_mois(a_m);
+int anneeint=get_annee(a_m);
+sprintf (jour,"%d",jourint);
+sprintf (mois,"%d",moisint);
+sprintf (annee,"%d",anneeint);
+////////
+
+a_f.date1.jour=jourint;
+a_f.date1.mois=moisint;
+a_f.date1.annee=anneeint;
+
+
+gtk_label_set_text(GTK_LABEL(inp12),jour);
+gtk_label_set_text(GTK_LABEL(inp13),mois);
+gtk_label_set_text(GTK_LABEL(inp14),annee);
+
+gtk_label_set_text(GTK_LABEL(inp5),a_m.gender);
+gtk_label_set_text(GTK_LABEL(inp6),a_m.poids);
+
+gtk_label_set_text(GTK_LABEL(inp7),a_m.robe);
+gtk_label_set_text(GTK_LABEL(inp8),a_m.lot);
+gtk_label_set_text(GTK_LABEL(inp9),laitt);
+gtk_label_set_text(GTK_LABEL(inp10),a_m.etat);
+gtk_label_set_text(GTK_LABEL(inp11),a_m.type);
+
+
+
+
+
+gtk_label_set_text(GTK_LABEL(label1),"");
+}
+
+else{
+gtk_label_set_text(GTK_LABEL(label1),"Double click sur un animal"); 
+}
+}
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                        RADIO/CHECK/dialog
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_radiobutton1_female1_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	choixt[0]=0;
+}
+
+
+void
+on_radiobutton1_male1_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	choixt[0]=1;
+}
+
+
+//signal female ajout
+void
+on_radiobutton_female_clicked0         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	choixt[0]=0;
+}
+
+//signal male ajout
+void
+on_radiobutton_male_clicked0           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	choixt[0]=1;
+}
+
+
+/////////////////////////////
+void
+on_button_lait_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = create_dialog_lait();
+gtk_widget_show(dialog);
+}
+////////////////////////
+void
+on_ajout_voeux_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget* dialog_add_animal;
+	dialog_add_animal=create_dialog_add_troup();
+	gtk_widget_show(dialog_add_animal);
+}
+
+/////////////////////////
+void
+on_okbutton_deleteanimal_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{char ref[20];
+GtkWidget *input1;
+GtkWidget *dialog_delete ;
+dialog_delete = lookup_widget(button,"dialog_delete_troup");
+
+input1=lookup_widget(button,"entry_delete_ref");
+
+
+strcpy(ref,gtk_entry_get_text(GTK_ENTRY(input1)));
+
+
+SuppAnimal(ref);
+gtk_widget_destroy(dialog_delete);
+
+}
+
+
+//////////////////////////////////////
+void
+on_button_pdf_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+pdfT (a_m);
+system ("./pdf_ficheanimal.sh");
+system ("evince ficheanimal.pdf \n");
+}
+
+
+
+
+///////////////////////
+void
+on_radiobutton_affichage_voeux_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview13;
+treeview13 = lookup_widget(button,"treeview_animal");
+AffichListeAnimalVoeux(treeview13);
+}
+
+///////////////////////
+void
+on_radiobutton_affichage_brebis_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview14;
+treeview14 = lookup_widget(button,"treeview_animal");
+AffichListeAnimalBrebis(treeview14);
+}
+
+///////////////////////
+void
+on_button_declaration_maladie_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = create_dialog_maladie();
+gtk_widget_show(dialog);
+
+}
+
+
+///////////////////////
+void
+on_radiobutton_autres_toggled          (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+GtkWidget *i7;
+i7=lookup_widget(togglebutton,"entry_autres_maladies");
+if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton)))
+{
+gtk_widget_set_sensitive(i7,TRUE);
+gtk_widget_show(i7);
+}
+else
+{
+gtk_widget_set_sensitive(i7,FALSE);
+
+}
+
+}
+///////////////////////
+void
+on_button_ok__affiche__animal_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+
+
+	
+////////////////////////////////////////////////////////////
+/*..........................................................
+
+                         DASHBOARD
+
+............................................................*/
+////////////////////////////////////////////////////////////
+void
+on_button_actualiser_aff_troup_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *b,*v,*l;
+FILE *f;
+animal a;
+int nbb=0,nbv=0;
+float nbl=0;
+f=fopen ("animal.bin","rb");
+int i=0;
+while (fread (&a,sizeof (animal),1,f)!=0)
+{ 
+	if (strcmp (a.type,"brebis")==0)
+	
+	nbb++;
+	if (strcmp (a.type,"voeux")==0)
+	
+	nbv++;
+	nbl=nbl+a.laittotale;
+	i++;
+}
+fclose (f);
+
+b=lookup_widget (button,"label_nbr_breb");
+ char *breb = g_strdup_printf ("%d", nbb);
+gtk_label_set_text(GTK_LABEL(b),breb);
+
+
+v=lookup_widget (button,"label_nbr_voeux");
+ char *voeux = g_strdup_printf ("%d", nbv);
+gtk_label_set_text(GTK_LABEL(v),voeux);
+
+l=lookup_widget (button,"label_nbr_lait");
+ char *lait = g_strdup_printf ("%1.2f", nbl);
+gtk_label_set_text(GTK_LABEL(l),lait);
+
+
+}
+
+////////////////////////
+
+void
+on_button_gestion_troup_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	GtkWidget* window_gestion_troup=create_window_troup();
+	gtk_widget_show(window_gestion_troup);
+}
+
+
+void
+on_button_dash_trp_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget* dialog_dash_troup=create_dialog_dash_troup();
+	gtk_widget_show(dialog_dash_troup);	
+}
+
+
+void
+on_button_retour_maladie_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_maladie");
+	gtk_widget_destroy(dialog);
+}
+
+
+void
+on_button_non_supp_trp_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_supprimer_check");
+	gtk_widget_destroy(dialog);
+}
+
+
+void
+on_button_retour_maladie_trp_clicked   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_maladie");
+	gtk_widget_destroy(dialog);
+}
+
+
+void
+on_button_cancel_dash_trp_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_dash_troup");
+	gtk_widget_destroy(dialog);
+}
+
+
+void
+on_button_non_def_trp_clicked          (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *dialog = lookup_widget(button,"dialog_supprimer_doublecheck");
+	gtk_widget_destroy(dialog);
+}
 
