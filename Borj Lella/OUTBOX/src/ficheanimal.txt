@@ -1,25 +1,25 @@
----------- Fiche Animal : 16 ---------- 
+---------- Fiche Animal :  d ---------- 
 
 
-     Reférence mére :  a  
+     Reférence mére :  1  
  
-     Date de naissance :  1/ 1/   1    
+     Date de naissance : 28/ 9/2018    
  
-     Age : 2020 année(s) ,  0 mois et  1 jour(s)   
+     Age :  2 année(s) ,  3 mois et  5 jour(s)   
  
      Sexe:  male  
  
-     Poids :  a  
+     Poids :  1  
  
-     Robe:  a  
+     Robe:  d  
  
-     Lot:  a  
+     Lot:  d  
  
-     Lait produit :  0.00 
+     Lait produit :  1.00 
  
      Santé:  sein(e) 
  
-     Type: voeux 
+     Type: brebis 
  
  
 ----------------------------------------- 

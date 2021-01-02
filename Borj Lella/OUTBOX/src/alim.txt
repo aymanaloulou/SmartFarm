@@ -3,51 +3,51 @@
  
  Ingestion
  
-MS:   0 % 
+MS:   j % 
  
-UEM:   h % 
+UEM:  kk % 
  
-UEL:  hh % 
+UEL:  jk % 
  
-UEB:  hh %
+UEB:   k %
  
  Fibrosité
  
-NDF:   h g/KgMS  
+NDF:  kj g/KgMS  
  
-ADF:   h g/KgMS  
+ADF:  jk g/KgMS  
  
-ADL:   h g/KgMS  
+ADL:   j g/KgMS  
  
-CB:   h g/KgMS
+CB:  kj g/KgMS
  
  Protéines
  
-PDIN:   h g/KgMS  
+PDIN:  kj g/KgMS  
  
-PDIE:   h g/KgMS  
+PDIE:  jk g/KgMS  
  
-PDIA:   h g/KgMS  
+PDIA:  jk g/KgMS  
  
-MAT:  hh g/KgMS  
+MAT:   k g/KgMS  
  
-LYSDI:   h% 
+LYSDI:  jk% 
  
-METDI:   h%
+METDI:  kj%
  
  Energie
  
-UFL:   h /KgMS 
+UFL:  kj /KgMS 
  
-UEV:  hh /KgMS 
+UEV:   k /KgMS 
  
-MO:   h g/KgMS
+MO:   j g/KgMS
  
-dMO:   h % 
+dMO:  kj % 
  
-amidon:   h g/KgMS  
+amidon:  jk g/KgMS  
  
-sucre:  hh g/KgMS  
+sucre:  jkj g/KgMS  
  
-EE/MG:   h g/KgMS  
+EE/MG:  kj g/KgMS  
 ----------------------------------------- 

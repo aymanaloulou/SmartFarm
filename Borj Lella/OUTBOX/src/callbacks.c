@@ -1127,6 +1127,8 @@ on_button_gestion_clients_clicked      (GtkWidget    *objet_graphique1,
 GtkWidget *window_gestion_des_clients;
 window_gestion_des_clients=create_window_gestion_des_clients();
 gtk_widget_show(window_gestion_des_clients);
+GtkWidget *window_emp = lookup_widget(objet_graphique1,"window_employee_space");
+gtk_widget_destroy(window_emp);
 
 }
 
@@ -2589,6 +2591,8 @@ on_button_gestion_ouv_clicked          (GtkButton       *button,
 	GtkWidget *window_gest_ouvrier;
   	window_gest_ouvrier = create_window_gest_ouvrier ();
  	gtk_widget_show (window_gest_ouvrier);
+GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+gtk_widget_destroy(window_emp);
 }
 
 
@@ -2630,6 +2634,8 @@ on_button_gestion_equipements_clicked  (GtkButton       *button,
 	GtkWidget *window1;
   	window1 = create_window_equipements ();
  	gtk_widget_show (window1);
+	GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+gtk_widget_destroy(window_emp);
 }
 
 
@@ -4232,6 +4238,9 @@ on_button_road_capteurs_clicked        (GtkButton       *button,
 {
 GtkWidget *dialog = create_window1_gestion_capteurs();
 gtk_widget_show(dialog);
+
+GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+gtk_widget_destroy(window_emp);
 }
 
 
@@ -4827,6 +4836,8 @@ on_button_gestion_des_plantations_clicked
 GtkWidget* Gestion_des_plantations;
 	Gestion_des_plantations=create_Gestion_des_plantations();
 	gtk_widget_show(Gestion_des_plantations);
+GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+gtk_widget_destroy(window_emp);
 }
 
 
@@ -5980,6 +5991,8 @@ on_button_gestion_troup_clicked        (GtkButton       *button,
 {
 	GtkWidget* window_gestion_troup=create_window_troup();
 	gtk_widget_show(window_gestion_troup);
+	GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+gtk_widget_destroy(window_emp);
 }
 
 
@@ -6082,4 +6095,46 @@ if (strcmp("dateDown",ch )==0)
 	}
 }
 
+
+
+void
+on_button_go_to_menu_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+GtkWidget *window_troup = lookup_widget(button,"window_troup");
+GtkWidget *window_equipment = lookup_widget(button,"window_equipements");
+GtkWidget *window_client = lookup_widget(button,"window_gestion_des_clients");
+GtkWidget *window_capteur = lookup_widget(button,"window1_gestion_capteurs");
+GtkWidget *window_plantation = lookup_widget(button,"Gestion_des_plantations");
+GtkWidget *window_ouvrier = lookup_widget(button,"window_gest_ouvrier");
+
+
+GtkWidget *window_employee = create_window_employee_space();
+gtk_widget_show(window_employee);
+
+gtk_widget_destroy(window_troup);
+gtk_widget_destroy(window_equipment);
+gtk_widget_destroy(window_client);
+gtk_widget_destroy(window_capteur);
+gtk_widget_destroy(window_plantation);
+gtk_widget_destroy(window_ouvrier);
+}
+
+
+void
+on_button_go_to_auth_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *window_auth = create_window_authentification();
+gtk_widget_show(window_auth);
+
+GtkWidget *window_emp = lookup_widget(button,"window_employee_space");
+GtkWidget *window_admin = lookup_widget(button,"window_espace_admin");
+
+gtk_widget_destroy(window_emp);
+gtk_widget_destroy(window_admin);
+
+
+}
 

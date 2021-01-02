@@ -1593,3 +1593,11 @@ on_button_top_client_clicked           (GtkButton       *button,
 void
 on_combo_client_tris_date_changed      (GtkEditable     *editable,
                                         gpointer         user_data);
+
+void
+on_button_go_to_menu_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_go_to_auth_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
