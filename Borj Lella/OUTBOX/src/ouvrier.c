@@ -436,17 +436,9 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 
 	FILE* f = fopen ("ouvrier.bin","r+b");
 	ouvrier aux;int test = 0;int comp = 0;
-	char* sub = NULL;
+	
 
-	while (fread (&aux,sizeof (ouvrier),1,f) != 0 && test == 0){
-		sub = strstr (aux.cin,cin_rech);
-		if (sub != NULL)
-			test = 1;
-		else 
-			comp++;
-	}
-
-	if (test){
+	//if (test){
 		GtkCellRenderer *renderer;
 		GtkTreeViewColumn *column;
 		GtkTreeIter iter;
@@ -498,17 +490,28 @@ void fn_rech_ouvrier (char *cin_rech, GtkWidget *liste){
 */
 			store = gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
-			gtk_list_store_append (store, &iter);
+			//gtk_list_store_append (store, &iter);
+			f = fopen ("ouvrier.bin","r+b");
 
-			fseek (f,comp*sizeof (ouvrier),SEEK_SET);
+			while (fread (&aux,sizeof (ouvrier),1,f) != 0 && test == 0){
+				if (strstr (aux.cin,cin_rech) != NULL || strstr (aux.nom,cin_rech) != NULL || strstr (aux.pren,cin_rech) != NULL || strstr (aux.secteur,cin_rech) != NULL){
+					gtk_list_store_append (store, &iter);
+					sprintf (date_naiss,"%d/%d/%d",aux.date_nais.j,aux.date_nais.m,aux.date_nais.a);
+					gtk_list_store_set (store, &iter, CIN, aux.cin, NOM, aux.nom, PREN, aux.pren, DATE, date_naiss, ETAT, aux.etat_civil, GENRE, aux.genre, NUM, aux.num_tel, ADR, aux.adr, EMAIL, aux.email, SECTEUR, aux.secteur, -1);
+				}
+			}
+
+			/*fseek (f,comp*sizeof (ouvrier),SEEK_SET);
 			fread (&aux,sizeof (ouvrier),1,f);
 			sprintf (date_naiss,"%d/%d/%d",aux.date_nais.j,aux.date_nais.m,aux.date_nais.a);
 			gtk_list_store_set (store, &iter, CIN, aux.cin, NOM, aux.nom, PREN, aux.pren, DATE, date_naiss, ETAT, aux.etat_civil, GENRE, aux.genre, NUM, aux.num_tel, ADR, aux.adr, EMAIL, aux.email, SECTEUR, aux.secteur, -1);
+			
+			*/
 			fclose (f);
 			gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
 			g_object_unref (store);
 			
-	}
+	//}
 }
 
 
