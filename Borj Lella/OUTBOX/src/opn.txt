@@ -1,18 +1,14 @@
----------- Reservation sous reference :  a ---------- 
+---------- Entretien de l'équipement d'identifiant : 1234 ---------- 
 
 
-     nom :     
+     Entretenu par : foulen22  
  
-     Prenom :     
+     Montant d'entretien : 1234  
  
-     Numero: 12345678  
+     Payement : Payé  
  
-     nombre de personne :  3  
+     Type de règlement : NON Espèce  
  
-     Option:  petit-dejeuner  autre   
+     Référence de payement : BIAT-000012235325322  
  
-     Periode: Weekend  
- 
-     Commentaire : TEST 
- 
-     Date : 1  / 1 / 1        heure : 2 ------------------------------------------------------- 
+           Date : 31  / 12 / 2020       ------------------------------------------------------- 
