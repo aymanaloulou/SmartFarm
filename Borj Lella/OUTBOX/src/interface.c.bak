@@ -9059,9 +9059,9 @@ create_Ajouter_capteur (void)
   GtkWidget *radiobutton3;
   GSList *radiobutton3_group = NULL;
   GtkWidget *radiobutton4;
-  GtkWidget *label_id;
-  GtkWidget *label_marque;
   GtkWidget *label_valeur;
+  GtkWidget *label_marque;
+  GtkWidget *label_id;
   GtkWidget *hbuttonbox16;
   GtkWidget *okbutton_aj_capteur;
 
@@ -9142,20 +9142,20 @@ create_Ajouter_capteur (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
   radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
-  label_id = gtk_label_new ("");
-  gtk_widget_show (label_id);
-  gtk_fixed_put (GTK_FIXED (fixed49), label_id, 344, 56);
-  gtk_widget_set_size_request (label_id, 49, 17);
-
-  label_marque = gtk_label_new ("");
-  gtk_widget_show (label_marque);
-  gtk_fixed_put (GTK_FIXED (fixed49), label_marque, 344, 96);
-  gtk_widget_set_size_request (label_marque, 32, 24);
-
-  label_valeur = gtk_label_new ("");
-  gtk_widget_show (label_valeur);
+  label_valeur = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed49), label_valeur, 312, 328);
   gtk_widget_set_size_request (label_valeur, 40, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label_valeur), TRUE);
+
+  label_marque = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed49), label_marque, 344, 96);
+  gtk_widget_set_size_request (label_marque, 32, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label_marque), TRUE);
+
+  label_id = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed49), label_id, 344, 56);
+  gtk_widget_set_size_request (label_id, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_id), TRUE);
 
   hbuttonbox16 = GTK_DIALOG (Ajouter_capteur)->action_area;
   gtk_widget_show (hbuttonbox16);
@@ -9191,9 +9191,9 @@ create_Ajouter_capteur (void)
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, valeur, "valeur");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton3, "radiobutton3");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton4, "radiobutton4");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_id, "label_id");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_marque, "label_marque");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_valeur, "label_valeur");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_marque, "label_marque");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_id, "label_id");
   GLADE_HOOKUP_OBJECT_NO_REF (Ajouter_capteur, hbuttonbox16, "hbuttonbox16");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, okbutton_aj_capteur, "okbutton_aj_capteur");
 
@@ -9316,20 +9316,20 @@ create_modifier_capteur (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
   radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
-  label_id = gtk_label_new ("");
-  gtk_widget_show (label_id);
-  gtk_fixed_put (GTK_FIXED (fixed50), label_id, 400, 64);
+  label_id = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed50), label_id, 400, 56);
   gtk_widget_set_size_request (label_id, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_id), TRUE);
 
-  label_marque = gtk_label_new ("");
-  gtk_widget_show (label_marque);
+  label_marque = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed50), label_marque, 400, 104);
   gtk_widget_set_size_request (label_marque, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_marque), TRUE);
 
-  label_valeur = gtk_label_new ("");
-  gtk_widget_show (label_valeur);
+  label_valeur = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed50), label_valeur, 400, 200);
   gtk_widget_set_size_request (label_valeur, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_valeur), TRUE);
 
   hbuttonbox17 = GTK_DIALOG (modifier_capteur)->action_area;
   gtk_widget_show (hbuttonbox17);
@@ -9791,13 +9791,13 @@ create_Gestion_des_plantations (void)
   GtkWidget *calendar_precipitation;
   GtkObject *precipitation_adj;
   GtkWidget *precipitation;
-  GtkWidget *scrolledwindow22;
-  GtkWidget *treeview_precipitation;
   GtkWidget *label386;
-  GtkWidget *actualiser_precipitation;
-  GtkWidget *image99;
   GtkWidget *ajout_precipitation;
   GtkWidget *image98;
+  GtkWidget *scrolledwindow22;
+  GtkWidget *treeview_precipitation;
+  GtkWidget *actualiser_precipitation;
+  GtkWidget *image99;
   GtkWidget *label387;
 
   Gestion_des_plantations = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -9971,28 +9971,10 @@ create_Gestion_des_plantations (void)
   gtk_fixed_put (GTK_FIXED (fixed56), precipitation, 264, 320);
   gtk_widget_set_size_request (precipitation, 60, 27);
 
-  scrolledwindow22 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow22);
-  gtk_fixed_put (GTK_FIXED (fixed56), scrolledwindow22, 592, 96);
-  gtk_widget_set_size_request (scrolledwindow22, 440, 288);
-
-  treeview_precipitation = gtk_tree_view_new ();
-  gtk_widget_show (treeview_precipitation);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow22), treeview_precipitation);
-
   label386 = gtk_label_new (_("Pr\303\251cipitaions (mm/h)"));
   gtk_widget_show (label386);
   gtk_fixed_put (GTK_FIXED (fixed56), label386, 96, 320);
   gtk_widget_set_size_request (label386, 168, 24);
-
-  actualiser_precipitation = gtk_button_new ();
-  gtk_widget_show (actualiser_precipitation);
-  gtk_fixed_put (GTK_FIXED (fixed56), actualiser_precipitation, 984, 64);
-  gtk_widget_set_size_request (actualiser_precipitation, 42, 32);
-
-  image99 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image99);
-  gtk_container_add (GTK_CONTAINER (actualiser_precipitation), image99);
 
   ajout_precipitation = gtk_button_new ();
   gtk_widget_show (ajout_precipitation);
@@ -10002,6 +9984,24 @@ create_Gestion_des_plantations (void)
   image98 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image98);
   gtk_container_add (GTK_CONTAINER (ajout_precipitation), image98);
+
+  scrolledwindow22 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow22);
+  gtk_fixed_put (GTK_FIXED (fixed56), scrolledwindow22, 496, 96);
+  gtk_widget_set_size_request (scrolledwindow22, 440, 288);
+
+  treeview_precipitation = gtk_tree_view_new ();
+  gtk_widget_show (treeview_precipitation);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow22), treeview_precipitation);
+
+  actualiser_precipitation = gtk_button_new ();
+  gtk_widget_show (actualiser_precipitation);
+  gtk_fixed_put (GTK_FIXED (fixed56), actualiser_precipitation, 888, 64);
+  gtk_widget_set_size_request (actualiser_precipitation, 42, 32);
+
+  image99 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image99);
+  gtk_container_add (GTK_CONTAINER (actualiser_precipitation), image99);
 
   label387 = gtk_label_new (_("Calendrier des pr\303\251cipitations"));
   gtk_widget_show (label387);
@@ -10028,11 +10028,11 @@ create_Gestion_des_plantations (void)
   g_signal_connect ((gpointer) button187, "clicked",
                     G_CALLBACK (on_button_go_to_menu_clicked),
                     NULL);
-  g_signal_connect ((gpointer) actualiser_precipitation, "clicked",
-                    G_CALLBACK (on_actualiser_precipitation_clicked),
-                    NULL);
   g_signal_connect ((gpointer) ajout_precipitation, "clicked",
                     G_CALLBACK (on_ajout_precipitation_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) actualiser_precipitation, "clicked",
+                    G_CALLBACK (on_actualiser_precipitation_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -10074,13 +10074,13 @@ create_Gestion_des_plantations (void)
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, fixed56, "fixed56");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, calendar_precipitation, "calendar_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, precipitation, "precipitation");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, scrolledwindow22, "scrolledwindow22");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, treeview_precipitation, "treeview_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, label386, "label386");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, actualiser_precipitation, "actualiser_precipitation");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image99, "image99");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, ajout_precipitation, "ajout_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image98, "image98");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, scrolledwindow22, "scrolledwindow22");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, treeview_precipitation, "treeview_precipitation");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, actualiser_precipitation, "actualiser_precipitation");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image99, "image99");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, label387, "label387");
 
   return Gestion_des_plantations;
@@ -10147,6 +10147,7 @@ create_Tableau_de_bord_des_plantations (void)
   GtkWidget *label500;
   GtkWidget *label_moyenne1;
   GtkWidget *label501;
+  GtkWidget *image160;
 
   Tableau_de_bord_des_plantations = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Tableau_de_bord_des_plantations, 700, 700);
@@ -10437,6 +10438,11 @@ create_Tableau_de_bord_des_plantations (void)
   gtk_fixed_put (GTK_FIXED (fixed57), label501, 640, 72);
   gtk_widget_set_size_request (label501, 57, 17);
 
+  image160 = create_pixmap (Tableau_de_bord_des_plantations, "images.png");
+  gtk_widget_show (image160);
+  gtk_fixed_put (GTK_FIXED (fixed57), image160, 128, 480);
+  gtk_widget_set_size_request (image160, 408, 232);
+
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (Tableau_de_bord_des_plantations, Tableau_de_bord_des_plantations, "Tableau_de_bord_des_plantations");
   GLADE_HOOKUP_OBJECT (Tableau_de_bord_des_plantations, fixed57, "fixed57");
@@ -10496,6 +10502,7 @@ create_Tableau_de_bord_des_plantations (void)
   GLADE_HOOKUP_OBJECT (Tableau_de_bord_des_plantations, label500, "label500");
   GLADE_HOOKUP_OBJECT (Tableau_de_bord_des_plantations, label_moyenne1, "label_moyenne1");
   GLADE_HOOKUP_OBJECT (Tableau_de_bord_des_plantations, label501, "label501");
+  GLADE_HOOKUP_OBJECT (Tableau_de_bord_des_plantations, image160, "image160");
 
   return Tableau_de_bord_des_plantations;
 }
@@ -10877,25 +10884,25 @@ create_ajout_plantation (void)
   gtk_fixed_put (GTK_FIXED (fixed58), label_ref_plante, 352, 8);
   gtk_widget_set_size_request (label_ref_plante, 384, 24);
 
-  label_quantite_plante = gtk_label_new ("");
-  gtk_widget_show (label_quantite_plante);
-  gtk_fixed_put (GTK_FIXED (fixed58), label_quantite_plante, 224, 56);
+  label_quantite_plante = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed58), label_quantite_plante, 216, 56);
   gtk_widget_set_size_request (label_quantite_plante, 48, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label_quantite_plante), TRUE);
 
-  label143_plante = gtk_label_new ("");
-  gtk_widget_show (label143_plante);
+  label143_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed58), label143_plante, 272, 184);
   gtk_widget_set_size_request (label143_plante, 408, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label143_plante), TRUE);
 
-  label133_plante = gtk_label_new ("");
-  gtk_widget_show (label133_plante);
+  label133_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed58), label133_plante, 272, 296);
   gtk_widget_set_size_request (label133_plante, 416, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label133_plante), TRUE);
 
-  label134_plante = gtk_label_new ("");
-  gtk_widget_show (label134_plante);
+  label134_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed58), label134_plante, 272, 384);
   gtk_widget_set_size_request (label134_plante, 416, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label134_plante), TRUE);
 
   hbuttonbox20 = GTK_DIALOG (ajout_plantation)->action_area;
   gtk_widget_show (hbuttonbox20);
@@ -11058,12 +11065,12 @@ create_modif_plantation (void)
   GtkWidget *radiobutton_hebdo_modif;
   GtkWidget *radiobutton_mensuel_modif;
   GtkWidget *engrais_modif_plante;
+  GtkWidget *checkbutton2_plante;
   GtkWidget *label_ref_modif_plante;
-  GtkWidget *label131_plante;
   GtkWidget *label144_plante;
   GtkWidget *label145_plante;
   GtkWidget *label146_plante;
-  GtkWidget *checkbutton2_plante;
+  GtkWidget *label131_plante;
   GtkWidget *hbuttonbox21;
   GtkWidget *cancelbutton_modifier_plante;
   GtkWidget *Modifier_plante;
@@ -11337,35 +11344,35 @@ create_modif_plantation (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (engrais_modif_plante), _("Type y"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (engrais_modif_plante), _("Type z"));
 
+  checkbutton2_plante = gtk_check_button_new_with_mnemonic (_("taille"));
+  gtk_widget_show (checkbutton2_plante);
+  gtk_fixed_put (GTK_FIXED (fixed59), checkbutton2_plante, 152, 352);
+  gtk_widget_set_size_request (checkbutton2_plante, 118, 24);
+
   label_ref_modif_plante = gtk_label_new ("");
   gtk_widget_show (label_ref_modif_plante);
   gtk_fixed_put (GTK_FIXED (fixed59), label_ref_modif_plante, 352, 8);
   gtk_widget_set_size_request (label_ref_modif_plante, 384, 24);
 
-  label131_plante = gtk_label_new ("");
-  gtk_widget_show (label131_plante);
-  gtk_fixed_put (GTK_FIXED (fixed59), label131_plante, 208, 56);
-  gtk_widget_set_size_request (label131_plante, 48, 24);
-
-  label144_plante = gtk_label_new ("");
-  gtk_widget_show (label144_plante);
+  label144_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed59), label144_plante, 264, 176);
   gtk_widget_set_size_request (label144_plante, 416, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label144_plante), TRUE);
 
-  label145_plante = gtk_label_new ("");
-  gtk_widget_show (label145_plante);
+  label145_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed59), label145_plante, 264, 304);
   gtk_widget_set_size_request (label145_plante, 416, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label145_plante), TRUE);
 
-  label146_plante = gtk_label_new ("");
-  gtk_widget_show (label146_plante);
+  label146_plante = gtk_label_new (_("<span foreground=\"red\"><b>Cette date doit etre sup\303\250rieure \303\240 la date de plantation</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed59), label146_plante, 264, 384);
   gtk_widget_set_size_request (label146_plante, 416, 16);
+  gtk_label_set_use_markup (GTK_LABEL (label146_plante), TRUE);
 
-  checkbutton2_plante = gtk_check_button_new_with_mnemonic (_("taille"));
-  gtk_widget_show (checkbutton2_plante);
-  gtk_fixed_put (GTK_FIXED (fixed59), checkbutton2_plante, 152, 352);
-  gtk_widget_set_size_request (checkbutton2_plante, 118, 24);
+  label131_plante = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed59), label131_plante, 208, 56);
+  gtk_widget_set_size_request (label131_plante, 48, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label131_plante), TRUE);
 
   hbuttonbox21 = GTK_DIALOG (modif_plantation)->action_area;
   gtk_widget_show (hbuttonbox21);
@@ -11446,12 +11453,12 @@ create_modif_plantation (void)
   GLADE_HOOKUP_OBJECT (modif_plantation, radiobutton_hebdo_modif, "radiobutton_hebdo_modif");
   GLADE_HOOKUP_OBJECT (modif_plantation, radiobutton_mensuel_modif, "radiobutton_mensuel_modif");
   GLADE_HOOKUP_OBJECT (modif_plantation, engrais_modif_plante, "engrais_modif_plante");
+  GLADE_HOOKUP_OBJECT (modif_plantation, checkbutton2_plante, "checkbutton2_plante");
   GLADE_HOOKUP_OBJECT (modif_plantation, label_ref_modif_plante, "label_ref_modif_plante");
-  GLADE_HOOKUP_OBJECT (modif_plantation, label131_plante, "label131_plante");
   GLADE_HOOKUP_OBJECT (modif_plantation, label144_plante, "label144_plante");
   GLADE_HOOKUP_OBJECT (modif_plantation, label145_plante, "label145_plante");
   GLADE_HOOKUP_OBJECT (modif_plantation, label146_plante, "label146_plante");
-  GLADE_HOOKUP_OBJECT (modif_plantation, checkbutton2_plante, "checkbutton2_plante");
+  GLADE_HOOKUP_OBJECT (modif_plantation, label131_plante, "label131_plante");
   GLADE_HOOKUP_OBJECT_NO_REF (modif_plantation, hbuttonbox21, "hbuttonbox21");
   GLADE_HOOKUP_OBJECT (modif_plantation, cancelbutton_modifier_plante, "cancelbutton_modifier_plante");
   GLADE_HOOKUP_OBJECT (modif_plantation, Modifier_plante, "Modifier_plante");
@@ -12952,7 +12959,6 @@ create_dialog_add_troup (void)
   GtkWidget *cs_ajout_msg_ref;
   GtkWidget *label586;
   GtkWidget *label587;
-  GtkWidget *cs_ajout_ref;
   GtkWidget *cs_ajout_msg_type;
   GtkWidget *cs_ajout_type;
   GtkWidget *combo_animal;
@@ -12968,6 +12974,7 @@ create_dialog_add_troup (void)
   GtkWidget *cs_ajout_msg_poids;
   GtkWidget *cs_ajout_lot;
   GtkWidget *cs_ajout_msg_lot;
+  GtkWidget *cs_ajout_ref;
   GtkWidget *hbuttonbox26;
   GtkWidget *buttonok_ajoutanimal;
 
@@ -13074,11 +13081,6 @@ create_dialog_add_troup (void)
   gtk_fixed_put (GTK_FIXED (fixed67), label587, 20, 370);
   gtk_widget_set_size_request (label587, 49, 20);
 
-  cs_ajout_ref = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_ref, 360, 40);
-  gtk_widget_set_size_request (cs_ajout_ref, 27, 25);
-  gtk_label_set_use_markup (GTK_LABEL (cs_ajout_ref), TRUE);
-
   cs_ajout_msg_type = gtk_label_new (_("<span size='8905'><span foreground =\"red\"><b>Selectionnez un type ! </b></span></span>"));
   gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_msg_type, 400, 120);
   gtk_widget_set_size_request (cs_ajout_msg_type, 134, 23);
@@ -13157,6 +13159,11 @@ create_dialog_add_troup (void)
   gtk_widget_set_size_request (cs_ajout_msg_lot, 134, 23);
   gtk_label_set_use_markup (GTK_LABEL (cs_ajout_msg_lot), TRUE);
 
+  cs_ajout_ref = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_ref, 360, 40);
+  gtk_widget_set_size_request (cs_ajout_ref, 27, 25);
+  gtk_label_set_use_markup (GTK_LABEL (cs_ajout_ref), TRUE);
+
   hbuttonbox26 = GTK_DIALOG (dialog_add_troup)->action_area;
   gtk_widget_show (hbuttonbox26);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (hbuttonbox26), GTK_BUTTONBOX_END);
@@ -13196,7 +13203,6 @@ create_dialog_add_troup (void)
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_ref, "cs_ajout_msg_ref");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, label586, "label586");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, label587, "label587");
-  GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_ref, "cs_ajout_ref");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_type, "cs_ajout_msg_type");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_type, "cs_ajout_type");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, combo_animal, "combo_animal");
@@ -13211,6 +13217,7 @@ create_dialog_add_troup (void)
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_poids, "cs_ajout_msg_poids");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_lot, "cs_ajout_lot");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_lot, "cs_ajout_msg_lot");
+  GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_ref, "cs_ajout_ref");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_add_troup, hbuttonbox26, "hbuttonbox26");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, buttonok_ajoutanimal, "buttonok_ajoutanimal");
 

@@ -4342,7 +4342,30 @@ if ((strcmp(p.arrosage, "quotidien") == 0))
       gtk_toggle_button_set_active(GTK_RADIO_BUTTON(hebdo), 0);
       gtk_toggle_button_set_active(GTK_RADIO_BUTTON(mensuel), 1);
     }
-//////
+///////
+GtkWidget *unit= lookup_widget(modif_plantation,"unite_modif_plante");
+GtkWidget *engrais= lookup_widget(modif_plantation,"engrais_modif_plante");
+GtkWidget *coche= lookup_widget(modif_plantation,"checkbutton2_plante");
+if (strcmp(p.unit.unite,"---")==0)
+gtk_combo_box_set_active (unit,0);
+else if  (strcmp(p.unit.unite,"G")==0)
+gtk_combo_box_set_active (unit,0);
+else if  (strcmp(p.unit.unite,"KG")==0)
+gtk_combo_box_set_active (unit,2);
+
+if (strcmp(p.engrais,"Type x")==0)
+gtk_combo_box_set_active (engrais,0);
+else if  (strcmp(p.engrais,"Type y")==0)
+gtk_combo_box_set_active (engrais,1);
+else if  (strcmp(p.engrais,"Type z")==0)
+gtk_combo_box_set_active (engrais,2);
+///////////////////////////////////////////
+if (strstr(p.taille,"oui"))
+{ 
+gtk_toggle_button_set_active (coche,TRUE);
+
+}
+///////
 input1=lookup_widget(modif_plantation,"reference_modif_plante");
 input_q=lookup_widget(modif_plantation,"quantite_modif_plante");
 input_combo_p=lookup_widget(modif_plantation,"unite_modif_plante");
@@ -4526,18 +4549,23 @@ gchar* commentaire;
 	GtkTreeModel *model = gtk_tree_view_get_model(treeview);
 	if (gtk_tree_model_get_iter(model, &iter, path))
 	{
-gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &reference, 1, &Quantite, 2, &unite, 3, &date, 4, &Quantite1,5,&date_recolte, 6, &arrosage, 7, &engrais_ch,8,&date1, 9, &use,10,&date2,11,&commentaire,-1);	
+gtk_tree_model_get (GTK_LIST_STORE (model), &iter, 0, &reference, 1, &Quantite, 2, &unite, 3, &date, 4, &Quantite1,5,&date_recolte, 6, &arrosage, 7, &engrais_ch,8,&date1, 9, &taille,10,&date2,11,&commentaire,-1);	
 		strcpy(p.reference,reference);
 		strcpy(ref,reference);
 		strcpy(ref1,reference);
 		strcpy (p.unit.unite, unite);
 		strcpy (p.arrosage, arrosage);
+		strcpy (p.engrais, engrais_ch);
                 sscanf (date,"%d/%d/%d",&p.date.jour,&p.date.mois,&p.date.annee);
 		sscanf (date_recolte,"%d/%d/%d",&p.date_recolte.jour,&p.date_recolte.mois,&p.date_recolte.annee);
 		sscanf (date1,"%d/%d/%d",&p.date_engrais1.jour,&p.date_engrais1.mois,&p.date_engrais1.annee);
 		sscanf (date2,"%d/%d/%d",&p.date_taille.jour,&p.date_taille.mois,&p.date_taille.annee);
 		sscanf (Quantite,"%d",&p.quant.quantite);
 		sscanf (Quantite1,"%d",&p.quant.quantite_recolte);
+if (strcmp(taille,"oui"))
+		strcpy(p.taille,taille);
+else 
+		strcpy (p.taille,taille);		
 		strcpy (p.commentaire, commentaire);
 		
 				

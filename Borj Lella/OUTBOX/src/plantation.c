@@ -115,73 +115,118 @@ GtkWidget *input3_m=lookup_widget(objet,"label146_plante");
 if (p.quant.quantite_recolte != 0){
 if (compare_date(p.date,p.date_recolte)){
 		valide2=0;
-		gtk_label_set_text(GTK_LABEL(input1),"Cette date doit etre supèrieure à la date de plantation");
-		gtk_label_set_text(GTK_LABEL(input1_m),"Cette date doit etre supèrieure à la date de plantation");}
+		
+		gtk_widget_show(input1);
+		gtk_widget_show(input1_m);
+
+}
 else {
 		valide2=1;
-		gtk_label_set_text(GTK_LABEL(input1),"");
-		gtk_label_set_text(GTK_LABEL(input1),"");}
+		
+		gtk_widget_hide(input1);
+		gtk_widget_hide(input1_m);
+}
 }
 if (compare_date(p.date,p.date_engrais1)){
 		valide3=0;
-		gtk_label_set_text(GTK_LABEL(input2),"Cette date doit etre supèrieure à la date de plantation");
-		gtk_label_set_text(GTK_LABEL(input2_m),"Cette date doit etre supèrieure à la date de plantation");}
+		//gtk_label_set_text(GTK_LABEL(input2),"Cette date doit etre supèrieure à la date de plantation");
+		//gtk_label_set_text(GTK_LABEL(input2_m),"Cette date doit etre supèrieure à la date de plantation");
+		gtk_widget_show(input2);
+		gtk_widget_show(input2_m);
+}
 else {
 		valide3=1;
-		gtk_label_set_text(GTK_LABEL(input2),"");
-		gtk_label_set_text(GTK_LABEL(input2_m),"");}
+		//gtk_label_set_text(GTK_LABEL(input2),"");
+		//gtk_label_set_text(GTK_LABEL(input2_m),"");
+		gtk_widget_hide(input1);
+		gtk_widget_hide(input1_m);
+}
 
 if (strcmp(p.taille,"oui")==0){
 if (compare_date(p.date,p.date_taille)){
 			valide4=0;
-			gtk_label_set_text(GTK_LABEL(input3),"Cette date doit etre supèrieure à la date de plantation");
-			gtk_label_set_text(GTK_LABEL(input3_m),"Cette date doit etre supèrieure à la date de plantation");}
+			//gtk_label_set_text(GTK_LABEL(input3),"Cette date doit etre supèrieure à la date de plantation");
+			//gtk_label_set_text(GTK_LABEL(input3_m),"Cette date doit etre supèrieure à la date de plantation");
+			gtk_widget_show(input3);
+			gtk_widget_show(input3_m);
+}
 else {
 			valide4=1;
-			gtk_label_set_text(GTK_LABEL(input3),"");
-			gtk_label_set_text(GTK_LABEL(input3_m),"");}}
+			//gtk_label_set_text(GTK_LABEL(input3),"");
+			//gtk_label_set_text(GTK_LABEL(input3_m),"");
+			gtk_widget_hide(input3);
+			gtk_widget_hide(input3_m);
+}}
 				
 if (verifREF_plante(p.reference) == 0){
 		valide = 0;
-		gtk_label_set_text(GTK_LABEL(ref_p),"Ce nom existe déja");	
+		gtk_label_set_text(GTK_LABEL(ref_p),"Ce nom existe déja");
+		//gtk_widget_show(input1);
+		
+	
 	}	
 	else{
 		gtk_label_set_text(GTK_LABEL(ref_p),"");
+		//gtk_widget_show(input1);
+		
+
 	}
 
 if (verifREF_plante(p.reference) == 0){
 		valide = 0;
-		gtk_label_set_text(GTK_LABEL(ref_p),"Ce nom existe déja");	
+		gtk_label_set_text(GTK_LABEL(ref_p),"Ce nom existe déja");
+		//gtk_widget_show(input1);
+		
+	
 	}	
 	else{
 		gtk_label_set_text(GTK_LABEL(ref_p),"");
+		//gtk_widget_show(input1);
+		
+
 	}
 if (verifREF_plante(p.reference) == 0){
 		valide = 0;
-		gtk_label_set_text(GTK_LABEL(ref_pm),"Ce nom existe déja");	
+		gtk_label_set_text(GTK_LABEL(ref_pm),"Ce nom existe déja");
+		//gtk_widget_show(input1);
+		
+	
 	}	
 	else{
 		gtk_label_set_text(GTK_LABEL(ref_pm),"");
+		//gtk_widget_show(input1);
+		
+
 	}
 
 if (strcmp (p.reference,"") == 0) 
 			{valide=0;
 			gtk_label_set_text(GTK_LABEL(ref_p),"Veuillez introduire un nom");
-			gtk_label_set_text(GTK_LABEL(ref_pm),"Veuillez introduire un nom");}
+			gtk_label_set_text(GTK_LABEL(ref_pm),"Veuillez introduire un nom");
+			//gtk_widget_show(input1);
+			//gtk_widget_show(input1_m);
+}
 if(comp(p.quant.quantite,p.quant.quantite_recolte)==0){
 	valide1=0;
-	gtk_label_set_text(GTK_LABEL(quant),"X");
+	//gtk_label_set_text(GTK_LABEL(quant),"X");
+	gtk_widget_show(quant);
 }
 else{
-	gtk_label_set_text(GTK_LABEL(quant),"");
+	//gtk_label_set_text(GTK_LABEL(quant),"");
+	gtk_widget_hide(quant);
 }
 
 if(comp(p.quant.quantite,p.quant.quantite_recolte)==0){
 	valide1=0;
-	gtk_label_set_text(GTK_LABEL(quant_m),"X");
+	//gtk_label_set_text(GTK_LABEL(quant_m),"X");
+	gtk_widget_show(quant_m);
+		
+
 }
 else{
-	gtk_label_set_text(GTK_LABEL(quant_m),"");
+	//gtk_label_set_text(GTK_LABEL(quant_m),"");
+	gtk_widget_hide(quant_m);
+
 }
 
 if ((valide)&&(valide1)&&(valide2)&&(valide3)&&(valide4)){
