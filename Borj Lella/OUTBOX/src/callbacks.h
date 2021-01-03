@@ -1601,3 +1601,24 @@ on_button_go_to_menu_clicked           (GtkButton       *button,
 void
 on_button_go_to_auth_clicked           (GtkButton       *button,
                                         gpointer         user_data);
+
+gboolean
+on_user_mdp_button_press_event         (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_user_id_button_press_event          (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_button_visualise_button_press_event (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);
+
+gboolean
+on_button_visualise_button_release_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data);

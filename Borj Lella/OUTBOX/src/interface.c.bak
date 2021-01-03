@@ -8565,7 +8565,9 @@ create_window_authentification (void)
   GtkWidget *user_mdp;
   GtkWidget *user_id;
   GtkWidget *button_login;
+  GtkWidget *button_visualise;
   GtkWidget *image80;
+  GtkWidget *image162;
 
   window_authentification = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_authentification), 2);
@@ -8580,15 +8582,15 @@ create_window_authentification (void)
 
   user_mdp = gtk_entry_new ();
   gtk_widget_show (user_mdp);
-  gtk_fixed_put (GTK_FIXED (fixed44), user_mdp, 392, 402);
-  gtk_widget_set_size_request (user_mdp, 272, 40);
-  gtk_entry_set_visibility (GTK_ENTRY (user_mdp), FALSE);
+  gtk_fixed_put (GTK_FIXED (fixed44), user_mdp, 392, 408);
+  gtk_widget_set_size_request (user_mdp, 256, 34);
+  gtk_entry_set_text (GTK_ENTRY (user_mdp), _("Mot De passe"));
   gtk_entry_set_invisible_char (GTK_ENTRY (user_mdp), 8226);
 
   user_id = gtk_entry_new ();
   gtk_widget_show (user_id);
   gtk_fixed_put (GTK_FIXED (fixed44), user_id, 392, 328);
-  gtk_widget_set_size_request (user_id, 272, 40);
+  gtk_widget_set_size_request (user_id, 256, 40);
   gtk_entry_set_text (GTK_ENTRY (user_id), _("Identifiant"));
   gtk_entry_set_invisible_char (GTK_ENTRY (user_id), 8226);
 
@@ -8597,13 +8599,35 @@ create_window_authentification (void)
   gtk_fixed_put (GTK_FIXED (fixed44), button_login, 392, 472);
   gtk_widget_set_size_request (button_login, 240, 56);
 
+  button_visualise = gtk_button_new_with_mnemonic ("");
+  gtk_widget_show (button_visualise);
+  gtk_fixed_put (GTK_FIXED (fixed44), button_visualise, 655, 414);
+  gtk_widget_set_size_request (button_visualise, 24, 24);
+
   image80 = create_pixmap (window_authentification, "mahiech finale_Plan de travail 1.png");
   gtk_widget_show (image80);
   gtk_fixed_put (GTK_FIXED (fixed44), image80, 0, 0);
   gtk_widget_set_size_request (image80, 1024, 760);
 
+  image162 = create_pixmap (window_authentification, "visualise.png");
+  gtk_widget_show (image162);
+  gtk_fixed_put (GTK_FIXED (fixed44), image162, 649, 412);
+  gtk_widget_set_size_request (image162, 37, 30);
+
+  g_signal_connect ((gpointer) user_mdp, "button_press_event",
+                    G_CALLBACK (on_user_mdp_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) user_id, "button_press_event",
+                    G_CALLBACK (on_user_id_button_press_event),
+                    NULL);
   g_signal_connect ((gpointer) button_login, "clicked",
                     G_CALLBACK (on_button_login_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_visualise, "button_press_event",
+                    G_CALLBACK (on_button_visualise_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_visualise, "button_release_event",
+                    G_CALLBACK (on_button_visualise_button_release_event),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -8612,7 +8636,9 @@ create_window_authentification (void)
   GLADE_HOOKUP_OBJECT (window_authentification, user_mdp, "user_mdp");
   GLADE_HOOKUP_OBJECT (window_authentification, user_id, "user_id");
   GLADE_HOOKUP_OBJECT (window_authentification, button_login, "button_login");
+  GLADE_HOOKUP_OBJECT (window_authentification, button_visualise, "button_visualise");
   GLADE_HOOKUP_OBJECT (window_authentification, image80, "image80");
+  GLADE_HOOKUP_OBJECT (window_authentification, image162, "image162");
 
   return window_authentification;
 }
@@ -9791,13 +9817,14 @@ create_Gestion_des_plantations (void)
   GtkWidget *calendar_precipitation;
   GtkObject *precipitation_adj;
   GtkWidget *precipitation;
-  GtkWidget *label386;
-  GtkWidget *ajout_precipitation;
-  GtkWidget *image98;
   GtkWidget *scrolledwindow22;
   GtkWidget *treeview_precipitation;
   GtkWidget *actualiser_precipitation;
   GtkWidget *image99;
+  GtkWidget *image161;
+  GtkWidget *label386;
+  GtkWidget *ajout_precipitation;
+  GtkWidget *image98;
   GtkWidget *label387;
 
   Gestion_des_plantations = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -9959,7 +9986,7 @@ create_Gestion_des_plantations (void)
 
   calendar_precipitation = gtk_calendar_new ();
   gtk_widget_show (calendar_precipitation);
-  gtk_fixed_put (GTK_FIXED (fixed56), calendar_precipitation, 96, 96);
+  gtk_fixed_put (GTK_FIXED (fixed56), calendar_precipitation, 608, 64);
   gtk_widget_set_size_request (calendar_precipitation, 232, 224);
   gtk_calendar_display_options (GTK_CALENDAR (calendar_precipitation),
                                 GTK_CALENDAR_SHOW_HEADING
@@ -9968,26 +9995,12 @@ create_Gestion_des_plantations (void)
   precipitation_adj = gtk_adjustment_new (1, 0, 100, 1, 10, 10);
   precipitation = gtk_spin_button_new (GTK_ADJUSTMENT (precipitation_adj), 1, 0);
   gtk_widget_show (precipitation);
-  gtk_fixed_put (GTK_FIXED (fixed56), precipitation, 264, 320);
+  gtk_fixed_put (GTK_FIXED (fixed56), precipitation, 336, 320);
   gtk_widget_set_size_request (precipitation, 60, 27);
-
-  label386 = gtk_label_new (_("Pr\303\251cipitaions (mm/h)"));
-  gtk_widget_show (label386);
-  gtk_fixed_put (GTK_FIXED (fixed56), label386, 96, 320);
-  gtk_widget_set_size_request (label386, 168, 24);
-
-  ajout_precipitation = gtk_button_new ();
-  gtk_widget_show (ajout_precipitation);
-  gtk_fixed_put (GTK_FIXED (fixed56), ajout_precipitation, 184, 360);
-  gtk_widget_set_size_request (ajout_precipitation, 74, 29);
-
-  image98 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image98);
-  gtk_container_add (GTK_CONTAINER (ajout_precipitation), image98);
 
   scrolledwindow22 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow22);
-  gtk_fixed_put (GTK_FIXED (fixed56), scrolledwindow22, 496, 96);
+  gtk_fixed_put (GTK_FIXED (fixed56), scrolledwindow22, 288, 368);
   gtk_widget_set_size_request (scrolledwindow22, 440, 288);
 
   treeview_precipitation = gtk_tree_view_new ();
@@ -9996,12 +10009,31 @@ create_Gestion_des_plantations (void)
 
   actualiser_precipitation = gtk_button_new ();
   gtk_widget_show (actualiser_precipitation);
-  gtk_fixed_put (GTK_FIXED (fixed56), actualiser_precipitation, 888, 64);
+  gtk_fixed_put (GTK_FIXED (fixed56), actualiser_precipitation, 728, 368);
   gtk_widget_set_size_request (actualiser_precipitation, 42, 32);
 
   image99 = gtk_image_new_from_stock ("gtk-refresh", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image99);
   gtk_container_add (GTK_CONTAINER (actualiser_precipitation), image99);
+
+  image161 = create_pixmap (Gestion_des_plantations, "index (copie).png");
+  gtk_widget_show (image161);
+  gtk_fixed_put (GTK_FIXED (fixed56), image161, 112, 32);
+  gtk_widget_set_size_request (image161, 344, 277);
+
+  label386 = gtk_label_new (_("Pr\303\251cipitaions (mm/h)"));
+  gtk_widget_show (label386);
+  gtk_fixed_put (GTK_FIXED (fixed56), label386, 168, 320);
+  gtk_widget_set_size_request (label386, 168, 24);
+
+  ajout_precipitation = gtk_button_new ();
+  gtk_widget_show (ajout_precipitation);
+  gtk_fixed_put (GTK_FIXED (fixed56), ajout_precipitation, 496, 320);
+  gtk_widget_set_size_request (ajout_precipitation, 74, 29);
+
+  image98 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image98);
+  gtk_container_add (GTK_CONTAINER (ajout_precipitation), image98);
 
   label387 = gtk_label_new (_("Calendrier des pr\303\251cipitations"));
   gtk_widget_show (label387);
@@ -10028,11 +10060,11 @@ create_Gestion_des_plantations (void)
   g_signal_connect ((gpointer) button187, "clicked",
                     G_CALLBACK (on_button_go_to_menu_clicked),
                     NULL);
-  g_signal_connect ((gpointer) ajout_precipitation, "clicked",
-                    G_CALLBACK (on_ajout_precipitation_clicked),
-                    NULL);
   g_signal_connect ((gpointer) actualiser_precipitation, "clicked",
                     G_CALLBACK (on_actualiser_precipitation_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) ajout_precipitation, "clicked",
+                    G_CALLBACK (on_ajout_precipitation_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -10074,13 +10106,14 @@ create_Gestion_des_plantations (void)
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, fixed56, "fixed56");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, calendar_precipitation, "calendar_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, precipitation, "precipitation");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, label386, "label386");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, ajout_precipitation, "ajout_precipitation");
-  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image98, "image98");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, scrolledwindow22, "scrolledwindow22");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, treeview_precipitation, "treeview_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, actualiser_precipitation, "actualiser_precipitation");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image99, "image99");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image161, "image161");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, label386, "label386");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, ajout_precipitation, "ajout_precipitation");
+  GLADE_HOOKUP_OBJECT (Gestion_des_plantations, image98, "image98");
   GLADE_HOOKUP_OBJECT (Gestion_des_plantations, label387, "label387");
 
   return Gestion_des_plantations;

@@ -6166,3 +6166,57 @@ gtk_widget_destroy(window_admin);
 
 }
 
+///////////////////
+gboolean
+on_user_mdp_button_press_event         (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+GtkWidget *entry;
+  entry=lookup_widget(widget,"user_mdp");
+  if (strcmp(gtk_entry_get_text(entry),"Mot de passe")==0){
+        gtk_entry_set_text(entry,"");
+	gtk_entry_set_visibility (GTK_ENTRY (entry), FALSE);}
+  return FALSE;
+}
+
+
+gboolean
+on_user_id_button_press_event          (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+GtkWidget *entry;
+  entry=lookup_widget(widget,"user_id");
+  if (strcmp(gtk_entry_get_text(entry),"Identifiant")==0)
+        gtk_entry_set_text(entry,"");
+  return FALSE;
+}
+
+
+gboolean
+on_button_visualise_button_press_event (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+	GtkWidget *entry;
+  entry=lookup_widget(widget,"user_mdp");
+  gtk_entry_set_visibility (GTK_ENTRY (entry), TRUE);
+  return FALSE;
+}
+
+
+gboolean
+on_button_visualise_button_release_event
+                                        (GtkWidget       *widget,
+                                        GdkEventButton  *event,
+                                        gpointer         user_data)
+{
+	GtkWidget *entry;
+  entry=lookup_widget(widget,"user_mdp");
+  gtk_entry_set_visibility (GTK_ENTRY (entry), FALSE);
+  return FALSE;
+}
+/////////////
+
+

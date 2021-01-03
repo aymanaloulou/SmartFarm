@@ -8565,7 +8565,9 @@ create_window_authentification (void)
   GtkWidget *user_mdp;
   GtkWidget *user_id;
   GtkWidget *button_login;
+  GtkWidget *button_visualise;
   GtkWidget *image80;
+  GtkWidget *image162;
 
   window_authentification = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (window_authentification), 2);
@@ -8580,15 +8582,15 @@ create_window_authentification (void)
 
   user_mdp = gtk_entry_new ();
   gtk_widget_show (user_mdp);
-  gtk_fixed_put (GTK_FIXED (fixed44), user_mdp, 392, 402);
-  gtk_widget_set_size_request (user_mdp, 272, 40);
-  gtk_entry_set_visibility (GTK_ENTRY (user_mdp), FALSE);
+  gtk_fixed_put (GTK_FIXED (fixed44), user_mdp, 392, 408);
+  gtk_widget_set_size_request (user_mdp, 256, 34);
+  gtk_entry_set_text (GTK_ENTRY (user_mdp), _("Mot de passe"));
   gtk_entry_set_invisible_char (GTK_ENTRY (user_mdp), 8226);
 
   user_id = gtk_entry_new ();
   gtk_widget_show (user_id);
   gtk_fixed_put (GTK_FIXED (fixed44), user_id, 392, 328);
-  gtk_widget_set_size_request (user_id, 272, 40);
+  gtk_widget_set_size_request (user_id, 256, 40);
   gtk_entry_set_text (GTK_ENTRY (user_id), _("Identifiant"));
   gtk_entry_set_invisible_char (GTK_ENTRY (user_id), 8226);
 
@@ -8597,13 +8599,35 @@ create_window_authentification (void)
   gtk_fixed_put (GTK_FIXED (fixed44), button_login, 392, 472);
   gtk_widget_set_size_request (button_login, 240, 56);
 
+  button_visualise = gtk_button_new_with_mnemonic ("");
+  gtk_widget_show (button_visualise);
+  gtk_fixed_put (GTK_FIXED (fixed44), button_visualise, 655, 414);
+  gtk_widget_set_size_request (button_visualise, 24, 24);
+
   image80 = create_pixmap (window_authentification, "mahiech finale_Plan de travail 1.png");
   gtk_widget_show (image80);
   gtk_fixed_put (GTK_FIXED (fixed44), image80, 0, 0);
   gtk_widget_set_size_request (image80, 1024, 760);
 
+  image162 = create_pixmap (window_authentification, "visualise.png");
+  gtk_widget_show (image162);
+  gtk_fixed_put (GTK_FIXED (fixed44), image162, 649, 412);
+  gtk_widget_set_size_request (image162, 37, 30);
+
+  g_signal_connect ((gpointer) user_mdp, "button_press_event",
+                    G_CALLBACK (on_user_mdp_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) user_id, "button_press_event",
+                    G_CALLBACK (on_user_id_button_press_event),
+                    NULL);
   g_signal_connect ((gpointer) button_login, "clicked",
                     G_CALLBACK (on_button_login_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_visualise, "button_press_event",
+                    G_CALLBACK (on_button_visualise_button_press_event),
+                    NULL);
+  g_signal_connect ((gpointer) button_visualise, "button_release_event",
+                    G_CALLBACK (on_button_visualise_button_release_event),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -8612,7 +8636,9 @@ create_window_authentification (void)
   GLADE_HOOKUP_OBJECT (window_authentification, user_mdp, "user_mdp");
   GLADE_HOOKUP_OBJECT (window_authentification, user_id, "user_id");
   GLADE_HOOKUP_OBJECT (window_authentification, button_login, "button_login");
+  GLADE_HOOKUP_OBJECT (window_authentification, button_visualise, "button_visualise");
   GLADE_HOOKUP_OBJECT (window_authentification, image80, "image80");
+  GLADE_HOOKUP_OBJECT (window_authentification, image162, "image162");
 
   return window_authentification;
 }
