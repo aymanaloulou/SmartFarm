@@ -1040,6 +1040,7 @@ create_dialog_ajout_ouvrier (void)
   dialog_ajout_ouvrier = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_ajout_ouvrier, 550, 550);
   gtk_window_set_title (GTK_WINDOW (dialog_ajout_ouvrier), _("Ajout ouvrier"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_ajout_ouvrier), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_ajout_ouvrier), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_ajout_ouvrier), FALSE);
 
@@ -1369,6 +1370,7 @@ create_dialog_modif_ouvrier (void)
   dialog_modif_ouvrier = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_modif_ouvrier, 550, 550);
   gtk_window_set_title (GTK_WINDOW (dialog_modif_ouvrier), _("Modofier un ouvrier"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modif_ouvrier), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modif_ouvrier), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modif_ouvrier), FALSE);
 
@@ -1770,6 +1772,7 @@ create_window_gest_emp (void)
   window_gest_emp = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (window_gest_emp, 1024, 718);
   gtk_window_set_title (GTK_WINDOW (window_gest_emp), _("Gestion des employes"));
+  gtk_window_set_resizable (GTK_WINDOW (window_gest_emp), FALSE);
 
   notebook2 = gtk_notebook_new ();
   gtk_widget_show (notebook2);
@@ -2165,6 +2168,7 @@ create_dialog_ajout_emp (void)
   dialog_ajout_emp = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_ajout_emp, 550, 550);
   gtk_window_set_title (GTK_WINDOW (dialog_ajout_emp), _("Ajouter un employe"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_ajout_emp), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_ajout_emp), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_ajout_emp), FALSE);
 
@@ -2479,6 +2483,7 @@ create_dialog_modif_emp (void)
   dialog_modif_emp = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_modif_emp, 550, 550);
   gtk_window_set_title (GTK_WINDOW (dialog_modif_emp), _("Modifier un employe"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modif_emp), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modif_emp), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modif_emp), FALSE);
 
@@ -3981,6 +3986,7 @@ create_dialog_ajouter_client (void)
   dialog_ajouter_client = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_ajouter_client, 550, 550);
   gtk_window_set_title (GTK_WINDOW (dialog_ajouter_client), _("Ajouter client"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_ajouter_client), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_ajouter_client), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_ajouter_client), FALSE);
 
@@ -4205,6 +4211,7 @@ create_dialog_modifier_client (void)
   dialog_modifier_client = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_modifier_client), _("modifier client"));
   gtk_window_set_default_size (GTK_WINDOW (dialog_modifier_client), -1, 800);
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modifier_client), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modifier_client), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modifier_client), FALSE);
 
@@ -4434,6 +4441,7 @@ create_dialog_reserv (void)
 
   dialog_reserv = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_reserv), _("Ajouter une reservation"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_reserv), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_reserv), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_reserv), FALSE);
 
@@ -4742,6 +4750,7 @@ create_dialog_mod_res (void)
 
   dialog_mod_res = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_mod_res), _("Modifier une reservation"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_mod_res), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_mod_res), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_mod_res), FALSE);
 
@@ -5372,6 +5381,7 @@ create_window_dashbord_client (void)
 
   window_dashbord_client = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_dashbord_client), _("Statistique clients"));
+  gtk_window_set_resizable (GTK_WINDOW (window_dashbord_client), FALSE);
 
   fixed23 = gtk_fixed_new ();
   gtk_widget_show (fixed23);
@@ -5875,6 +5885,7 @@ create_dialog_meilleur_ouv (void)
   dialog_meilleur_ouv = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_meilleur_ouv, 750, -1);
   gtk_window_set_title (GTK_WINDOW (dialog_meilleur_ouv), _("Ouvrier de mois"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_meilleur_ouv), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_meilleur_ouv), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_meilleur_ouv), FALSE);
 
@@ -6063,6 +6074,7 @@ create_dialog_taux_abs (void)
 
   dialog_taux_abs = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_taux_abs), _("Taux d'absent\303\251isme"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_taux_abs), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_taux_abs), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_taux_abs), FALSE);
 
@@ -6746,6 +6758,7 @@ create_dialog_ajouter_equipement (void)
 
   dialog_ajouter_equipement = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_ajouter_equipement), _("Ajout d'un \303\251quipement"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_ajouter_equipement), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_ajouter_equipement), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_ajouter_equipement), FALSE);
 
@@ -6941,6 +6954,7 @@ create_dialog_modifier_equipement (void)
 
   dialog_modifier_equipement = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_modifier_equipement), _("Modification d'un \303\251quipement"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modifier_equipement), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modifier_equipement), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modifier_equipement), FALSE);
 
@@ -7154,6 +7168,7 @@ create_dialog_ajouter_entretien (void)
 
   dialog_ajouter_entretien = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_ajouter_entretien), _("Ajout d'un entretien "));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_ajouter_entretien), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_ajouter_entretien), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_ajouter_entretien), FALSE);
 
@@ -7362,6 +7377,7 @@ create_dialog_modifier_entretien (void)
 
   dialog_modifier_entretien = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_modifier_entretien), _("Modification d'un entretien "));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modifier_entretien), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modifier_entretien), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modifier_entretien), FALSE);
 
@@ -7588,6 +7604,7 @@ create_choix_equipement (void)
 
   choix_equipement = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (choix_equipement), _("Choix d'action"));
+  gtk_window_set_resizable (GTK_WINDOW (choix_equipement), FALSE);
 
   fixed34 = gtk_fixed_new ();
   gtk_widget_show (fixed34);
@@ -7718,6 +7735,7 @@ create_choix_entretien (void)
 
   choix_entretien = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (choix_entretien), _("Choix d'action"));
+  gtk_window_set_resizable (GTK_WINDOW (choix_entretien), FALSE);
 
   fixed35 = gtk_fixed_new ();
   gtk_widget_show (fixed35);
@@ -7842,6 +7860,7 @@ create_choix_historique (void)
 
   choix_historique = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (choix_historique), _("Choix d'action"));
+  gtk_window_set_resizable (GTK_WINDOW (choix_historique), FALSE);
 
   fixed36 = gtk_fixed_new ();
   gtk_widget_show (fixed36);
@@ -7926,6 +7945,7 @@ create_dialog_confirmer_supp_eq (void)
 
   dialog_confirmer_supp_eq = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_confirmer_supp_eq), _("Confirmation de suppression"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_confirmer_supp_eq), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_confirmer_supp_eq), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_confirmer_supp_eq), FALSE);
 
@@ -7987,6 +8007,7 @@ create_dialog_confirmer_supp_entr (void)
 
   dialog_confirmer_supp_entr = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_confirmer_supp_entr), _("Confirmation de suppression"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_confirmer_supp_entr), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_confirmer_supp_entr), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_confirmer_supp_entr), FALSE);
 
@@ -8058,6 +8079,7 @@ create_choix_declar_eq (void)
 
   choix_declar_eq = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (choix_declar_eq), _("Choix d'action"));
+  gtk_window_set_resizable (GTK_WINDOW (choix_declar_eq), FALSE);
 
   fixed39 = gtk_fixed_new ();
   gtk_widget_show (fixed39);
@@ -8171,6 +8193,7 @@ create_dialog_dest_declar_eq (void)
 
   dialog_dest_declar_eq = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_dest_declar_eq), _("Envoyer \303\240"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_dest_declar_eq), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_dest_declar_eq), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_dest_declar_eq), FALSE);
 
@@ -8254,6 +8277,7 @@ create_window_affiche_equip (void)
   window_affiche_equip = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (window_affiche_equip, 1024, 718);
   gtk_window_set_title (GTK_WINDOW (window_affiche_equip), _("Equipements et ses entretiens"));
+  gtk_window_set_resizable (GTK_WINDOW (window_affiche_equip), FALSE);
 
   notebook5 = gtk_notebook_new ();
   gtk_widget_show (notebook5);
@@ -8470,6 +8494,7 @@ create_dialog_modif_admin (void)
 
   dialog_modif_admin = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_modif_admin), _("Param\303\250tres"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_modif_admin), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_modif_admin), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_modif_admin), FALSE);
 
@@ -8652,6 +8677,7 @@ create_window_wrong_id (void)
 
   window_wrong_id = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_wrong_id), _("ERREUR !"));
+  gtk_window_set_resizable (GTK_WINDOW (window_wrong_id), FALSE);
 
   fixed45 = gtk_fixed_new ();
   gtk_widget_show (fixed45);
@@ -8680,6 +8706,7 @@ create_window_wrong_pass (void)
 
   window_wrong_pass = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_wrong_pass), _("ERREUR !"));
+  gtk_window_set_resizable (GTK_WINDOW (window_wrong_pass), FALSE);
 
   fixed46 = gtk_fixed_new ();
   gtk_widget_show (fixed46);
@@ -8717,6 +8744,7 @@ create_window_mail_envoye (void)
 
   window_mail_envoye = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window_mail_envoye), _("Mail envoy\303\251"));
+  gtk_window_set_resizable (GTK_WINDOW (window_mail_envoye), FALSE);
 
   fixed47 = gtk_fixed_new ();
   gtk_widget_show (fixed47);
@@ -9093,6 +9121,7 @@ create_Ajouter_capteur (void)
 
   Ajouter_capteur = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (Ajouter_capteur), _("dialog_ajouter"));
+  gtk_window_set_resizable (GTK_WINDOW (Ajouter_capteur), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (Ajouter_capteur), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (Ajouter_capteur), FALSE);
 
@@ -9257,6 +9286,7 @@ create_modifier_capteur (void)
 
   modifier_capteur = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (modifier_capteur), _("dialog_modif"));
+  gtk_window_set_resizable (GTK_WINDOW (modifier_capteur), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (modifier_capteur), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (modifier_capteur), FALSE);
 
@@ -9414,6 +9444,7 @@ create_supprimer_capteur (void)
 
   supprimer_capteur = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (supprimer_capteur), _("dialog_supp"));
+  gtk_window_set_resizable (GTK_WINDOW (supprimer_capteur), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (supprimer_capteur), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (supprimer_capteur), FALSE);
 
@@ -9470,6 +9501,7 @@ create_window_alarmante (void)
   window_alarmante = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (window_alarmante, 716, 324);
   gtk_window_set_title (GTK_WINDOW (window_alarmante), _("window2"));
+  gtk_window_set_resizable (GTK_WINDOW (window_alarmante), FALSE);
 
   fixed52 = gtk_fixed_new ();
   gtk_widget_show (fixed52);
@@ -9606,6 +9638,7 @@ create_dialog_fiche_capteur (void)
 
   dialog_fiche_capteur = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_fiche_capteur), _("fiche capteur"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_fiche_capteur), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_fiche_capteur), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_fiche_capteur), FALSE);
 
@@ -10185,6 +10218,7 @@ create_Tableau_de_bord_des_plantations (void)
   Tableau_de_bord_des_plantations = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Tableau_de_bord_des_plantations, 700, 700);
   gtk_window_set_title (GTK_WINDOW (Tableau_de_bord_des_plantations), _("Tableau de bord des plantations"));
+  gtk_window_set_resizable (GTK_WINDOW (Tableau_de_bord_des_plantations), FALSE);
 
   fixed57 = gtk_fixed_new ();
   gtk_widget_show (fixed57);
@@ -10623,6 +10657,7 @@ create_ajout_plantation (void)
 
   ajout_plantation = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (ajout_plantation), _("Ajouter une plantation"));
+  gtk_window_set_resizable (GTK_WINDOW (ajout_plantation), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (ajout_plantation), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (ajout_plantation), FALSE);
 
@@ -11110,6 +11145,7 @@ create_modif_plantation (void)
 
   modif_plantation = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (modif_plantation), _("Modifier une plantation"));
+  gtk_window_set_resizable (GTK_WINDOW (modif_plantation), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (modif_plantation), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (modif_plantation), FALSE);
 
@@ -11510,6 +11546,7 @@ create_dialog_valid_supp (void)
   GtkWidget *valide_supp_plante;
 
   dialog_valid_supp = gtk_dialog_new ();
+  gtk_window_set_resizable (GTK_WINDOW (dialog_valid_supp), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_valid_supp), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_valid_supp), FALSE);
 
@@ -11561,6 +11598,7 @@ create_dialog_valid_modif (void)
 
   dialog_valid_modif = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_valid_modif), _("dialog6"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_valid_modif), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_valid_modif), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_valid_modif), FALSE);
 
@@ -11612,6 +11650,7 @@ create_dialog_valid_ajout (void)
 
   dialog_valid_ajout = gtk_dialog_new ();
   gtk_window_set_title (GTK_WINDOW (dialog_valid_ajout), _("dialog11"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_valid_ajout), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_valid_ajout), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_valid_ajout), FALSE);
 
@@ -13014,6 +13053,7 @@ create_dialog_add_troup (void)
   dialog_add_troup = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_add_troup, 542, 558);
   gtk_window_set_title (GTK_WINDOW (dialog_add_troup), _("ajouter"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_add_troup), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_add_troup), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_add_troup), FALSE);
 
@@ -13312,6 +13352,7 @@ create_dialog_edit_troup (void)
   dialog_edit_troup = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_edit_troup, 542, 490);
   gtk_window_set_title (GTK_WINDOW (dialog_edit_troup), _("Modifier"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_edit_troup), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_edit_troup), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_edit_troup), FALSE);
 
@@ -14272,6 +14313,7 @@ create_dialog_lait (void)
   dialog_lait = gtk_dialog_new ();
   gtk_widget_set_size_request (dialog_lait, 400, 430);
   gtk_window_set_title (GTK_WINDOW (dialog_lait), _("Maladie"));
+  gtk_window_set_resizable (GTK_WINDOW (dialog_lait), FALSE);
   gtk_window_set_type_hint (GTK_WINDOW (dialog_lait), GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog_lait), FALSE);
 

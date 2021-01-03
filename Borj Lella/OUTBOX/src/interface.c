@@ -13934,6 +13934,9 @@ create_dialog_fiche_animal (void)
   g_signal_connect ((gpointer) button_pdf, "clicked",
                     G_CALLBACK (on_button_pdf_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_ok__affiche__animal, "clicked",
+                    G_CALLBACK (on_button_ok__affiche__animal_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_fiche_animal, dialog_fiche_animal, "dialog_fiche_animal");

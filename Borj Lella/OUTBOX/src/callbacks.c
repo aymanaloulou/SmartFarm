@@ -5953,12 +5953,7 @@ gtk_widget_set_sensitive(i7,FALSE);
 
 }
 ///////////////////////
-void
-on_button_ok__affiche__animal_clicked  (GtkButton       *button,
-                                        gpointer         user_data)
-{
 
-}
 
 
 
@@ -6219,4 +6214,14 @@ on_button_visualise_button_release_event
 }
 /////////////
 
+
+
+void
+on_button_ok__affiche__animal_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *p;
+p=lookup_widget (button,"dialog_fiche_animal");
+gtk_widget_destroy(p);
+}
 
