@@ -9059,9 +9059,9 @@ create_Ajouter_capteur (void)
   GtkWidget *radiobutton3;
   GSList *radiobutton3_group = NULL;
   GtkWidget *radiobutton4;
-  GtkWidget *label_id;
-  GtkWidget *label_marque;
   GtkWidget *label_valeur;
+  GtkWidget *label_marque;
+  GtkWidget *label_id;
   GtkWidget *hbuttonbox16;
   GtkWidget *okbutton_aj_capteur;
 
@@ -9142,20 +9142,20 @@ create_Ajouter_capteur (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
   radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
-  label_id = gtk_label_new ("");
-  gtk_widget_show (label_id);
-  gtk_fixed_put (GTK_FIXED (fixed49), label_id, 344, 56);
-  gtk_widget_set_size_request (label_id, 49, 17);
-
-  label_marque = gtk_label_new ("");
-  gtk_widget_show (label_marque);
-  gtk_fixed_put (GTK_FIXED (fixed49), label_marque, 344, 96);
-  gtk_widget_set_size_request (label_marque, 32, 24);
-
-  label_valeur = gtk_label_new ("");
-  gtk_widget_show (label_valeur);
+  label_valeur = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed49), label_valeur, 312, 328);
   gtk_widget_set_size_request (label_valeur, 40, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label_valeur), TRUE);
+
+  label_marque = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed49), label_marque, 344, 96);
+  gtk_widget_set_size_request (label_marque, 32, 24);
+  gtk_label_set_use_markup (GTK_LABEL (label_marque), TRUE);
+
+  label_id = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed49), label_id, 344, 56);
+  gtk_widget_set_size_request (label_id, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_id), TRUE);
 
   hbuttonbox16 = GTK_DIALOG (Ajouter_capteur)->action_area;
   gtk_widget_show (hbuttonbox16);
@@ -9191,9 +9191,9 @@ create_Ajouter_capteur (void)
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, valeur, "valeur");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton3, "radiobutton3");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, radiobutton4, "radiobutton4");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_id, "label_id");
-  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_marque, "label_marque");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_valeur, "label_valeur");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_marque, "label_marque");
+  GLADE_HOOKUP_OBJECT (Ajouter_capteur, label_id, "label_id");
   GLADE_HOOKUP_OBJECT_NO_REF (Ajouter_capteur, hbuttonbox16, "hbuttonbox16");
   GLADE_HOOKUP_OBJECT (Ajouter_capteur, okbutton_aj_capteur, "okbutton_aj_capteur");
 
@@ -9316,20 +9316,20 @@ create_modifier_capteur (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4), radiobutton3_group);
   radiobutton3_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4));
 
-  label_id = gtk_label_new ("");
-  gtk_widget_show (label_id);
-  gtk_fixed_put (GTK_FIXED (fixed50), label_id, 400, 64);
+  label_id = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed50), label_id, 400, 56);
   gtk_widget_set_size_request (label_id, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_id), TRUE);
 
-  label_marque = gtk_label_new ("");
-  gtk_widget_show (label_marque);
+  label_marque = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed50), label_marque, 400, 104);
   gtk_widget_set_size_request (label_marque, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_marque), TRUE);
 
-  label_valeur = gtk_label_new ("");
-  gtk_widget_show (label_valeur);
+  label_valeur = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed50), label_valeur, 400, 200);
   gtk_widget_set_size_request (label_valeur, 49, 17);
+  gtk_label_set_use_markup (GTK_LABEL (label_valeur), TRUE);
 
   hbuttonbox17 = GTK_DIALOG (modifier_capteur)->action_area;
   gtk_widget_show (hbuttonbox17);
@@ -12952,7 +12952,6 @@ create_dialog_add_troup (void)
   GtkWidget *cs_ajout_msg_ref;
   GtkWidget *label586;
   GtkWidget *label587;
-  GtkWidget *cs_ajout_ref;
   GtkWidget *cs_ajout_msg_type;
   GtkWidget *cs_ajout_type;
   GtkWidget *combo_animal;
@@ -12968,6 +12967,7 @@ create_dialog_add_troup (void)
   GtkWidget *cs_ajout_msg_poids;
   GtkWidget *cs_ajout_lot;
   GtkWidget *cs_ajout_msg_lot;
+  GtkWidget *cs_ajout_ref;
   GtkWidget *hbuttonbox26;
   GtkWidget *buttonok_ajoutanimal;
 
@@ -13074,11 +13074,6 @@ create_dialog_add_troup (void)
   gtk_fixed_put (GTK_FIXED (fixed67), label587, 20, 370);
   gtk_widget_set_size_request (label587, 49, 20);
 
-  cs_ajout_ref = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_ref, 360, 40);
-  gtk_widget_set_size_request (cs_ajout_ref, 27, 25);
-  gtk_label_set_use_markup (GTK_LABEL (cs_ajout_ref), TRUE);
-
   cs_ajout_msg_type = gtk_label_new (_("<span size='8905'><span foreground =\"red\"><b>Selectionnez un type ! </b></span></span>"));
   gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_msg_type, 400, 120);
   gtk_widget_set_size_request (cs_ajout_msg_type, 134, 23);
@@ -13157,6 +13152,11 @@ create_dialog_add_troup (void)
   gtk_widget_set_size_request (cs_ajout_msg_lot, 134, 23);
   gtk_label_set_use_markup (GTK_LABEL (cs_ajout_msg_lot), TRUE);
 
+  cs_ajout_ref = gtk_label_new (_("<span foreground=\"red\"><b>X</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed67), cs_ajout_ref, 360, 40);
+  gtk_widget_set_size_request (cs_ajout_ref, 27, 25);
+  gtk_label_set_use_markup (GTK_LABEL (cs_ajout_ref), TRUE);
+
   hbuttonbox26 = GTK_DIALOG (dialog_add_troup)->action_area;
   gtk_widget_show (hbuttonbox26);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (hbuttonbox26), GTK_BUTTONBOX_END);
@@ -13196,7 +13196,6 @@ create_dialog_add_troup (void)
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_ref, "cs_ajout_msg_ref");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, label586, "label586");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, label587, "label587");
-  GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_ref, "cs_ajout_ref");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_type, "cs_ajout_msg_type");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_type, "cs_ajout_type");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, combo_animal, "combo_animal");
@@ -13211,6 +13210,7 @@ create_dialog_add_troup (void)
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_poids, "cs_ajout_msg_poids");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_lot, "cs_ajout_lot");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_msg_lot, "cs_ajout_msg_lot");
+  GLADE_HOOKUP_OBJECT (dialog_add_troup, cs_ajout_ref, "cs_ajout_ref");
   GLADE_HOOKUP_OBJECT_NO_REF (dialog_add_troup, hbuttonbox26, "hbuttonbox26");
   GLADE_HOOKUP_OBJECT (dialog_add_troup, buttonok_ajoutanimal, "buttonok_ajoutanimal");
 

@@ -55,29 +55,35 @@ GtkWidget *c_id = lookup_widget(objet,"label_id");
 
 	GtkWidget *c_valeur =lookup_widget(objet,"label_valeur");
 if (identifiantExiste (c.id) == 0 || strcmp(c.id,"") == 0){
+
+		gtk_widget_show(c_id);
 		ok = 0;
-		gtk_label_set_text(GTK_LABEL(c_id),"X");	
-	}	
-	else{
-		gtk_label_set_text(GTK_LABEL(c_id),"");
-	}
+}		
+else
+{
+gtk_widget_hide(c_id);
+
+}	
+		
 	
 	
 	if (strcmp(c.marque,"") == 0){
 		ok = 0;
-		gtk_label_set_text(GTK_LABEL(c_marque),"X");	
+		gtk_widget_show(c_marque);
+               		
 	}	
 	else{
-		gtk_label_set_text(GTK_LABEL(c_marque),"");
+		gtk_widget_hide(c_marque);
 	}
 	
 	
 	if (strcmp(c.valeur,"")==0 || val_valide_cap(c.valeur) == 0){
 		ok = 0;
-		gtk_label_set_text(GTK_LABEL(c_valeur),"X");	
+		gtk_widget_show(c_valeur);	
 	}	
 	else{
-		gtk_label_set_text(GTK_LABEL(c_valeur),"");
+		gtk_widget_hide(c_valeur);
+
 	}
 	
 

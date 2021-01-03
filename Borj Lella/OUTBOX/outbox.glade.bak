@@ -22671,13 +22671,12 @@ humidité</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkLabel" id="label_id">
-	      <property name="width_request">49</property>
-	      <property name="height_request">17</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	    <widget class="GtkLabel" id="label_valeur">
+	      <property name="width_request">40</property>
+	      <property name="height_request">24</property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -22691,8 +22690,8 @@ humidité</property>
 	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
-	      <property name="x">344</property>
-	      <property name="y">56</property>
+	      <property name="x">312</property>
+	      <property name="y">328</property>
 	    </packing>
 	  </child>
 
@@ -22700,10 +22699,9 @@ humidité</property>
 	    <widget class="GtkLabel" id="label_marque">
 	      <property name="width_request">32</property>
 	      <property name="height_request">24</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -22723,13 +22721,12 @@ humidité</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkLabel" id="label_valeur">
-	      <property name="width_request">40</property>
-	      <property name="height_request">24</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	    <widget class="GtkLabel" id="label_id">
+	      <property name="width_request">49</property>
+	      <property name="height_request">17</property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -22743,8 +22740,8 @@ humidité</property>
 	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
-	      <property name="x">312</property>
-	      <property name="y">328</property>
+	      <property name="x">344</property>
+	      <property name="y">56</property>
 	    </packing>
 	  </child>
 	</widget>
@@ -23109,10 +23106,9 @@ humidité</property>
 	    <widget class="GtkLabel" id="label_id">
 	      <property name="width_request">49</property>
 	      <property name="height_request">17</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -23127,7 +23123,7 @@ humidité</property>
 	    </widget>
 	    <packing>
 	      <property name="x">400</property>
-	      <property name="y">64</property>
+	      <property name="y">56</property>
 	    </packing>
 	  </child>
 
@@ -23135,10 +23131,9 @@ humidité</property>
 	    <widget class="GtkLabel" id="label_marque">
 	      <property name="width_request">49</property>
 	      <property name="height_request">17</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -23161,10 +23156,9 @@ humidité</property>
 	    <widget class="GtkLabel" id="label_valeur">
 	      <property name="width_request">49</property>
 	      <property name="height_request">17</property>
-	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
 	      <property name="use_underline">False</property>
-	      <property name="use_markup">False</property>
+	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
 	      <property name="selectable">False</property>
@@ -32943,31 +32937,6 @@ Type z</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkLabel" id="cs_ajout_ref">
-	      <property name="width_request">27</property>
-	      <property name="height_request">25</property>
-	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
-	      <property name="use_underline">False</property>
-	      <property name="use_markup">True</property>
-	      <property name="justify">GTK_JUSTIFY_LEFT</property>
-	      <property name="wrap">False</property>
-	      <property name="selectable">False</property>
-	      <property name="xalign">0.5</property>
-	      <property name="yalign">0.5</property>
-	      <property name="xpad">0</property>
-	      <property name="ypad">0</property>
-	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-	      <property name="width_chars">-1</property>
-	      <property name="single_line_mode">False</property>
-	      <property name="angle">0</property>
-	    </widget>
-	    <packing>
-	      <property name="x">360</property>
-	      <property name="y">40</property>
-	    </packing>
-	  </child>
-
-	  <child>
 	    <widget class="GtkLabel" id="cs_ajout_msg_type">
 	      <property name="width_request">134</property>
 	      <property name="height_request">23</property>
@@ -33299,6 +33268,31 @@ brebis</property>
 	    <packing>
 	      <property name="x">190</property>
 	      <property name="y">484</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkLabel" id="cs_ajout_ref">
+	      <property name="width_request">27</property>
+	      <property name="height_request">25</property>
+	      <property name="label" translatable="yes">&lt;span foreground=&quot;red&quot;&gt;&lt;b&gt;X&lt;/b&gt;&lt;/span&gt;</property>
+	      <property name="use_underline">False</property>
+	      <property name="use_markup">True</property>
+	      <property name="justify">GTK_JUSTIFY_LEFT</property>
+	      <property name="wrap">False</property>
+	      <property name="selectable">False</property>
+	      <property name="xalign">0.5</property>
+	      <property name="yalign">0.5</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
+	    </widget>
+	    <packing>
+	      <property name="x">360</property>
+	      <property name="y">40</property>
 	    </packing>
 	  </child>
 	</widget>
