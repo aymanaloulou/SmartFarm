@@ -4349,7 +4349,7 @@ GtkWidget *coche= lookup_widget(modif_plantation,"checkbutton2_plante");
 if (strcmp(p.unit.unite,"---")==0)
 gtk_combo_box_set_active (unit,0);
 else if  (strcmp(p.unit.unite,"G")==0)
-gtk_combo_box_set_active (unit,0);
+gtk_combo_box_set_active (unit,1);
 else if  (strcmp(p.unit.unite,"KG")==0)
 gtk_combo_box_set_active (unit,2);
 
