@@ -228,78 +228,77 @@ void supp_capteur( char  id_supp[])
 }
 
 /////////////////////////////////////////////////////
+
+/////////////////////////////////////////////
 void recherche_capteur (char *id_rech, GtkWidget *liste)
 {
-FILE* f = fopen ("capteur.bin","r+b");
-char date1[30]; 
-	capteur c;int test = 0;int comp = 0;
-
-	while (fread (&c,sizeof (capteur),1,f)!=0 && test == 0)
-
-{
-sprintf (date1,"%d/%d/%d",c.date.jour,c.date.mois,c.date.annee);
-		if (strstr (c.id,id_rech) !=NULL || strstr (c.marque,id_rech) !=NULL || strstr (c.valeur,id_rech) !=NULL || strstr(c.type,id_rech)!=NULL || strstr(date1,id_rech)!=NULL)
-			test = 1;
-		else 
-			comp++;
-	}
-
-	if (test){
-		GtkCellRenderer *renderer;
-		GtkTreeViewColumn *column;
-		GtkTreeIter iter;
-		GtkListStore *store;
+	GtkCellRenderer *renderer;
+	GtkTreeViewColumn *column;
+	GtkTreeIter iter;
+	GtkListStore *store;
+	
+	FILE* f;
+	capteur c;
+	
 		char date1[15];
+	store=NULL;
+	
+	store=gtk_tree_view_get_model(liste);
+	if (store==NULL)
+	{
+	renderer = gtk_cell_renderer_text_new();
+	column = gtk_tree_view_column_new_with_attributes("id", renderer, "text",EID,NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
 
-		store = NULL;
-		store = gtk_tree_view_get_model(liste);
+	renderer = gtk_cell_renderer_text_new();
+	column = gtk_tree_view_column_new_with_attributes("marque", renderer, "text",EMARQUE,NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
+	
+renderer = gtk_cell_renderer_text_new();
+	column = gtk_tree_view_column_new_with_attributes("valeur", renderer, "text",EVALEUR,NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
 
-if (store==NULL)
-{
-			renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes (" id",renderer,"text",EID,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
-			renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes (" marque",renderer,"text",EMARQUE,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
-			renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes ("valeur",renderer,"text",EVALEUR,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
-			renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes (" date d ajout",renderer,"text",EDATE,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
-
-			renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes ("type",renderer,"text",ETYPE,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
+	renderer = gtk_cell_renderer_text_new ();
+		column = gtk_tree_view_column_new_with_attributes ("date ajout ",renderer,"text",EDATE,NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
+		renderer = gtk_cell_renderer_text_new ();
+		column = gtk_tree_view_column_new_with_attributes ("type ",renderer,"text",ETYPE,NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes ("Etat",renderer,"text",EETAT,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
+		column = gtk_tree_view_column_new_with_attributes ("Etat ",renderer,"text",EETAT,NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
 renderer = gtk_cell_renderer_text_new ();
-			column = gtk_tree_view_column_new_with_attributes ("Cause",renderer,"text",ECAUSE,NULL);
-			gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
+		column = gtk_tree_view_column_new_with_attributes ("Cause ",renderer,"text",ECAUSE,NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (liste),column);
 
-			}
-			store = gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-
-			gtk_list_store_append (store, &iter);
-
-			fseek (f,comp*sizeof (capteur),SEEK_SET);
-			fread (&c,sizeof (capteur),1,f);
-			sprintf (date1,"%d/%d/%d",c.date.jour,c.date.mois,c.date.annee);
-			gtk_list_store_set (store, &iter, EID, c.id, EMARQUE, c.marque, EVALEUR, c.valeur,ETYPE,c.type, EDATE, date1,EETAT,c.etat,ECAUSE,c.cause,-1);
-			fclose (f);
-			gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
-			g_object_unref (store);
-			
 	}
-}
+	store=gtk_list_store_new (COLUMNS , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING,G_TYPE_STRING );
+	f=fopen("capteur.bin","rb");
+	
+	if(f==NULL)
+	{
+		return;
+	}
+	else
+	{
+		
+		while(fread(&c,sizeof(capteur),1,f)!=0){
+sprintf(date1,"%2d/%2d/%4d",c.date.jour,c.date.mois,c.date.annee);
+		if (strstr (c.id,id_rech) !=NULL || strstr (c.marque,id_rech) !=NULL || strstr (c.valeur,id_rech) !=NULL || strstr(c.type,id_rech)!=NULL || strstr(date1,id_rech)!=NULL){
+		
+			gtk_list_store_append(store, &iter);
+                        
+			gtk_list_store_set (store, &iter, EID,c.id,EMARQUE,c.marque, EVALEUR, c.valeur,ETYPE, c.type, EDATE,date1,EETAT,c.etat,ECAUSE,c.cause, -1);
+		}}
+		fclose(f);
 
+		
+		gtk_tree_view_set_model (GTK_TREE_VIEW (liste), GTK_TREE_MODEL (store));
+		g_object_unref (store);
+	}}
+/////////////////////
 void affiche_type(GtkWidget *liste,char t[])
 {
 	GtkCellRenderer *renderer;

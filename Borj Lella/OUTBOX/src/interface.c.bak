@@ -9800,7 +9800,6 @@ create_dialog_fiche_capteur (void)
   gtk_widget_set_size_request (fixed54, -1, 401);
 
   entry_autre_cause = gtk_entry_new ();
-  gtk_widget_show (entry_autre_cause);
   gtk_fixed_put (GTK_FIXED (fixed54), entry_autre_cause, 152, 74);
   gtk_widget_set_size_request (entry_autre_cause, 160, 27);
   gtk_widget_set_sensitive (entry_autre_cause, FALSE);

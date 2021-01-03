@@ -2978,8 +2978,6 @@ create_window_gestion_des_clients (void)
   GtkWidget *fixed14;
   GtkWidget *entry_rech_rees;
   GtkWidget *image39;
-  GtkWidget *scrolledwindow10;
-  GtkWidget *treeview_reservation;
   GtkWidget *image154;
   GtkWidget *label132;
   GtkWidget *image40;
@@ -3018,6 +3016,8 @@ create_window_gestion_des_clients (void)
   GtkWidget *hbox20;
   GtkWidget *image43;
   GtkWidget *label133;
+  GtkWidget *scrolledwindow10;
+  GtkWidget *treeview_reservation;
   GtkWidget *label138;
   GtkWidget *fixed15;
   GtkWidget *entry_jeux;
@@ -3044,7 +3044,6 @@ create_window_gestion_des_clients (void)
   GtkWidget *label143;
   GtkWidget *label144;
   GtkWidget *entry_body;
-  GtkWidget *button_envoyer_email;
   GtkWidget *button153;
   GtkWidget *alignment26;
   GtkWidget *hbox26;
@@ -3053,6 +3052,7 @@ create_window_gestion_des_clients (void)
   GtkWidget *image50;
   GtkWidget *image156;
   GtkWidget *image152;
+  GtkWidget *button_envoyer_email;
   GtkWidget *label146;
 
   window_gestion_des_clients = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -3390,15 +3390,6 @@ create_window_gestion_des_clients (void)
   gtk_fixed_put (GTK_FIXED (fixed14), image39, 120, 72);
   gtk_widget_set_size_request (image39, 21, 21);
 
-  scrolledwindow10 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (scrolledwindow10);
-  gtk_fixed_put (GTK_FIXED (fixed14), scrolledwindow10, 120, 116);
-  gtk_widget_set_size_request (scrolledwindow10, 784, 424);
-
-  treeview_reservation = gtk_tree_view_new ();
-  gtk_widget_show (treeview_reservation);
-  gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_reservation);
-
   image154 = create_pixmap (window_gestion_des_clients, "2.png");
   gtk_widget_show (image154);
   gtk_fixed_put (GTK_FIXED (fixed14), image154, 16, 448);
@@ -3572,6 +3563,15 @@ create_window_gestion_des_clients (void)
   gtk_widget_show (label133);
   gtk_box_pack_start (GTK_BOX (hbox20), label133, FALSE, FALSE, 0);
 
+  scrolledwindow10 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow10);
+  gtk_fixed_put (GTK_FIXED (fixed14), scrolledwindow10, 120, 116);
+  gtk_widget_set_size_request (scrolledwindow10, 784, 424);
+
+  treeview_reservation = gtk_tree_view_new ();
+  gtk_widget_show (treeview_reservation);
+  gtk_container_add (GTK_CONTAINER (scrolledwindow10), treeview_reservation);
+
   label138 = gtk_label_new (_("Reservation"));
   gtk_widget_show (label138);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook3), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook3), 2), label138);
@@ -3708,11 +3708,6 @@ create_window_gestion_des_clients (void)
   gtk_widget_set_size_request (entry_body, 768, 192);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_body), 8226);
 
-  button_envoyer_email = gtk_button_new_with_mnemonic (_("Envoyer"));
-  gtk_widget_show (button_envoyer_email);
-  gtk_fixed_put (GTK_FIXED (fixed16), button_envoyer_email, 168, 472);
-  gtk_widget_set_size_request (button_envoyer_email, 168, 32);
-
   button153 = gtk_button_new ();
   gtk_widget_show (button153);
   gtk_fixed_put (GTK_FIXED (fixed16), button153, 0, 0);
@@ -3748,6 +3743,11 @@ create_window_gestion_des_clients (void)
   gtk_widget_show (image152);
   gtk_fixed_put (GTK_FIXED (fixed16), image152, 16, 448);
   gtk_widget_set_size_request (image152, 1015, 333);
+
+  button_envoyer_email = gtk_button_new_with_mnemonic (_("Envoyer"));
+  gtk_widget_show (button_envoyer_email);
+  gtk_fixed_put (GTK_FIXED (fixed16), button_envoyer_email, 168, 472);
+  gtk_widget_set_size_request (button_envoyer_email, 168, 32);
 
   label146 = gtk_label_new (_("Contact"));
   gtk_widget_show (label146);
@@ -3798,9 +3798,6 @@ create_window_gestion_des_clients (void)
   g_signal_connect ((gpointer) button_aff_historique, "clicked",
                     G_CALLBACK (on_button_aff_historique_clicked),
                     NULL);
-  g_signal_connect ((gpointer) treeview_reservation, "row_activated",
-                    G_CALLBACK (on_treeview_reservation_row_activated),
-                    NULL);
   g_signal_connect ((gpointer) button_aff_reservation, "clicked",
                     G_CALLBACK (on_button_aff_reservation_clicked),
                     NULL);
@@ -3825,17 +3822,20 @@ create_window_gestion_des_clients (void)
   g_signal_connect ((gpointer) open_pdf, "clicked",
                     G_CALLBACK (on_open_pdf_clicked),
                     NULL);
+  g_signal_connect ((gpointer) treeview_reservation, "row_activated",
+                    G_CALLBACK (on_treeview_reservation_row_activated),
+                    NULL);
   g_signal_connect ((gpointer) button_jeux, "clicked",
                     G_CALLBACK (on_button_jeux_clicked),
                     NULL);
   g_signal_connect ((gpointer) button154, "clicked",
                     G_CALLBACK (on_button_help_clicked),
                     NULL);
-  g_signal_connect ((gpointer) button_envoyer_email, "clicked",
-                    G_CALLBACK (on_button_envoyer_email_clicked),
-                    NULL);
   g_signal_connect ((gpointer) button153, "clicked",
                     G_CALLBACK (on_button_help_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_envoyer_email, "clicked",
+                    G_CALLBACK (on_button_envoyer_email_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -3912,8 +3912,6 @@ create_window_gestion_des_clients (void)
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, fixed14, "fixed14");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, entry_rech_rees, "entry_rech_rees");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image39, "image39");
-  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, scrolledwindow10, "scrolledwindow10");
-  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, treeview_reservation, "treeview_reservation");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image154, "image154");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label132, "label132");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image40, "image40");
@@ -3951,6 +3949,8 @@ create_window_gestion_des_clients (void)
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, hbox20, "hbox20");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image43, "image43");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label133, "label133");
+  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, scrolledwindow10, "scrolledwindow10");
+  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, treeview_reservation, "treeview_reservation");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label138, "label138");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, fixed15, "fixed15");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, entry_jeux, "entry_jeux");
@@ -3977,7 +3977,6 @@ create_window_gestion_des_clients (void)
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label143, "label143");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label144, "label144");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, entry_body, "entry_body");
-  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, button_envoyer_email, "button_envoyer_email");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, button153, "button153");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, alignment26, "alignment26");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, hbox26, "hbox26");
@@ -3986,6 +3985,7 @@ create_window_gestion_des_clients (void)
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image50, "image50");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image156, "image156");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, image152, "image152");
+  GLADE_HOOKUP_OBJECT (window_gestion_des_clients, button_envoyer_email, "button_envoyer_email");
   GLADE_HOOKUP_OBJECT (window_gestion_des_clients, label146, "label146");
 
   return window_gestion_des_clients;
