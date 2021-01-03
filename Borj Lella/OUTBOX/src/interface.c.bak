@@ -8584,7 +8584,7 @@ create_window_authentification (void)
   gtk_widget_show (user_mdp);
   gtk_fixed_put (GTK_FIXED (fixed44), user_mdp, 392, 408);
   gtk_widget_set_size_request (user_mdp, 256, 34);
-  gtk_entry_set_text (GTK_ENTRY (user_mdp), _("Mot De passe"));
+  gtk_entry_set_text (GTK_ENTRY (user_mdp), _("Mot de passe"));
   gtk_entry_set_invisible_char (GTK_ENTRY (user_mdp), 8226);
 
   user_id = gtk_entry_new ();

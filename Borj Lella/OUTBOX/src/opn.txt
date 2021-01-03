@@ -1,14 +1,18 @@
----------- Entretien de l'équipement d'identifiant : 1234 ---------- 
+---------- Reservation sous reference : aa ---------- 
 
 
-     Entretenu par : foulen22  
+     nom : oumaima  
  
-     Montant d'entretien : 1234  
+     Prenom : benzarti  
  
-     Payement : Payé  
+     Numero: 12345678  
  
-     Type de règlement : NON Espèce  
+     nombre de personne :  1  
  
-     Référence de payement : BIAT-000012235325322  
+     Option:   autre   
  
-           Date : 31  / 12 / 2020       ------------------------------------------------------- 
+     Periode: Weekend  
+ 
+     Commentaire : aa 
+ 
+     Date : 20  / 1 / 1        heure : 9 ------------------------------------------------------- 
